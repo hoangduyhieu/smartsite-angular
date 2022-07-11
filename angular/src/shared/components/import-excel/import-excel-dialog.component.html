@@ -1,0 +1,50 @@
+<form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="upload()">
+    <div class="modal-header col-12">
+        <div class="col-11">
+          <h4 class="modal-title">{{l('importexcel_title')}}</h4>
+        </div>
+      <div class="col-1 row">
+        <div>
+          <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+        <div class="ui-fluid row">
+            <div class="col-md-5">
+                <ngx-dropzone [disabled]="uploading" (change)="onSelect($event)" [multiple]="false"
+                    [accept]="excelAcceptTypes">
+                    <ngx-dropzone-label>{{l('importexcel_chose_file')}}</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-md-7">
+                <div class="ui-fluid row">
+                    <div class="col-md-12">
+                        <button [disabled]="uploading" [buttonBusy]="downLoading" type="button"
+                            class="btn btn-success m-b-10 centerText" (click)="download()">
+                            <i class="fa fa-download"></i>
+                            <span style="margin-left: 5px;">{{l('importexcel_sample_file')}}</span></button>
+                    </div>
+                </div>
+                <div class="ui-fluid row">
+                    <div class="col-md-12">
+                        <textarea [busy]="uploading" class="form-control" style="background-color: #f4f5f8;" disabled
+                            [(ngModel)]="returnMessage" name="returnMessage" rows="5" pInputTextarea></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-cancle-background m-l-15 width-btn-footer" (click)="close()">{{l('importexcel_btn_close')}}</button>
+      
+        <button type="submit" class="btn btn-primary btn-save-background width-btn-footer" [disabled]="files.length ===0"
+          [buttonBusy]="uploading" ><i class="fa fa-save"></i>
+          <span style="margin-left: 10px;">{{l('importexcel_btn_upload')}}</span></button>
+      </div>
+</form>

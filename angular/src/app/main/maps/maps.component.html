@@ -1,0 +1,51 @@
+<div [@routerTransition]>
+    <!--  Header -->
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('map_danhsachtram')}}</h1>
+                </div>
+                <!-- <div class="col-md-12 col-lg-6 text-right">
+                    <button type="button" class="btn btn-success m-l-8" [routerLink]="['/app/main/danh-muc/tram']">
+                        <span style="margin-left: 5px;">Xem List</span></button>
+                    <button type="button" class="btn btn-primary m-l-8" (click)="createDemo()">
+              <i class="pi pi-plus"></i>
+              <span style="margin-left: 5px;">Thêm mới</span></button>
+                </div> -->
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button type="button" *ngIf="isGranted('Pages.QuanLyTram.Create')" class="btn btn-primary m-l-8"
+                        (click)="createDemo()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                    <button type="button" class="btn btn-success m-l-8 width-150"
+                        [routerLink]="['/app/main/danh-muc/tram']">
+                        <i class="fas fa-bars"></i>
+                        <span style="margin-left: 10px;">{{l('map_xemlist')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button type="button" *ngIf="isGranted('Pages.QuanLyTram.Create')" class="btn btn-primary m-l-8"
+                        (click)="createDemo()">
+                        <i class="pi pi-plus"></i></button>
+                    <button type="button" class="btn btn-success m-l-8"
+                        [routerLink]="['/app/main/danh-muc/tram']">
+                        <i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  End of header -->
+
+    <!--   Content  -->
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card m-b-30">
+                <app-esri-map [center]="mapCenter" [basemap]="basemapType" [zoom]="mapZoomLevel"
+                    (mapLoadedEvent)="mapLoadedEvent($event)">
+                </app-esri-map>
+
+            </div>
+        </div>
+    </section>
+</div>

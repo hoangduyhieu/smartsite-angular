@@ -1,0 +1,1526 @@
+<div [@routerTransition]>
+    <div class="col-md-12 col-lg-6">
+        <h1 class="title-chi-tiet-tram" style="margin: 24px 0px 0px 24px !important;">
+            {{l('gscb_giamsatcambien')}}
+        </h1>
+    </div>
+    <div *ngIf="danhSachCamBien != undefined" style="margin: 0px 24px !important;">
+        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'" [collapseIcon]="'fa fa-angle-down'" #groupTab>
+            <p-accordionTab header="{{danhSachCamBien[0]?.ten}}" [selected]="true">
+                <section class="content">
+                    <div class="p-grid col-12" style="padding: 16px 0px 0px 25px !important;">
+                        <div class="col-12 row box-giamsat">
+                            <div class="col-3">
+                                <div class="boder-giamsat-20 row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[0].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[0].trangThaiKetNoi && danhSachCamBien[0].camBien[0].giaTri == '1') ? '#549fef' : '#ffffff'}">
+                                    <div class="col-10" style="font-weight: 600;"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[0].trangThaiKetNoi && danhSachCamBien[0].camBien[0].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[0].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[0].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+                                    <div *ngIf="danhSachCamBien[0].camBien[0].giaTri == 1" class="text-right">
+                                        <span style="font-weight: 600;" [ngStyle]="{'color': !danhSachCamBien[0].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[0].trangThaiKetNoi && danhSachCamBien[0].camBien[0].giaTri == '1') ? '#ffffff' : '#549fef'}">Bật</span>
+                                    </div>
+                                    <div *ngIf="danhSachCamBien[0].camBien[0].giaTri == 0" class="text-right">
+                                        <span style="font-weight: 600;" [ngStyle]="{'color': !danhSachCamBien[0].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[0].trangThaiKetNoi && danhSachCamBien[0].camBien[0].giaTri == '1') ? '#ffffff' : '#549fef'}">Tắt</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="boder-giamsat row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[1].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[1].trangThaiKetNoi && danhSachCamBien[0].camBien[1].giaTri == '1') ? '#549fef' : '#ffffff'}">
+
+                                    <div>
+                                        <span
+                                            [inlineSVG]="'../../../../../../../assets/img/svgs/dieuhoa-32.svg'"></span>
+                                    </div>
+
+                                    <div class="col-8 font-ten"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[1].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[1].trangThaiKetNoi && danhSachCamBien[0].camBien[1].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[1].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[1].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[0].camBien[1].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[1].trangThaiKetNoi && danhSachCamBien[0].camBien[1].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                            {{danhSachCamBien[0].camBien[1].thoiGianChayDieuHoa1}}h
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="boder-giamsat row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[2].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[2].trangThaiKetNoi && danhSachCamBien[0].camBien[2].giaTri == '1') ? '#549fef' : '#ffffff'}">
+
+                                    <div>
+                                        <span
+                                            [inlineSVG]="'../../../../../../../assets/img/svgs/dieuhoa-32.svg'"></span>
+                                    </div>
+
+                                    <div class="col-8 font-ten"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[2].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[2].trangThaiKetNoi && danhSachCamBien[0].camBien[2].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[2].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[2].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[0].camBien[2].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[2].trangThaiKetNoi && danhSachCamBien[0].camBien[2].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                            {{danhSachCamBien[0].camBien[2].thoiGianChayDieuHoa2}}h
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="boder-giamsat row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[3].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[3].trangThaiKetNoi && danhSachCamBien[0].camBien[3].giaTri == '1') ? '#549fef' : '#ffffff'}">
+                                    <div>
+                                        <span [inlineSVG]="'../../../../../../../assets/img/svgs/quat-32.svg'"></span>
+                                    </div>
+
+                                    <div class="col-8 font-ten"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[3].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[3].trangThaiKetNoi && danhSachCamBien[0].camBien[3].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[3].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[3].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[0].camBien[3].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[3].trangThaiKetNoi && danhSachCamBien[0].camBien[3].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                            {{danhSachCamBien[0].camBien[3].thoiGianChayQuat}}h
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 row box-giamsat">
+                            <div class="col-3">
+                                <div class="boder-giamsat-20 row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[4].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[4].trangThaiKetNoi && danhSachCamBien[0].camBien[4].giaTri == '1') ? '#549fef' : '#ffffff'}">
+                                    <div>
+                                        <span
+                                            [inlineSVG]="'../../../../../../../assets/img/svgs/nhietdo-32.svg'"></span>
+                                    </div>
+
+                                    <div class="col-8 font-ten"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[4].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[4].trangThaiKetNoi && danhSachCamBien[0].camBien[4].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[4].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[4].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[0].camBien[4].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[4].trangThaiKetNoi && danhSachCamBien[0].camBien[4].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                            {{danhSachCamBien[0].camBien[4].giaTri}}&nbsp;{{danhSachCamBien[0].camBien[4].donViDo}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="boder-giamsat-20 row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[5].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[5].trangThaiKetNoi && danhSachCamBien[0].camBien[5].giaTri == '1') ? '#549fef' : '#ffffff'}">
+                                    <div>
+                                        <span
+                                            [inlineSVG]="'../../../../../../../assets/img/svgs/nhietdo-32.svg'"></span>
+                                    </div>
+
+                                    <div class="col-8 font-ten"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[5].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[5].trangThaiKetNoi && danhSachCamBien[0].camBien[5].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[5].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[5].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[0].camBien[5].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[5].trangThaiKetNoi && danhSachCamBien[0].camBien[5].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                            {{danhSachCamBien[0].camBien[5].giaTri}}&nbsp;{{danhSachCamBien[0].camBien[5].donViDo}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="boder-giamsat-20 row"
+                                    [ngStyle]="{'background': !danhSachCamBien[0].camBien[6].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[0].camBien[6].trangThaiKetNoi && danhSachCamBien[0].camBien[6].giaTri == '1') ? '#549fef' : '#ffffff'}">
+                                    <div>
+                                        <span [inlineSVG]="'../../../../../../../assets/img/svgs/doam-32.svg'"></span>
+                                    </div>
+
+                                    <div class="col-8 font-ten"
+                                        [ngStyle]="{'color': !danhSachCamBien[0].camBien[6].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[6].trangThaiKetNoi && danhSachCamBien[0].camBien[6].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        <p>{{danhSachCamBien[0].camBien[6].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[0].camBien[6].trangThaiKetNoi"
+                                            style="color: #e50a28;">Mất kết nối</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[0].camBien[6].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[0].camBien[6].trangThaiKetNoi && danhSachCamBien[0].camBien[6].giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                            {{danhSachCamBien[0].camBien[6].giaTri}}&nbsp;{{danhSachCamBien[0].camBien[6].donViDo}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div *ngFor="let ii of ds.camBien; let i = index"
+                            style="text-align: center !important; margin-top: 10px !important ;"
+                            class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                            <div style="background-color: #FAFAFA; border-radius: 8px; padding-top: 16px !important;">
+                                <label style="display: grid !important;" class="matKetNoi"
+                                    *ngIf="!ii.trangThaiKetNoi">{{l('gscb_matketnoi')}}</label>
+                                <label style="display: grid !important;" class="dangKetNoi"
+                                    *ngIf="ii.trangThaiKetNoi">{{l('gscb_dangketnoi')}}</label>
+                                <radial-gauge *ngIf="ii.loaiThietBi == 400" value="{{ii.giaTri}}" title="{{ii.donViDo}}"
+                                    width="200" height="200"
+                                    major-ticks="0,30,60,90,120,150,180,210,240,270,300,330,360" highlights='[
+                            {"from": 0, "to": 360, "color": "#7CB3E9"}
+                        ]' min-value="0" max-value="360" border-shadow-width="0" color-value-box-rect="#237BD3"
+                                    color-value-box-rect-end="#237BD3" borders="false"></radial-gauge>
+
+                                <radial-gauge *ngIf="ii.loaiThietBi == 599" value="{{ii.giaTri}}" title="{{ii.donViDo}}"
+                                    width="200" height="200"
+                                    major-ticks="0,400,800,1200,1600,2000,2400,2800,3200,3600,4000,4400,4800"
+                                    highlights='[
+                            {"from": 0, "to": 4800, "color": "#7CB3E9"}
+                        ]' min-value="0" max-value="4800" border-shadow-width="0" color-value-box-rect="#237BD3"
+                                    color-value-box-rect-end="#237BD3" borders="false"></radial-gauge>
+                                <img style="width: 100px; height: 100px"
+                                    *ngIf="ii.loaiThietBi == 488 &&( ii.giaTri == 0 || ii.giaTri == '' || ii.giaTri == null )"
+                                    class="iconClosed" src="../assets/img/switch-off.png">
+                                <img style="width: 100px; height: 100px" *ngIf="ii.loaiThietBi == 488 && ii.giaTri > 0"
+                                    class="iconOpen" src="../assets/img/switch-on.png">
+                                <label class="thoiGian" *ngIf="ii.hienThiThoiGian == 1">Thời gian điều hòa 01 chạy:
+                                    {{ii.thoiGianChayDieuHoa1}}h</label>
+                                <label class="thoiGian" *ngIf="ii.hienThiThoiGian == 2">Thời gian điều hòa 02 chạy:
+                                    {{ii.thoiGianChayDieuHoa2}}h</label>
+                                <label class="thoiGian" *ngIf="ii.hienThiThoiGian == 3">Thời gian quạt chạy:
+                                    {{ii.thoiGianChayQuat}}h</label>
+                                <div *ngIf="ii.loaiThietBi == 499" class="row" style="text-align: left !important;">
+                                    <div class="col-12">
+                                        <input style="margin: 0px 10px;" type="radio"
+                                            [checked]="ii.giaTri == 0 ? true: false" />
+                                        <label>Nghỉ</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input style="margin: 0px 10px;" type="radio"
+                                            [checked]="ii.giaTri == 1 ? true: false" />
+                                        <label>Đề</label>
+                                    </div>
+                                </div>
+                                <div *ngIf="ii.loaiThietBi == 499" class="row" style="text-align: left !important;">
+                                    <div class="col-12">
+                                        <input style="margin: 0px 10px;" type="radio"
+                                            [checked]="ii.giaTri == 2 ? true: false" />
+                                        <label>Chạy không tải</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input style="margin:0px  10px;" type="radio"
+                                            [checked]="ii.giaTri == 3 ? true: false" />
+                                        <label>Chạy có tải</label>
+                                    </div>
+                                </div>
+                                <label class="ten">{{i + 1}}. {{ii.ten}}</label>
+                            </div>
+                        </div> -->
+
+                        <!-- <div *ngFor="let ii of ds.camBien; let i = index"
+                            style="text-align: center !important; margin-top: 25px !important ;"
+                            class="col-xs-12 col-sm-12 col-md-6 col-lg-3"> -->
+                        <!-- <div *ngIf="ii.key?.includes('acm')" class="boder-giamsat row"
+                                [ngStyle]="{'background': !ii.trangThaiKetNoi ? '#d7d6d6' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#549fef' : '#ffffff'}">
+
+                                <div *ngIf="ii.hienThiThoiGian === null && ii.loaiThietBi == 400"
+                                    class="col-1 text-right">
+                                    <span [inlineSVG]="'../../../../../../../assets/img/svgs/nhietdo-32.svg'"></span>
+                                </div>
+
+                                <div *ngIf="ii.loaiThietBi == 400 && ii.hienThiThoiGian == 4" class="col-1 text-right">
+                                    <span [inlineSVG]="'../../../../../../../assets/img/svgs/doam-32.svg'"></span>
+                                </div>
+
+                                <div *ngIf="ii.hienThiThoiGian == 1 || ii.hienThiThoiGian == 2"
+                                    class="col-1 text-right">
+                                    <span [inlineSVG]="'../../../../../../../assets/img/svgs/dieuhoa-32.svg'"></span>
+                                </div>
+
+                                <div *ngIf="ii.hienThiThoiGian == 3" class="col-1 text-right">
+                                    <span [inlineSVG]="'../../../../../../../assets/img/svgs/quat-32.svg'"></span>
+                                </div>
+
+                                <div class="col-9 text-left">
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        {{ii.ten}}</p>
+                                </div>
+
+                                <div *ngIf="ii.hienThiThoiGian === 0" class="text-right">
+                                    <span [inlineSVG]="'../../../../../../../assets/img/svgs/OFF-32.svg'"></span>
+                                </div>
+
+                                <div class="text-right"
+                                    *ngIf="ii.hienThiThoiGian == 1 || ii.hienThiThoiGian == 2 || ii.hienThiThoiGian == 3">
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#ffffff' : '#549fef'}"
+                                        *ngIf="ii.hienThiThoiGian == 1">
+                                        {{ii.thoiGianChayDieuHoa1}}h</p>
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#ffffff' : '#549fef'}"
+                                        *ngIf="ii.hienThiThoiGian == 2">
+                                        {{ii.thoiGianChayDieuHoa2}}h</p>
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#ffffff' : '#549fef'}"
+                                        *ngIf="ii.hienThiThoiGian == 3">
+                                        {{ii.thoiGianChayQuat}}h</p>
+                                </div>
+
+                                <div class="text-right" *ngIf="ii.loaiThietBi == 400">
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#ffffff' : '#549fef'}">
+                                        {{ii.giaTri}}&nbsp;{{ii.donViDo}}</p>
+                                </div>
+                            </div> -->
+
+                        <!-- ATS -->
+                        <!-- <div *ngIf="ii.key?.includes('ats')" class="boder-giamsat row"
+                                [ngStyle]="{'background': !ii.trangThaiKetNoi ? '#d7d6d6' : (ii.trangThaiKetNoi && ii.giaTri == '1') || ii.giaTri > 0 ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '0') && ii.trai ? '#f3b5be' : '#ffffff'}">
+
+                                <div class="col-1" *ngIf="ii.trai">
+                                    <span [inlineSVG]="ii.logo"></span>
+                                </div>
+
+                                <div class="col-9 text-left">
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') || ii.giaTri > 0 ? '#ffffff' : (ii.trangThaiKetNoi && ii.giaTri == '0') && ii.trai ? '#e50a28' : '#549fef'}">
+                                        {{ii.ten}}</p>
+                                </div>
+
+                                <div class="text-right" *ngIf="ii.phai">
+                                    <span [inlineSVG]="ii.button"></span>
+                                </div>
+
+                                <div class="text-right" *ngIf="ii.loaiThietBi == 400 || ii.loaiThietBi == 599"
+                                    style="font-weight: 600;">
+                                    <p
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') || ii.giaTri > 0 ? '#ffffff' : '#549fef'}">
+                                        {{ii.giaTri}} {{ii.donViDo}}</p>
+                                </div>
+
+                                <div *ngIf="ii.loaiThietBi == 499" class="col-12 row pt-2">
+                                    <div *ngIf="ii.loaiThietBi == 499" class="col-6"
+                                        style="text-align: left !important;">
+                                        <div>
+                                            <input [disabled]="ii.giaTri == 0 ? false: true" style="margin: 0px 10px;"
+                                                type="radio" [checked]="ii.giaTri == 0 ? true: false" />
+                                            <label>Nghỉ</label>
+                                        </div>
+                                        <div>
+                                            <input [disabled]="ii.giaTri == 1 ? false: true" style="margin: 0px 10px;"
+                                                type="radio" [checked]="ii.giaTri == 1 ? true: false" />
+                                            <label>Đề</label>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="ii.loaiThietBi == 499" class="col-6"
+                                        style="text-align: left !important;">
+                                        <div>
+                                            <input [disabled]="ii.giaTri == 2 ? false: true" style="margin: 0px 10px;"
+                                                type="radio" [checked]="ii.giaTri == 2 ? true: false" />
+                                            <label>Chạy không tải</label>
+                                        </div>
+                                        <div>
+                                            <input [disabled]="ii.giaTri == 3 ? false: true" style="margin:0px  10px;"
+                                                type="radio" [checked]="ii.giaTri == 3 ? true: false" />
+                                            <label>Chạy có tải</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> -->
+
+                        <!-- MCC -->
+                        <!-- <div *ngIf="ii.key?.includes('mcc')" class="boder-giamsat row"
+                                [ngStyle]="{'background': !ii.trangThaiKetNoi ? '#d7d6d6' : (ii.trangThaiKetNoi && ii.giaTri == '1' && ii.trai && ii.phai) ? '#f3b5be' : (ii.trangThaiKetNoi && ii.giaTri == '0' && ii.trai && ii.phai) ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri > 0 && !ii.trai && !ii.phai) ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '0' && ii.trai && !ii.phai) ? '#549fef' : '#ffffff'}">
+
+                                <div class="col-1" *ngIf="ii.trai">
+                                    <span [inlineSVG]="ii.logo"></span>
+                                </div>
+
+                                <div class="col-9 text-left">
+                                    <p style="font-weight: 600;"
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') ? '#e50a28' : (ii.trangThaiKetNoi && ii.giaTri == '0') && ii.trai && ii.phai ? '#ffffff' : (ii.trangThaiKetNoi && ii.giaTri == '0' && ii.trai && !ii.phai) ? '#ffffff' : (ii.trangThaiKetNoi && ii.giaTri > 0 && !ii.trai && !ii.phai) ? '#ffffff' : '#549fef'}">
+                                        {{ii.ten}}</p>
+                                </div>
+
+                                <div *ngIf="ii.phai" class="text-right">
+                                    <span [inlineSVG]="ii.button"></span>
+                                </div>
+
+                                <div *ngIf="ii.loaiThietBi == 400 || ii.loaiThietBi == 599" style="font-weight: 600;"
+                                    class="text-right">
+                                    <p
+                                        [ngStyle]="{'color': !ii.trangThaiKetNoi ? '#549fef' : (ii.trangThaiKetNoi && ii.giaTri == '1') || ii.giaTri > 0 ? '#ffffff' : (ii.trangThaiKetNoi && ii.giaTri == '0' && ii.trai && !ii.phai) ? '#ffffff' : '#549fef'}">
+                                        {{ii.giaTri}} {{ii.donViDo}}</p>
+                                </div>
+                            </div> -->
+                        <!-- </div> -->
+
+                    </div>
+                </section>
+            </p-accordionTab>
+
+            <p-accordionTab header="{{danhSachCamBien[1]?.ten}}" [selected]="true">
+                <section class="content">
+                    <div class="p-grid" style="padding: 16px 0px 0px 25px !important;">
+                        <div class="col-12 row">
+                            <div class="col-8 row box-giamsat">
+                                <div class="col-6 padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[1].camBien[0].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[0].trangThaiKetNoi && danhSachCamBien[1].camBien[0].giaTri == '1') || danhSachCamBien[1].camBien[0].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[0].trangThaiKetNoi && danhSachCamBien[1].camBien[0].giaTri == '0') && danhSachCamBien[1].camBien[0].trai ? '#f3b5be' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[1].camBien[0].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[1].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[0].trangThaiKetNoi && danhSachCamBien[1].camBien[0].giaTri == '1') || danhSachCamBien[1].camBien[0].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[0].trangThaiKetNoi && danhSachCamBien[1].camBien[0].giaTri == '0') && danhSachCamBien[1].camBien[0].trai ? '#e50a28' : '#549fef'}">
+                                            <p>{{danhSachCamBien[1].camBien[0].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[1].camBien[0].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[1].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[0].trangThaiKetNoi && danhSachCamBien[1].camBien[0].giaTri == '1') || danhSachCamBien[1].camBien[0].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[0].trangThaiKetNoi && danhSachCamBien[1].camBien[0].giaTri == '0') && danhSachCamBien[1].camBien[0].trai ? '#e50a28' : '#549fef'}">{{danhSachCamBien[1].camBien[0].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6 padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[1].camBien[2].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[2].trangThaiKetNoi && danhSachCamBien[1].camBien[2].giaTri == '1') || danhSachCamBien[1].camBien[2].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[2].trangThaiKetNoi && danhSachCamBien[1].camBien[2].giaTri == '0') && danhSachCamBien[1].camBien[2].trai ? '#f3b5be' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[1].camBien[2].logo"></span>
+                                        </div>
+
+                                        <div class="col-10 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[1].camBien[2].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[2].trangThaiKetNoi && danhSachCamBien[1].camBien[2].giaTri == '1') || danhSachCamBien[1].camBien[2].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[2].trangThaiKetNoi && danhSachCamBien[1].camBien[2].giaTri == '0') && danhSachCamBien[1].camBien[2].trai ? '#e50a28' : '#549fef'}">
+                                            <p>{{danhSachCamBien[1].camBien[2].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[1].camBien[2].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6 padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[1].camBien[1].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[1].trangThaiKetNoi && danhSachCamBien[1].camBien[1].giaTri == '1') || danhSachCamBien[1].camBien[1].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[1].trangThaiKetNoi && danhSachCamBien[1].camBien[1].giaTri == '0') && danhSachCamBien[1].camBien[1].trai ? '#f3b5be' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[1].camBien[1].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[1].camBien[1].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[1].trangThaiKetNoi && danhSachCamBien[1].camBien[1].giaTri == '1') || danhSachCamBien[1].camBien[1].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[1].trangThaiKetNoi && danhSachCamBien[1].camBien[1].giaTri == '0') && danhSachCamBien[1].camBien[1].trai ? '#e50a28' : '#549fef'}">
+                                            <p>{{danhSachCamBien[1].camBien[1].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[1].camBien[1].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[1].camBien[1].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[1].trangThaiKetNoi && danhSachCamBien[1].camBien[1].giaTri == '1') || danhSachCamBien[1].camBien[1].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[1].trangThaiKetNoi && danhSachCamBien[1].camBien[1].giaTri == '0') && danhSachCamBien[1].camBien[1].trai ? '#e50a28' : '#549fef'}">{{danhSachCamBien[1].camBien[1].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6 padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[1].camBien[3].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[3].trangThaiKetNoi && danhSachCamBien[1].camBien[3].giaTri == '1') || danhSachCamBien[1].camBien[3].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[3].trangThaiKetNoi && danhSachCamBien[1].camBien[3].giaTri == '0') && danhSachCamBien[1].camBien[3].trai ? '#f3b5be' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[1].camBien[3].logo"></span>
+                                        </div>
+
+                                        <div class="col-10 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[1].camBien[3].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[3].trangThaiKetNoi && danhSachCamBien[1].camBien[3].giaTri == '1') || danhSachCamBien[1].camBien[3].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[3].trangThaiKetNoi && danhSachCamBien[1].camBien[3].giaTri == '0') && danhSachCamBien[1].camBien[3].trai ? '#e50a28' : '#549fef'}">
+                                            <p>{{danhSachCamBien[1].camBien[3].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[1].camBien[3].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 row box-giamsat"
+                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[1].trangThaiKetNoi ? '#d7d6d6': '#ffffff'}">
+                                <div class="col-12 padding-giam-sat">
+                                    <div class="col-12 text-center">
+                                        <p style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[1].camBien[18].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[18].trangThaiKetNoi && danhSachCamBien[1].camBien[18].giaTri == '1') || danhSachCamBien[1].camBien[18].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[18].trangThaiKetNoi && danhSachCamBien[1].camBien[18].giaTri == '0') && danhSachCamBien[1].camBien[18].trai ? '#e50a28' : '#549fef'}">
+                                            {{danhSachCamBien[1].camBien[18].ten}}</p>
+                                        <p *ngIf="!danhSachCamBien[1].camBien[18].trangThaiKetNoi"
+                                            style="color: #e50a28; font-weight: 600;">Mất kết nối</p>
+                                    </div>
+                                    <div class="col-12 row pt-2">
+                                        <div class="col-6 text-left" style="padding-left: 80px !important;">
+                                            <div>
+                                                <input
+                                                    [disabled]="danhSachCamBien[1].camBien[18].giaTri == 0 ? false: true"
+                                                    style="margin: 0px 10px;" type="radio"
+                                                    [checked]="danhSachCamBien[1].camBien[18].giaTri == 0 ? true: false" />
+                                                <label>Nghỉ</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    [disabled]="danhSachCamBien[1].camBien[18].giaTri == 1 ? false: true"
+                                                    style="margin: 0px 10px;" type="radio"
+                                                    [checked]="danhSachCamBien[1].camBien[18].giaTri == 1 ? true: false" />
+                                                <label>Đề</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 text-left">
+                                            <div>
+                                                <input
+                                                    [disabled]="danhSachCamBien[1].camBien[18].giaTri == 2 ? false: true"
+                                                    style="margin: 0px 10px;" type="radio"
+                                                    [checked]="danhSachCamBien[1].camBien[18].giaTri == 2 ? true: false" />
+                                                <label>Chạy không tải</label>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    [disabled]="danhSachCamBien[1].camBien[18].giaTri == 3 ? false: true"
+                                                    style="margin:0px  10px;" type="radio"
+                                                    [checked]="danhSachCamBien[1].camBien[18].giaTri == 3 ? true: false" />
+                                                <label>Chạy có tải</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 row box-giamsat">
+                                <div class="col-12 row padding-giam-sat">
+                                    <div class="col-2 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">ĐIỆN ÁP LƯỚI</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[4].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[4].trangThaiKetNoi && danhSachCamBien[1].camBien[4].giaTri == '1') || danhSachCamBien[1].camBien[4].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[4].trangThaiKetNoi && danhSachCamBien[1].camBien[4].giaTri == '0') && danhSachCamBien[1].camBien[4].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[4].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[4].trangThaiKetNoi && danhSachCamBien[1].camBien[4].giaTri == '1') || danhSachCamBien[1].camBien[4].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[4].trangThaiKetNoi && danhSachCamBien[1].camBien[4].giaTri == '0') && danhSachCamBien[1].camBien[4].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[4].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[4].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[4].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[4].trangThaiKetNoi && danhSachCamBien[1].camBien[4].giaTri == '1') || danhSachCamBien[1].camBien[4].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[4].trangThaiKetNoi && danhSachCamBien[1].camBien[4].giaTri == '0') && danhSachCamBien[1].camBien[4].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[4].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[4].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[8].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[8].trangThaiKetNoi && danhSachCamBien[1].camBien[8].giaTri == '1') || danhSachCamBien[1].camBien[8].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[8].trangThaiKetNoi && danhSachCamBien[1].camBien[8].giaTri == '0') && danhSachCamBien[1].camBien[8].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[8].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[8].trangThaiKetNoi && danhSachCamBien[1].camBien[8].giaTri == '1') || danhSachCamBien[1].camBien[8].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[8].trangThaiKetNoi && danhSachCamBien[1].camBien[8].giaTri == '0') && danhSachCamBien[1].camBien[8].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[8].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[8].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[8].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[8].trangThaiKetNoi && danhSachCamBien[1].camBien[8].giaTri == '1') || danhSachCamBien[1].camBien[8].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[8].trangThaiKetNoi && danhSachCamBien[1].camBien[8].giaTri == '0') && danhSachCamBien[1].camBien[8].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[8].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[8].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[12].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[12].trangThaiKetNoi && danhSachCamBien[1].camBien[12].giaTri == '1') || danhSachCamBien[1].camBien[12].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[12].trangThaiKetNoi && danhSachCamBien[1].camBien[12].giaTri == '0') && danhSachCamBien[1].camBien[12].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[12].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[12].trangThaiKetNoi && danhSachCamBien[1].camBien[12].giaTri == '1') || danhSachCamBien[1].camBien[12].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[12].trangThaiKetNoi && danhSachCamBien[1].camBien[12].giaTri == '0') && danhSachCamBien[1].camBien[12].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[12].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[12].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[12].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[12].trangThaiKetNoi && danhSachCamBien[1].camBien[12].giaTri == '1') || danhSachCamBien[1].camBien[12].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[12].trangThaiKetNoi && danhSachCamBien[1].camBien[12].giaTri == '0') && danhSachCamBien[1].camBien[12].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[12].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[12].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">ĐIỆN ÁP MÁY PHÁT</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[5].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[5].trangThaiKetNoi && danhSachCamBien[1].camBien[5].giaTri == '1') || danhSachCamBien[1].camBien[5].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[5].trangThaiKetNoi && danhSachCamBien[1].camBien[5].giaTri == '0') && danhSachCamBien[1].camBien[5].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[5].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[5].trangThaiKetNoi && danhSachCamBien[1].camBien[5].giaTri == '1') || danhSachCamBien[1].camBien[5].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[5].trangThaiKetNoi && danhSachCamBien[1].camBien[5].giaTri == '0') && danhSachCamBien[1].camBien[5].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[5].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[5].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[5].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[5].trangThaiKetNoi && danhSachCamBien[1].camBien[5].giaTri == '1') || danhSachCamBien[1].camBien[5].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[5].trangThaiKetNoi && danhSachCamBien[1].camBien[5].giaTri == '0') && danhSachCamBien[1].camBien[5].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[5].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[5].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[9].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[9].trangThaiKetNoi && danhSachCamBien[1].camBien[9].giaTri == '1') || danhSachCamBien[1].camBien[9].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[9].trangThaiKetNoi && danhSachCamBien[1].camBien[9].giaTri == '0') && danhSachCamBien[1].camBien[9].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[9].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[9].trangThaiKetNoi && danhSachCamBien[1].camBien[9].giaTri == '1') || danhSachCamBien[1].camBien[9].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[9].trangThaiKetNoi && danhSachCamBien[1].camBien[9].giaTri == '0') && danhSachCamBien[1].camBien[9].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[9].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[9].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[9].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[9].trangThaiKetNoi && danhSachCamBien[1].camBien[9].giaTri == '1') || danhSachCamBien[1].camBien[9].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[9].trangThaiKetNoi && danhSachCamBien[1].camBien[9].giaTri == '0') && danhSachCamBien[1].camBien[9].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[9].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[9].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[13].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[13].trangThaiKetNoi && danhSachCamBien[1].camBien[13].giaTri == '1') || danhSachCamBien[1].camBien[13].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[13].trangThaiKetNoi && danhSachCamBien[1].camBien[13].giaTri == '0') && danhSachCamBien[1].camBien[13].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[13].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[13].trangThaiKetNoi && danhSachCamBien[1].camBien[13].giaTri == '1') || danhSachCamBien[1].camBien[13].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[13].trangThaiKetNoi && danhSachCamBien[1].camBien[13].giaTri == '0') && danhSachCamBien[1].camBien[13].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[13].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[13].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[13].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[13].trangThaiKetNoi && danhSachCamBien[1].camBien[13].giaTri == '1') || danhSachCamBien[1].camBien[13].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[13].trangThaiKetNoi && danhSachCamBien[1].camBien[13].giaTri == '0') && danhSachCamBien[1].camBien[13].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[13].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[13].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">ĐIỆN ÁP TẢI</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[6].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[6].trangThaiKetNoi && danhSachCamBien[1].camBien[6].giaTri == '1') || danhSachCamBien[1].camBien[6].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[6].trangThaiKetNoi && danhSachCamBien[1].camBien[6].giaTri == '0') && danhSachCamBien[1].camBien[6].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[6].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[6].trangThaiKetNoi && danhSachCamBien[1].camBien[6].giaTri == '1') || danhSachCamBien[1].camBien[6].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[6].trangThaiKetNoi && danhSachCamBien[1].camBien[6].giaTri == '0') && danhSachCamBien[1].camBien[6].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[6].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[6].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[6].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[6].trangThaiKetNoi && danhSachCamBien[1].camBien[6].giaTri == '1') || danhSachCamBien[1].camBien[6].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[6].trangThaiKetNoi && danhSachCamBien[1].camBien[6].giaTri == '0') && danhSachCamBien[1].camBien[6].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[6].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[6].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[10].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[10].trangThaiKetNoi && danhSachCamBien[1].camBien[10].giaTri == '1') || danhSachCamBien[1].camBien[10].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[10].trangThaiKetNoi && danhSachCamBien[1].camBien[10].giaTri == '0') && danhSachCamBien[1].camBien[10].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[10].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[10].trangThaiKetNoi && danhSachCamBien[1].camBien[10].giaTri == '1') || danhSachCamBien[1].camBien[10].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[10].trangThaiKetNoi && danhSachCamBien[1].camBien[10].giaTri == '0') && danhSachCamBien[1].camBien[10].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[10].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[10].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[10].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[10].trangThaiKetNoi && danhSachCamBien[1].camBien[10].giaTri == '1') || danhSachCamBien[1].camBien[10].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[10].trangThaiKetNoi && danhSachCamBien[1].camBien[10].giaTri == '0') && danhSachCamBien[1].camBien[10].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[10].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[10].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[14].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[14].trangThaiKetNoi && danhSachCamBien[1].camBien[14].giaTri == '1') || danhSachCamBien[1].camBien[14].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[14].trangThaiKetNoi && danhSachCamBien[1].camBien[14].giaTri == '0') && danhSachCamBien[1].camBien[14].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[14].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[14].trangThaiKetNoi && danhSachCamBien[1].camBien[14].giaTri == '1') || danhSachCamBien[1].camBien[14].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[14].trangThaiKetNoi && danhSachCamBien[1].camBien[14].giaTri == '0') && danhSachCamBien[1].camBien[14].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[14].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[14].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[14].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[14].trangThaiKetNoi && danhSachCamBien[1].camBien[14].giaTri == '1') || danhSachCamBien[1].camBien[14].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[14].trangThaiKetNoi && danhSachCamBien[1].camBien[14].giaTri == '0') && danhSachCamBien[1].camBien[14].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[14].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[14].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">DÒNG TẢI</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[7].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[7].trangThaiKetNoi && danhSachCamBien[1].camBien[7].giaTri == '1') || danhSachCamBien[1].camBien[7].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[7].trangThaiKetNoi && danhSachCamBien[1].camBien[7].giaTri == '0') && danhSachCamBien[1].camBien[7].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-7" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[7].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[7].trangThaiKetNoi && danhSachCamBien[1].camBien[7].giaTri == '1') || danhSachCamBien[1].camBien[7].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[7].trangThaiKetNoi && danhSachCamBien[1].camBien[7].giaTri == '0') && danhSachCamBien[1].camBien[7].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[7].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[7].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[7].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[7].trangThaiKetNoi && danhSachCamBien[1].camBien[7].giaTri == '1') || danhSachCamBien[1].camBien[7].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[7].trangThaiKetNoi && danhSachCamBien[1].camBien[7].giaTri == '0') && danhSachCamBien[1].camBien[7].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[7].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[7].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[11].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[11].trangThaiKetNoi && danhSachCamBien[1].camBien[11].giaTri == '1') || danhSachCamBien[1].camBien[11].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[11].trangThaiKetNoi && danhSachCamBien[1].camBien[11].giaTri == '0') && danhSachCamBien[1].camBien[11].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-7" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[11].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[11].trangThaiKetNoi && danhSachCamBien[1].camBien[11].giaTri == '1') || danhSachCamBien[1].camBien[11].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[11].trangThaiKetNoi && danhSachCamBien[1].camBien[11].giaTri == '0') && danhSachCamBien[1].camBien[11].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[11].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[11].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[11].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[11].trangThaiKetNoi && danhSachCamBien[1].camBien[11].giaTri == '1') || danhSachCamBien[1].camBien[11].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[11].trangThaiKetNoi && danhSachCamBien[1].camBien[11].giaTri == '0') && danhSachCamBien[1].camBien[11].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[11].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[11].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[15].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[15].trangThaiKetNoi && danhSachCamBien[1].camBien[15].giaTri == '1') || danhSachCamBien[1].camBien[15].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[15].trangThaiKetNoi && danhSachCamBien[1].camBien[15].giaTri == '0') && danhSachCamBien[1].camBien[15].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-7" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[15].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[15].trangThaiKetNoi && danhSachCamBien[1].camBien[15].giaTri == '1') || danhSachCamBien[1].camBien[15].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[15].trangThaiKetNoi && danhSachCamBien[1].camBien[15].giaTri == '0') && danhSachCamBien[1].camBien[15].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[15].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[15].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[15].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[15].trangThaiKetNoi && danhSachCamBien[1].camBien[15].giaTri == '1') || danhSachCamBien[1].camBien[15].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[15].trangThaiKetNoi && danhSachCamBien[1].camBien[15].giaTri == '0') && danhSachCamBien[1].camBien[15].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[15].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[15].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">CÔNG SUẤT ĐIỆN AC (LƯỚI VÀ MÁY
+                                                PHÁT)</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[16].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[16].trangThaiKetNoi && danhSachCamBien[1].camBien[16].giaTri == '1') || danhSachCamBien[1].camBien[16].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[16].trangThaiKetNoi && danhSachCamBien[1].camBien[16].giaTri == '0') && danhSachCamBien[1].camBien[16].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div title={{danhSachCamBien[1].camBien[16].ten}} class="col-7"
+                                                    style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[16].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[16].trangThaiKetNoi && danhSachCamBien[1].camBien[16].giaTri == '1') || danhSachCamBien[1].camBien[16].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[16].trangThaiKetNoi && danhSachCamBien[1].camBien[16].giaTri == '0') && danhSachCamBien[1].camBien[16].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[16].ten | truncate:23}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[16].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[16].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[16].trangThaiKetNoi && danhSachCamBien[1].camBien[16].giaTri == '1') || danhSachCamBien[1].camBien[16].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[16].trangThaiKetNoi && danhSachCamBien[1].camBien[16].giaTri == '0') && danhSachCamBien[1].camBien[16].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[16].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[16].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[19].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[19].trangThaiKetNoi && danhSachCamBien[1].camBien[19].giaTri == '1') || danhSachCamBien[1].camBien[19].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[19].trangThaiKetNoi && danhSachCamBien[1].camBien[19].giaTri == '0') && danhSachCamBien[1].camBien[19].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-7" style="font-weight: 600;"
+                                                    title={{danhSachCamBien[1].camBien[19].ten}}
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[19].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[19].trangThaiKetNoi && danhSachCamBien[1].camBien[19].giaTri == '1') || danhSachCamBien[1].camBien[19].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[19].trangThaiKetNoi && danhSachCamBien[1].camBien[19].giaTri == '0') && danhSachCamBien[1].camBien[19].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[19].ten | truncate:23}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[19].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[19].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[19].trangThaiKetNoi && danhSachCamBien[1].camBien[19].giaTri == '1') || danhSachCamBien[1].camBien[19].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[19].trangThaiKetNoi && danhSachCamBien[1].camBien[19].giaTri == '0') && danhSachCamBien[1].camBien[19].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[19].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[19].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[21].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[21].trangThaiKetNoi && danhSachCamBien[1].camBien[21].giaTri == '1') || danhSachCamBien[1].camBien[21].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[21].trangThaiKetNoi && danhSachCamBien[1].camBien[21].giaTri == '0') && danhSachCamBien[1].camBien[21].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-7" style="font-weight: 600;"
+                                                    title={{danhSachCamBien[1].camBien[21].ten}}
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[21].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[21].trangThaiKetNoi && danhSachCamBien[1].camBien[21].giaTri == '1') || danhSachCamBien[1].camBien[21].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[21].trangThaiKetNoi && danhSachCamBien[1].camBien[21].giaTri == '0') && danhSachCamBien[1].camBien[21].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[21].ten | truncate:23}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[21].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[21].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[21].trangThaiKetNoi && danhSachCamBien[1].camBien[21].giaTri == '1') || danhSachCamBien[1].camBien[21].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[21].trangThaiKetNoi && danhSachCamBien[1].camBien[21].giaTri == '0') && danhSachCamBien[1].camBien[21].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[21].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[21].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">TẦN SỐ</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[17].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[17].trangThaiKetNoi && danhSachCamBien[1].camBien[17].giaTri == '1') || danhSachCamBien[1].camBien[17].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[17].trangThaiKetNoi && danhSachCamBien[1].camBien[17].giaTri == '0') && danhSachCamBien[1].camBien[17].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    title={{danhSachCamBien[1].camBien[17].ten}}
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[17].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[17].trangThaiKetNoi && danhSachCamBien[1].camBien[17].giaTri == '1') || danhSachCamBien[1].camBien[17].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[17].trangThaiKetNoi && danhSachCamBien[1].camBien[17].giaTri == '0') && danhSachCamBien[1].camBien[17].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[17].ten | truncate:20}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[17].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[17].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[17].trangThaiKetNoi && danhSachCamBien[1].camBien[17].giaTri == '1') || danhSachCamBien[1].camBien[17].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[17].trangThaiKetNoi && danhSachCamBien[1].camBien[17].giaTri == '0') && danhSachCamBien[1].camBien[17].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[17].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[17].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[20].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[20].trangThaiKetNoi && danhSachCamBien[1].camBien[20].giaTri == '1') || danhSachCamBien[1].camBien[20].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[20].trangThaiKetNoi && danhSachCamBien[1].camBien[20].giaTri == '0') && danhSachCamBien[1].camBien[20].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    title={{danhSachCamBien[1].camBien[20].ten}}
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[20].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[20].trangThaiKetNoi && danhSachCamBien[1].camBien[20].giaTri == '1') || danhSachCamBien[1].camBien[20].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[20].trangThaiKetNoi && danhSachCamBien[1].camBien[20].giaTri == '0') && danhSachCamBien[1].camBien[20].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[20].ten | truncate:23}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[20].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[20].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[20].trangThaiKetNoi && danhSachCamBien[1].camBien[20].giaTri == '1') || danhSachCamBien[1].camBien[20].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[20].trangThaiKetNoi && danhSachCamBien[1].camBien[20].giaTri == '0') && danhSachCamBien[1].camBien[20].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[20].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[20].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[1].camBien[22].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[1].camBien[22].trangThaiKetNoi && danhSachCamBien[1].camBien[22].giaTri == '1') || danhSachCamBien[1].camBien[22].giaTri > 0 ? '#549fef' : (danhSachCamBien[1].camBien[22].trangThaiKetNoi && danhSachCamBien[1].camBien[22].giaTri == '0') && danhSachCamBien[1].camBien[22].trai ? '#f3b5be' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    title={{danhSachCamBien[1].camBien[22].ten}}
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[22].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[22].trangThaiKetNoi && danhSachCamBien[1].camBien[22].giaTri == '1') || danhSachCamBien[1].camBien[22].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[22].trangThaiKetNoi && danhSachCamBien[1].camBien[22].giaTri == '0') && danhSachCamBien[1].camBien[22].trai ? '#e50a28' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[1].camBien[22].ten | truncate:23}}</p>
+                                                    <p *ngIf="!danhSachCamBien[1].camBien[22].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[1].camBien[22].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[1].camBien[22].trangThaiKetNoi && danhSachCamBien[1].camBien[22].giaTri == '1') || danhSachCamBien[1].camBien[22].giaTri > 0 ? '#ffffff' : (danhSachCamBien[1].camBien[22].trangThaiKetNoi && danhSachCamBien[1].camBien[22].giaTri == '0') && danhSachCamBien[1].camBien[22].trai ? '#e50a28' : '#549fef'}">
+                                                    {{danhSachCamBien[1].camBien[22].giaTri}}&nbsp;{{danhSachCamBien[1].camBien[22].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </p-accordionTab>
+            <!-- MCC -->
+            <p-accordionTab header="{{danhSachCamBien[2]?.ten}}" [selected]="true">
+                <section class="content">
+                    <div class="p-grid" style="padding: 16px 0px 0px 25px !important;">
+                        <div class="row col-12">
+                            <div class="col-4 box-giamsat">
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[0].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '1' && danhSachCamBien[2].camBien[0].trai && danhSachCamBien[2].camBien[0].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '0' && danhSachCamBien[2].camBien[0].trai && danhSachCamBien[2].camBien[0].phai) ? '#549fef' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri > 0 && !danhSachCamBien[2].camBien[0].trai && !danhSachCamBien[2].camBien[0].phai) ? '#549fef' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '0' && danhSachCamBien[2].camBien[0].trai && !danhSachCamBien[2].camBien[0].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[0].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '0') && danhSachCamBien[2].camBien[0].trai && danhSachCamBien[2].camBien[0].phai ? '#ffffff' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '0' && danhSachCamBien[2].camBien[0].trai && !danhSachCamBien[2].camBien[0].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri > 0 && !danhSachCamBien[2].camBien[0].trai && !danhSachCamBien[2].camBien[0].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[0].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[0].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[0].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '0') && danhSachCamBien[2].camBien[0].trai && danhSachCamBien[2].camBien[0].phai ? '#ffffff' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri == '0' && danhSachCamBien[2].camBien[0].trai && !danhSachCamBien[2].camBien[0].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[0].trangThaiKetNoi && danhSachCamBien[2].camBien[0].giaTri > 0 && !danhSachCamBien[2].camBien[0].trai && !danhSachCamBien[2].camBien[0].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[0].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[1].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '1' && danhSachCamBien[2].camBien[1].trai && danhSachCamBien[2].camBien[1].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '0' && danhSachCamBien[2].camBien[1].trai && danhSachCamBien[2].camBien[1].phai) ? '#549fef' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri > 0 && !danhSachCamBien[2].camBien[1].trai && !danhSachCamBien[2].camBien[1].phai) ? '#549fef' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '0' && danhSachCamBien[2].camBien[1].trai && !danhSachCamBien[2].camBien[1].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[1].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[1].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '0') && danhSachCamBien[2].camBien[1].trai && danhSachCamBien[2].camBien[1].phai ? '#ffffff' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '0' && danhSachCamBien[2].camBien[1].trai && !danhSachCamBien[2].camBien[1].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri > 0 && !danhSachCamBien[2].camBien[1].trai && !danhSachCamBien[2].camBien[1].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[1].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[1].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[1].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '0') && danhSachCamBien[2].camBien[1].trai && danhSachCamBien[2].camBien[1].phai ? '#ffffff' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri == '0' && danhSachCamBien[2].camBien[1].trai && !danhSachCamBien[2].camBien[1].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[1].trangThaiKetNoi && danhSachCamBien[2].camBien[1].giaTri > 0 && !danhSachCamBien[2].camBien[1].trai && !danhSachCamBien[2].camBien[1].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[1].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[3].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '1' && danhSachCamBien[2].camBien[3].trai && danhSachCamBien[2].camBien[3].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '0' && danhSachCamBien[2].camBien[3].trai && danhSachCamBien[2].camBien[3].phai) ? '#549fef' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri > 0 && !danhSachCamBien[2].camBien[3].trai && !danhSachCamBien[2].camBien[3].phai) ? '#549fef' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '0' && danhSachCamBien[2].camBien[3].trai && !danhSachCamBien[2].camBien[3].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[3].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[3].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '0') && danhSachCamBien[2].camBien[3].trai && danhSachCamBien[2].camBien[3].phai ? '#ffffff' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '0' && danhSachCamBien[2].camBien[3].trai && !danhSachCamBien[2].camBien[3].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri > 0 && !danhSachCamBien[2].camBien[3].trai && !danhSachCamBien[2].camBien[3].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[3].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[3].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[3].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '0') && danhSachCamBien[2].camBien[3].trai && danhSachCamBien[2].camBien[3].phai ? '#ffffff' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri == '0' && danhSachCamBien[2].camBien[3].trai && !danhSachCamBien[2].camBien[3].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[3].trangThaiKetNoi && danhSachCamBien[2].camBien[3].giaTri > 0 && !danhSachCamBien[2].camBien[3].trai && !danhSachCamBien[2].camBien[3].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[3].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4 box-giamsat">
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[2].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '1' && danhSachCamBien[2].camBien[2].trai && danhSachCamBien[2].camBien[2].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '0' && danhSachCamBien[2].camBien[2].trai && danhSachCamBien[2].camBien[2].phai) ? '#549fef' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri > 0 && !danhSachCamBien[2].camBien[2].trai && !danhSachCamBien[2].camBien[2].phai) ? '#549fef' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '0' && danhSachCamBien[2].camBien[2].trai && !danhSachCamBien[2].camBien[2].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[2].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[2].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '0') && danhSachCamBien[2].camBien[2].trai && danhSachCamBien[2].camBien[2].phai ? '#ffffff' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '0' && danhSachCamBien[2].camBien[2].trai && !danhSachCamBien[2].camBien[2].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri > 0 && !danhSachCamBien[2].camBien[2].trai && !danhSachCamBien[2].camBien[2].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[2].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[2].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[2].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '0') && danhSachCamBien[2].camBien[2].trai && danhSachCamBien[2].camBien[2].phai ? '#ffffff' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri == '0' && danhSachCamBien[2].camBien[2].trai && !danhSachCamBien[2].camBien[2].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[2].trangThaiKetNoi && danhSachCamBien[2].camBien[2].giaTri > 0 && !danhSachCamBien[2].camBien[2].trai && !danhSachCamBien[2].camBien[2].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[2].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[4].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '1' && danhSachCamBien[2].camBien[4].trai && danhSachCamBien[2].camBien[4].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '0' && danhSachCamBien[2].camBien[4].trai && danhSachCamBien[2].camBien[4].phai) ? '#549fef' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri > 0 && !danhSachCamBien[2].camBien[4].trai && !danhSachCamBien[2].camBien[4].phai) ? '#549fef' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '0' && danhSachCamBien[2].camBien[4].trai && !danhSachCamBien[2].camBien[4].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[4].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[4].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '0') && danhSachCamBien[2].camBien[4].trai && danhSachCamBien[2].camBien[4].phai ? '#ffffff' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '0' && danhSachCamBien[2].camBien[4].trai && !danhSachCamBien[2].camBien[4].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri > 0 && !danhSachCamBien[2].camBien[4].trai && !danhSachCamBien[2].camBien[4].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[4].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[4].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[4].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '0') && danhSachCamBien[2].camBien[4].trai && danhSachCamBien[2].camBien[4].phai ? '#ffffff' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri == '0' && danhSachCamBien[2].camBien[4].trai && !danhSachCamBien[2].camBien[4].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[4].trangThaiKetNoi && danhSachCamBien[2].camBien[4].giaTri > 0 && !danhSachCamBien[2].camBien[4].trai && !danhSachCamBien[2].camBien[4].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[4].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[5].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '1' && danhSachCamBien[2].camBien[5].trai && danhSachCamBien[2].camBien[5].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '0' && danhSachCamBien[2].camBien[5].trai && danhSachCamBien[2].camBien[5].phai) ? '#549fef' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri > 0 && !danhSachCamBien[2].camBien[5].trai && !danhSachCamBien[2].camBien[5].phai) ? '#549fef' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '0' && danhSachCamBien[2].camBien[5].trai && !danhSachCamBien[2].camBien[5].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[5].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[5].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '0') && danhSachCamBien[2].camBien[5].trai && danhSachCamBien[2].camBien[5].phai ? '#ffffff' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '0' && danhSachCamBien[2].camBien[5].trai && !danhSachCamBien[2].camBien[5].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri > 0 && !danhSachCamBien[2].camBien[5].trai && !danhSachCamBien[2].camBien[5].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[5].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[5].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[5].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '0') && danhSachCamBien[2].camBien[5].trai && danhSachCamBien[2].camBien[5].phai ? '#ffffff' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri == '0' && danhSachCamBien[2].camBien[5].trai && !danhSachCamBien[2].camBien[5].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[5].trangThaiKetNoi && danhSachCamBien[2].camBien[5].giaTri > 0 && !danhSachCamBien[2].camBien[5].trai && !danhSachCamBien[2].camBien[5].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[5].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4 box-giamsat">
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[6].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '1' && danhSachCamBien[2].camBien[6].trai && danhSachCamBien[2].camBien[6].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '0' && danhSachCamBien[2].camBien[6].trai && danhSachCamBien[2].camBien[6].phai) ? '#549fef' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri > 0 && !danhSachCamBien[2].camBien[6].trai && !danhSachCamBien[2].camBien[6].phai) ? '#549fef' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '0' && danhSachCamBien[2].camBien[6].trai && !danhSachCamBien[2].camBien[6].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[6].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[6].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '0') && danhSachCamBien[2].camBien[6].trai && danhSachCamBien[2].camBien[6].phai ? '#ffffff' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '0' && danhSachCamBien[2].camBien[6].trai && !danhSachCamBien[2].camBien[6].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri > 0 && !danhSachCamBien[2].camBien[6].trai && !danhSachCamBien[2].camBien[6].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[6].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[6].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[6].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '0') && danhSachCamBien[2].camBien[6].trai && danhSachCamBien[2].camBien[6].phai ? '#ffffff' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri == '0' && danhSachCamBien[2].camBien[6].trai && !danhSachCamBien[2].camBien[6].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[6].trangThaiKetNoi && danhSachCamBien[2].camBien[6].giaTri > 0 && !danhSachCamBien[2].camBien[6].trai && !danhSachCamBien[2].camBien[6].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[6].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[7].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '1' && danhSachCamBien[2].camBien[7].trai && danhSachCamBien[2].camBien[7].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '0' && danhSachCamBien[2].camBien[7].trai && danhSachCamBien[2].camBien[7].phai) ? '#549fef' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri > 0 && !danhSachCamBien[2].camBien[7].trai && !danhSachCamBien[2].camBien[7].phai) ? '#549fef' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '0' && danhSachCamBien[2].camBien[7].trai && !danhSachCamBien[2].camBien[7].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[7].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[7].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '0') && danhSachCamBien[2].camBien[7].trai && danhSachCamBien[2].camBien[7].phai ? '#ffffff' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '0' && danhSachCamBien[2].camBien[7].trai && !danhSachCamBien[2].camBien[7].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri > 0 && !danhSachCamBien[2].camBien[7].trai && !danhSachCamBien[2].camBien[7].phai) ? '#ffffff' : '#549fef'}">
+                                            <p>{{danhSachCamBien[2].camBien[7].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[7].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[7].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '0') && danhSachCamBien[2].camBien[7].trai && danhSachCamBien[2].camBien[7].phai ? '#ffffff' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri == '0' && danhSachCamBien[2].camBien[7].trai && !danhSachCamBien[2].camBien[7].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[7].trangThaiKetNoi && danhSachCamBien[2].camBien[7].giaTri > 0 && !danhSachCamBien[2].camBien[7].trai && !danhSachCamBien[2].camBien[7].phai) ? '#ffffff' : '#549fef'}">{{danhSachCamBien[2].camBien[7].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[8].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '1' && danhSachCamBien[2].camBien[8].trai && danhSachCamBien[2].camBien[8].phai) ? '#549fef' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '0' && danhSachCamBien[2].camBien[8].trai && danhSachCamBien[2].camBien[8].phai) ? '#549fef' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri > 0 && !danhSachCamBien[2].camBien[8].trai && !danhSachCamBien[2].camBien[8].phai) ? '#549fef' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '0' && danhSachCamBien[2].camBien[8].trai && !danhSachCamBien[2].camBien[8].phai) ? '#549fef' : '#ffffff'}">
+
+                                        <div>
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[8].logo"></span>
+                                        </div>
+
+                                        <div class="col-8 font-ten"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[8].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '1') ? '#ffffff' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '0') && danhSachCamBien[2].camBien[8].trai && danhSachCamBien[2].camBien[8].phai ? '#ffffff' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '0' && danhSachCamBien[2].camBien[8].trai && !danhSachCamBien[2].camBien[8].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri > 0 && !danhSachCamBien[2].camBien[8].trai && !danhSachCamBien[2].camBien[8].phai) ? '#ffffff' : '#ffffff'}">
+                                            <p>{{danhSachCamBien[2].camBien[8].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[8].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div class="col-2 text-right font-ten">
+                                            <span [ngStyle]="{'color': !danhSachCamBien[2].camBien[8].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '1') ? '#ffffff' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '0') && danhSachCamBien[2].camBien[8].trai && danhSachCamBien[2].camBien[8].phai ? '#ffffff' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri == '0' && danhSachCamBien[2].camBien[8].trai && !danhSachCamBien[2].camBien[8].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[8].trangThaiKetNoi && danhSachCamBien[2].camBien[8].giaTri > 0 && !danhSachCamBien[2].camBien[8].trai && !danhSachCamBien[2].camBien[8].phai) ? '#ffffff' : '#ffffff'}">{{danhSachCamBien[2].camBien[8].button}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 row box-giamsat">
+                                <div class="row col-12 padding-giam-sat">
+                                    <div class="col-3 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">NHIỆT ĐỘ ACCU</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[11].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '1' && danhSachCamBien[2].camBien[11].trai && danhSachCamBien[2].camBien[11].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '0' && danhSachCamBien[2].camBien[11].trai && danhSachCamBien[2].camBien[11].phai) ? '#549fef' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri > 0 && !danhSachCamBien[2].camBien[11].trai && !danhSachCamBien[2].camBien[11].phai) ? '#549fef' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '0' && danhSachCamBien[2].camBien[11].trai && !danhSachCamBien[2].camBien[11].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[11].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '0') && danhSachCamBien[2].camBien[11].trai && danhSachCamBien[2].camBien[11].phai ? '#ffffff' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '0' && danhSachCamBien[2].camBien[11].trai && !danhSachCamBien[2].camBien[11].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri > 0 && !danhSachCamBien[2].camBien[11].trai && !danhSachCamBien[2].camBien[11].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[11].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[11].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[11].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '0') && danhSachCamBien[2].camBien[11].trai && danhSachCamBien[2].camBien[11].phai ? '#ffffff' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri == '0' && danhSachCamBien[2].camBien[11].trai && !danhSachCamBien[2].camBien[11].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[11].trangThaiKetNoi && danhSachCamBien[2].camBien[11].giaTri > 0 && !danhSachCamBien[2].camBien[11].trai && !danhSachCamBien[2].camBien[11].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[11].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[11].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[15].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '1' && danhSachCamBien[2].camBien[15].trai && danhSachCamBien[2].camBien[15].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '0' && danhSachCamBien[2].camBien[15].trai && danhSachCamBien[2].camBien[15].phai) ? '#549fef' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri > 0 && !danhSachCamBien[2].camBien[15].trai && !danhSachCamBien[2].camBien[15].phai) ? '#549fef' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '0' && danhSachCamBien[2].camBien[15].trai && !danhSachCamBien[2].camBien[15].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[15].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '0') && danhSachCamBien[2].camBien[15].trai && danhSachCamBien[2].camBien[15].phai ? '#ffffff' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '0' && danhSachCamBien[2].camBien[15].trai && !danhSachCamBien[2].camBien[15].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri > 0 && !danhSachCamBien[2].camBien[15].trai && !danhSachCamBien[2].camBien[15].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[15].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[15].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[15].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '0') && danhSachCamBien[2].camBien[15].trai && danhSachCamBien[2].camBien[15].phai ? '#ffffff' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri == '0' && danhSachCamBien[2].camBien[15].trai && !danhSachCamBien[2].camBien[15].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[15].trangThaiKetNoi && danhSachCamBien[2].camBien[15].giaTri > 0 && !danhSachCamBien[2].camBien[15].trai && !danhSachCamBien[2].camBien[15].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[15].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[15].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[19].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '1' && danhSachCamBien[2].camBien[19].trai && danhSachCamBien[2].camBien[19].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '0' && danhSachCamBien[2].camBien[19].trai && danhSachCamBien[2].camBien[19].phai) ? '#549fef' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri > 0 && !danhSachCamBien[2].camBien[19].trai && !danhSachCamBien[2].camBien[19].phai) ? '#549fef' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '0' && danhSachCamBien[2].camBien[19].trai && !danhSachCamBien[2].camBien[19].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[19].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '0') && danhSachCamBien[2].camBien[19].trai && danhSachCamBien[2].camBien[19].phai ? '#ffffff' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '0' && danhSachCamBien[2].camBien[19].trai && !danhSachCamBien[2].camBien[19].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri > 0 && !danhSachCamBien[2].camBien[19].trai && !danhSachCamBien[2].camBien[19].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[19].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[19].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[19].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '0') && danhSachCamBien[2].camBien[19].trai && danhSachCamBien[2].camBien[19].phai ? '#ffffff' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri == '0' && danhSachCamBien[2].camBien[19].trai && !danhSachCamBien[2].camBien[19].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[19].trangThaiKetNoi && danhSachCamBien[2].camBien[19].giaTri > 0 && !danhSachCamBien[2].camBien[19].trai && !danhSachCamBien[2].camBien[19].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[19].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[19].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[9].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '1' && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri > 0 && !danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#ffffff' : '#549fef'}">
+        
+                                                <div>
+                                                    <span [inlineSVG]="danhSachCamBien[2].camBien[9].logo"></span>
+                                                </div>
+        
+                                                <div class="col-8 text-left font-ten"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[9].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0') && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri > 0 && !danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : '#ffffff'}">
+                                                    <p>{{danhSachCamBien[2].camBien[9].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[9].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+        
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[9].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0') && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri > 0 && !danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : '#ffffff'}">
+                                                    {{danhSachCamBien[2].camBien[9].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[9].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[10].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '1' && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri > 0 && !danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#ffffff' : '#549fef'}">
+        
+                                                <div>
+                                                    <span [inlineSVG]="danhSachCamBien[2].camBien[10].logo"></span>
+                                                </div>
+        
+                                                <div class="col-8 text-left font-ten"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[10].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0') && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri > 0 && !danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : '#ffffff'}">
+                                                    <p>{{danhSachCamBien[2].camBien[10].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[10].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+        
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[10].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0') && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri > 0 && !danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : '#ffffff'}">
+                                                    {{danhSachCamBien[2].camBien[10].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[10].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">ĐIỆN ÁP DC</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[12].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '1' && danhSachCamBien[2].camBien[12].trai && danhSachCamBien[2].camBien[12].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '0' && danhSachCamBien[2].camBien[12].trai && danhSachCamBien[2].camBien[12].phai) ? '#549fef' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri > 0 && !danhSachCamBien[2].camBien[12].trai && !danhSachCamBien[2].camBien[12].phai) ? '#549fef' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '0' && danhSachCamBien[2].camBien[12].trai && !danhSachCamBien[2].camBien[12].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[12].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '0') && danhSachCamBien[2].camBien[12].trai && danhSachCamBien[2].camBien[12].phai ? '#ffffff' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '0' && danhSachCamBien[2].camBien[12].trai && !danhSachCamBien[2].camBien[12].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri > 0 && !danhSachCamBien[2].camBien[12].trai && !danhSachCamBien[2].camBien[12].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[12].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[12].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[12].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '0') && danhSachCamBien[2].camBien[12].trai && danhSachCamBien[2].camBien[12].phai ? '#ffffff' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri == '0' && danhSachCamBien[2].camBien[12].trai && !danhSachCamBien[2].camBien[12].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[12].trangThaiKetNoi && danhSachCamBien[2].camBien[12].giaTri > 0 && !danhSachCamBien[2].camBien[12].trai && !danhSachCamBien[2].camBien[12].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[12].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[12].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[16].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '1' && danhSachCamBien[2].camBien[16].trai && danhSachCamBien[2].camBien[16].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '0' && danhSachCamBien[2].camBien[16].trai && danhSachCamBien[2].camBien[16].phai) ? '#549fef' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri > 0 && !danhSachCamBien[2].camBien[16].trai && !danhSachCamBien[2].camBien[16].phai) ? '#549fef' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '0' && danhSachCamBien[2].camBien[16].trai && !danhSachCamBien[2].camBien[16].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[16].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '0') && danhSachCamBien[2].camBien[16].trai && danhSachCamBien[2].camBien[16].phai ? '#ffffff' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '0' && danhSachCamBien[2].camBien[16].trai && !danhSachCamBien[2].camBien[16].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri > 0 && !danhSachCamBien[2].camBien[16].trai && !danhSachCamBien[2].camBien[16].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[16].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[16].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[16].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '0') && danhSachCamBien[2].camBien[16].trai && danhSachCamBien[2].camBien[16].phai ? '#ffffff' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri == '0' && danhSachCamBien[2].camBien[16].trai && !danhSachCamBien[2].camBien[16].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[16].trangThaiKetNoi && danhSachCamBien[2].camBien[16].giaTri > 0 && !danhSachCamBien[2].camBien[16].trai && !danhSachCamBien[2].camBien[16].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[16].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[16].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[20].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '1' && danhSachCamBien[2].camBien[20].trai && danhSachCamBien[2].camBien[20].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '0' && danhSachCamBien[2].camBien[20].trai && danhSachCamBien[2].camBien[20].phai) ? '#549fef' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri > 0 && !danhSachCamBien[2].camBien[20].trai && !danhSachCamBien[2].camBien[20].phai) ? '#549fef' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '0' && danhSachCamBien[2].camBien[20].trai && !danhSachCamBien[2].camBien[20].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[20].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '0') && danhSachCamBien[2].camBien[20].trai && danhSachCamBien[2].camBien[20].phai ? '#ffffff' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '0' && danhSachCamBien[2].camBien[20].trai && !danhSachCamBien[2].camBien[20].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri > 0 && !danhSachCamBien[2].camBien[20].trai && !danhSachCamBien[2].camBien[20].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[20].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[20].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[20].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '0') && danhSachCamBien[2].camBien[20].trai && danhSachCamBien[2].camBien[20].phai ? '#ffffff' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri == '0' && danhSachCamBien[2].camBien[20].trai && !danhSachCamBien[2].camBien[20].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[20].trangThaiKetNoi && danhSachCamBien[2].camBien[20].giaTri > 0 && !danhSachCamBien[2].camBien[20].trai && !danhSachCamBien[2].camBien[20].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[20].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[20].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[23].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '1' && danhSachCamBien[2].camBien[23].trai && danhSachCamBien[2].camBien[23].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '0' && danhSachCamBien[2].camBien[23].trai && danhSachCamBien[2].camBien[23].phai) ? '#549fef' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri > 0 && !danhSachCamBien[2].camBien[23].trai && !danhSachCamBien[2].camBien[23].phai) ? '#549fef' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '0' && danhSachCamBien[2].camBien[23].trai && !danhSachCamBien[2].camBien[23].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[23].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '0') && danhSachCamBien[2].camBien[23].trai && danhSachCamBien[2].camBien[23].phai ? '#ffffff' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '0' && danhSachCamBien[2].camBien[23].trai && !danhSachCamBien[2].camBien[23].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri > 0 && !danhSachCamBien[2].camBien[23].trai && !danhSachCamBien[2].camBien[23].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[23].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[23].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[23].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '0') && danhSachCamBien[2].camBien[23].trai && danhSachCamBien[2].camBien[23].phai ? '#ffffff' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri == '0' && danhSachCamBien[2].camBien[23].trai && !danhSachCamBien[2].camBien[23].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[23].trangThaiKetNoi && danhSachCamBien[2].camBien[23].giaTri > 0 && !danhSachCamBien[2].camBien[23].trai && !danhSachCamBien[2].camBien[23].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[23].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[23].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[26].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '1' && danhSachCamBien[2].camBien[26].trai && danhSachCamBien[2].camBien[26].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '0' && danhSachCamBien[2].camBien[26].trai && danhSachCamBien[2].camBien[26].phai) ? '#549fef' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri > 0 && !danhSachCamBien[2].camBien[26].trai && !danhSachCamBien[2].camBien[26].phai) ? '#549fef' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '0' && danhSachCamBien[2].camBien[26].trai && !danhSachCamBien[2].camBien[26].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[26].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '0') && danhSachCamBien[2].camBien[26].trai && danhSachCamBien[2].camBien[26].phai ? '#ffffff' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '0' && danhSachCamBien[2].camBien[26].trai && !danhSachCamBien[2].camBien[26].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri > 0 && !danhSachCamBien[2].camBien[26].trai && !danhSachCamBien[2].camBien[26].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[26].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[26].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[26].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '0') && danhSachCamBien[2].camBien[26].trai && danhSachCamBien[2].camBien[26].phai ? '#ffffff' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri == '0' && danhSachCamBien[2].camBien[26].trai && !danhSachCamBien[2].camBien[26].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[26].trangThaiKetNoi && danhSachCamBien[2].camBien[26].giaTri > 0 && !danhSachCamBien[2].camBien[26].trai && !danhSachCamBien[2].camBien[26].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[26].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[26].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">DÒNG ĐIỆN DC</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[13].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '1' && danhSachCamBien[2].camBien[13].trai && danhSachCamBien[2].camBien[13].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '0' && danhSachCamBien[2].camBien[13].trai && danhSachCamBien[2].camBien[13].phai) ? '#549fef' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri > 0 && !danhSachCamBien[2].camBien[13].trai && !danhSachCamBien[2].camBien[13].phai) ? '#549fef' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '0' && danhSachCamBien[2].camBien[13].trai && !danhSachCamBien[2].camBien[13].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[13].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '0') && danhSachCamBien[2].camBien[13].trai && danhSachCamBien[2].camBien[13].phai ? '#ffffff' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '0' && danhSachCamBien[2].camBien[13].trai && !danhSachCamBien[2].camBien[13].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri > 0 && !danhSachCamBien[2].camBien[13].trai && !danhSachCamBien[2].camBien[13].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[13].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[13].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[13].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '0') && danhSachCamBien[2].camBien[13].trai && danhSachCamBien[2].camBien[13].phai ? '#ffffff' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri == '0' && danhSachCamBien[2].camBien[13].trai && !danhSachCamBien[2].camBien[13].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[13].trangThaiKetNoi && danhSachCamBien[2].camBien[13].giaTri > 0 && !danhSachCamBien[2].camBien[13].trai && !danhSachCamBien[2].camBien[13].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[13].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[13].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[17].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '1' && danhSachCamBien[2].camBien[17].trai && danhSachCamBien[2].camBien[17].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '0' && danhSachCamBien[2].camBien[17].trai && danhSachCamBien[2].camBien[17].phai) ? '#549fef' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri > 0 && !danhSachCamBien[2].camBien[17].trai && !danhSachCamBien[2].camBien[17].phai) ? '#549fef' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '0' && danhSachCamBien[2].camBien[17].trai && !danhSachCamBien[2].camBien[17].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[17].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '0') && danhSachCamBien[2].camBien[17].trai && danhSachCamBien[2].camBien[17].phai ? '#ffffff' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '0' && danhSachCamBien[2].camBien[17].trai && !danhSachCamBien[2].camBien[17].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri > 0 && !danhSachCamBien[2].camBien[17].trai && !danhSachCamBien[2].camBien[17].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[17].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[17].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[17].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '0') && danhSachCamBien[2].camBien[17].trai && danhSachCamBien[2].camBien[17].phai ? '#ffffff' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri == '0' && danhSachCamBien[2].camBien[17].trai && !danhSachCamBien[2].camBien[17].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[17].trangThaiKetNoi && danhSachCamBien[2].camBien[17].giaTri > 0 && !danhSachCamBien[2].camBien[17].trai && !danhSachCamBien[2].camBien[17].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[17].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[17].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[21].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '1' && danhSachCamBien[2].camBien[21].trai && danhSachCamBien[2].camBien[21].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '0' && danhSachCamBien[2].camBien[21].trai && danhSachCamBien[2].camBien[21].phai) ? '#549fef' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri > 0 && !danhSachCamBien[2].camBien[21].trai && !danhSachCamBien[2].camBien[21].phai) ? '#549fef' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '0' && danhSachCamBien[2].camBien[21].trai && !danhSachCamBien[2].camBien[21].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[21].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '0') && danhSachCamBien[2].camBien[21].trai && danhSachCamBien[2].camBien[21].phai ? '#ffffff' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '0' && danhSachCamBien[2].camBien[21].trai && !danhSachCamBien[2].camBien[21].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri > 0 && !danhSachCamBien[2].camBien[21].trai && !danhSachCamBien[2].camBien[21].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[21].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[21].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[21].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '0') && danhSachCamBien[2].camBien[21].trai && danhSachCamBien[2].camBien[21].phai ? '#ffffff' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri == '0' && danhSachCamBien[2].camBien[21].trai && !danhSachCamBien[2].camBien[21].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[21].trangThaiKetNoi && danhSachCamBien[2].camBien[21].giaTri > 0 && !danhSachCamBien[2].camBien[21].trai && !danhSachCamBien[2].camBien[21].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[21].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[21].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[24].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '1' && danhSachCamBien[2].camBien[24].trai && danhSachCamBien[2].camBien[24].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '0' && danhSachCamBien[2].camBien[24].trai && danhSachCamBien[2].camBien[24].phai) ? '#549fef' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri > 0 && !danhSachCamBien[2].camBien[24].trai && !danhSachCamBien[2].camBien[24].phai) ? '#549fef' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '0' && danhSachCamBien[2].camBien[24].trai && !danhSachCamBien[2].camBien[24].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[24].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '0') && danhSachCamBien[2].camBien[24].trai && danhSachCamBien[2].camBien[24].phai ? '#ffffff' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '0' && danhSachCamBien[2].camBien[24].trai && !danhSachCamBien[2].camBien[24].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri > 0 && !danhSachCamBien[2].camBien[24].trai && !danhSachCamBien[2].camBien[24].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[24].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[24].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[24].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '0') && danhSachCamBien[2].camBien[24].trai && danhSachCamBien[2].camBien[24].phai ? '#ffffff' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri == '0' && danhSachCamBien[2].camBien[24].trai && !danhSachCamBien[2].camBien[24].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[24].trangThaiKetNoi && danhSachCamBien[2].camBien[24].giaTri > 0 && !danhSachCamBien[2].camBien[24].trai && !danhSachCamBien[2].camBien[24].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[24].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[24].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[27].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '1' && danhSachCamBien[2].camBien[27].trai && danhSachCamBien[2].camBien[27].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '0' && danhSachCamBien[2].camBien[27].trai && danhSachCamBien[2].camBien[27].phai) ? '#549fef' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri > 0 && !danhSachCamBien[2].camBien[27].trai && !danhSachCamBien[2].camBien[27].phai) ? '#549fef' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '0' && danhSachCamBien[2].camBien[27].trai && !danhSachCamBien[2].camBien[27].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[27].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '0') && danhSachCamBien[2].camBien[27].trai && danhSachCamBien[2].camBien[27].phai ? '#ffffff' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '0' && danhSachCamBien[2].camBien[27].trai && !danhSachCamBien[2].camBien[27].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri > 0 && !danhSachCamBien[2].camBien[27].trai && !danhSachCamBien[2].camBien[27].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[27].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[27].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[27].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '0') && danhSachCamBien[2].camBien[27].trai && danhSachCamBien[2].camBien[27].phai ? '#ffffff' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri == '0' && danhSachCamBien[2].camBien[27].trai && !danhSachCamBien[2].camBien[27].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[27].trangThaiKetNoi && danhSachCamBien[2].camBien[27].giaTri > 0 && !danhSachCamBien[2].camBien[27].trai && !danhSachCamBien[2].camBien[27].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[27].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[27].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3 text-center">
+                                        <div>
+                                            <p style="font-weight: 600; color: #549fef;">CÔNG SUẤT DC</p>
+                                        </div>
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[14].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '1' && danhSachCamBien[2].camBien[14].trai && danhSachCamBien[2].camBien[14].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '0' && danhSachCamBien[2].camBien[14].trai && danhSachCamBien[2].camBien[14].phai) ? '#549fef' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri > 0 && !danhSachCamBien[2].camBien[14].trai && !danhSachCamBien[2].camBien[14].phai) ? '#549fef' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '0' && danhSachCamBien[2].camBien[14].trai && !danhSachCamBien[2].camBien[14].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[14].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '0') && danhSachCamBien[2].camBien[14].trai && danhSachCamBien[2].camBien[14].phai ? '#ffffff' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '0' && danhSachCamBien[2].camBien[14].trai && !danhSachCamBien[2].camBien[14].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri > 0 && !danhSachCamBien[2].camBien[14].trai && !danhSachCamBien[2].camBien[14].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[14].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[14].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[14].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '0') && danhSachCamBien[2].camBien[14].trai && danhSachCamBien[2].camBien[14].phai ? '#ffffff' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri == '0' && danhSachCamBien[2].camBien[14].trai && !danhSachCamBien[2].camBien[14].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[14].trangThaiKetNoi && danhSachCamBien[2].camBien[14].giaTri > 0 && !danhSachCamBien[2].camBien[14].trai && !danhSachCamBien[2].camBien[14].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[14].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[14].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[18].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '1' && danhSachCamBien[2].camBien[18].trai && danhSachCamBien[2].camBien[18].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '0' && danhSachCamBien[2].camBien[18].trai && danhSachCamBien[2].camBien[18].phai) ? '#549fef' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri > 0 && !danhSachCamBien[2].camBien[18].trai && !danhSachCamBien[2].camBien[18].phai) ? '#549fef' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '0' && danhSachCamBien[2].camBien[18].trai && !danhSachCamBien[2].camBien[18].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[18].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '0') && danhSachCamBien[2].camBien[18].trai && danhSachCamBien[2].camBien[18].phai ? '#ffffff' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '0' && danhSachCamBien[2].camBien[18].trai && !danhSachCamBien[2].camBien[18].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri > 0 && !danhSachCamBien[2].camBien[18].trai && !danhSachCamBien[2].camBien[18].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[18].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[18].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[18].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '0') && danhSachCamBien[2].camBien[18].trai && danhSachCamBien[2].camBien[18].phai ? '#ffffff' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri == '0' && danhSachCamBien[2].camBien[18].trai && !danhSachCamBien[2].camBien[18].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[18].trangThaiKetNoi && danhSachCamBien[2].camBien[18].giaTri > 0 && !danhSachCamBien[2].camBien[18].trai && !danhSachCamBien[2].camBien[18].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[18].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[18].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[22].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '1' && danhSachCamBien[2].camBien[22].trai && danhSachCamBien[2].camBien[22].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '0' && danhSachCamBien[2].camBien[22].trai && danhSachCamBien[2].camBien[22].phai) ? '#549fef' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri > 0 && !danhSachCamBien[2].camBien[22].trai && !danhSachCamBien[2].camBien[22].phai) ? '#549fef' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '0' && danhSachCamBien[2].camBien[22].trai && !danhSachCamBien[2].camBien[22].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[22].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '0') && danhSachCamBien[2].camBien[22].trai && danhSachCamBien[2].camBien[22].phai ? '#ffffff' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '0' && danhSachCamBien[2].camBien[22].trai && !danhSachCamBien[2].camBien[22].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri > 0 && !danhSachCamBien[2].camBien[22].trai && !danhSachCamBien[2].camBien[22].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[22].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[22].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[22].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '0') && danhSachCamBien[2].camBien[22].trai && danhSachCamBien[2].camBien[22].phai ? '#ffffff' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri == '0' && danhSachCamBien[2].camBien[22].trai && !danhSachCamBien[2].camBien[22].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[22].trangThaiKetNoi && danhSachCamBien[2].camBien[22].giaTri > 0 && !danhSachCamBien[2].camBien[22].trai && !danhSachCamBien[2].camBien[22].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[22].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[22].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[25].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '1' && danhSachCamBien[2].camBien[25].trai && danhSachCamBien[2].camBien[25].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '0' && danhSachCamBien[2].camBien[25].trai && danhSachCamBien[2].camBien[25].phai) ? '#549fef' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri > 0 && !danhSachCamBien[2].camBien[25].trai && !danhSachCamBien[2].camBien[25].phai) ? '#549fef' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '0' && danhSachCamBien[2].camBien[25].trai && !danhSachCamBien[2].camBien[25].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[25].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '0') && danhSachCamBien[2].camBien[25].trai && danhSachCamBien[2].camBien[25].phai ? '#ffffff' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '0' && danhSachCamBien[2].camBien[25].trai && !danhSachCamBien[2].camBien[25].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri > 0 && !danhSachCamBien[2].camBien[25].trai && !danhSachCamBien[2].camBien[25].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[25].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[25].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[25].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '0') && danhSachCamBien[2].camBien[25].trai && danhSachCamBien[2].camBien[25].phai ? '#ffffff' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri == '0' && danhSachCamBien[2].camBien[25].trai && !danhSachCamBien[2].camBien[25].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[25].trangThaiKetNoi && danhSachCamBien[2].camBien[25].giaTri > 0 && !danhSachCamBien[2].camBien[25].trai && !danhSachCamBien[2].camBien[25].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[25].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[25].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="padding-giam-sat">
+                                            <div class="boder-giamsat-20 row"
+                                                [ngStyle]="{'background': !danhSachCamBien[2].camBien[28].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '1' && danhSachCamBien[2].camBien[28].trai && danhSachCamBien[2].camBien[28].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '0' && danhSachCamBien[2].camBien[28].trai && danhSachCamBien[2].camBien[28].phai) ? '#549fef' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri > 0 && !danhSachCamBien[2].camBien[28].trai && !danhSachCamBien[2].camBien[28].phai) ? '#549fef' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '0' && danhSachCamBien[2].camBien[28].trai && !danhSachCamBien[2].camBien[28].phai) ? '#549fef' : '#ffffff'}">
+
+                                                <div class="col-8" style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[28].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '0') && danhSachCamBien[2].camBien[28].trai && danhSachCamBien[2].camBien[28].phai ? '#ffffff' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '0' && danhSachCamBien[2].camBien[28].trai && !danhSachCamBien[2].camBien[28].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri > 0 && !danhSachCamBien[2].camBien[28].trai && !danhSachCamBien[2].camBien[28].phai) ? '#ffffff' : '#549fef'}">
+                                                    <p>{{danhSachCamBien[2].camBien[28].ten}}</p>
+                                                    <p *ngIf="!danhSachCamBien[2].camBien[28].trangThaiKetNoi"
+                                                        style="color: #e50a28;">Mất kết nối</p>
+                                                </div>
+
+                                                <div style="font-weight: 600;"
+                                                    [ngStyle]="{'color': !danhSachCamBien[2].camBien[28].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '0') && danhSachCamBien[2].camBien[28].trai && danhSachCamBien[2].camBien[28].phai ? '#ffffff' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri == '0' && danhSachCamBien[2].camBien[28].trai && !danhSachCamBien[2].camBien[28].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[28].trangThaiKetNoi && danhSachCamBien[2].camBien[28].giaTri > 0 && !danhSachCamBien[2].camBien[28].trai && !danhSachCamBien[2].camBien[28].phai) ? '#ffffff' : '#549fef'}">
+                                                    {{danhSachCamBien[2].camBien[28].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[28].donViDo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-4 box-giamsat">
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[9].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '1' && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri > 0 && !danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#ffffff' : '#549fef'}">
+
+                                        <div class="col-1">
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[9].logo"></span>
+                                        </div>
+
+                                        <div class="col-8" style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[9].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0') && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri > 0 && !danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : '#ffffff'}">
+                                            <p>{{danhSachCamBien[2].camBien[9].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[9].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[9].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0') && danhSachCamBien[2].camBien[9].trai && danhSachCamBien[2].camBien[9].phai ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri == '0' && danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : (danhSachCamBien[2].camBien[9].trangThaiKetNoi && danhSachCamBien[2].camBien[9].giaTri > 0 && !danhSachCamBien[2].camBien[9].trai && !danhSachCamBien[2].camBien[9].phai) ? '#549fef' : '#ffffff'}">
+                                            {{danhSachCamBien[2].camBien[9].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[9].donViDo}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="padding-giam-sat">
+                                    <div class="boder-giamsat row"
+                                        [ngStyle]="{'background': !danhSachCamBien[2].camBien[10].trangThaiKetNoi ? '#d7d6d6' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '1' && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai) ? '#f3b5be' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri > 0 && !danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#ffffff' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#ffffff' : '#549fef'}">
+
+                                        <div class="col-1">
+                                            <span [inlineSVG]="danhSachCamBien[2].camBien[10].logo"></span>
+                                        </div>
+
+                                        <div class="col-8" style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[10].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0') && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri > 0 && !danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : '#ffffff'}">
+                                            <p>{{danhSachCamBien[2].camBien[10].ten}}</p>
+                                            <p *ngIf="!danhSachCamBien[2].camBien[10].trangThaiKetNoi"
+                                                style="color: #e50a28;">Mất kết nối</p>
+                                        </div>
+
+                                        <div style="font-weight: 600;"
+                                            [ngStyle]="{'color': !danhSachCamBien[2].camBien[10].trangThaiKetNoi ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '1') ? '#e50a28' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0') && danhSachCamBien[2].camBien[10].trai && danhSachCamBien[2].camBien[10].phai ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri == '0' && danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : (danhSachCamBien[2].camBien[10].trangThaiKetNoi && danhSachCamBien[2].camBien[10].giaTri > 0 && !danhSachCamBien[2].camBien[10].trai && !danhSachCamBien[2].camBien[10].phai) ? '#549fef' : '#ffffff'}">
+                                            {{danhSachCamBien[2].camBien[10].giaTri}}&nbsp;{{danhSachCamBien[2].camBien[10].donViDo}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </section>
+            </p-accordionTab>
+
+        </p-accordion>
+    </div>
+</div>

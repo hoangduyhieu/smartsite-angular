@@ -1,0 +1,213 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="p-grid">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qltsc_quanlythongsochung')}}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card m-b-30">
+                <form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+                    <div class="modal-body fixed-modal-height">
+                        <div class="p-grid ui-fluid m-t-1">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form" [title]="l('qltsc_tenhethonggiamsat')">
+                                    </dft-label-validation>
+                                    <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                        maxlength="255" formControlName='txtHeThongGiamSat' pInputText />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form" [title]="l('qltsc_porthoatdongserver')">
+                                    </dft-label-validation>
+                                    <p-inputNumber [min]="0" id="TextBox1" name="TextBox1" maxlength="255"
+                                        formControlName='txtPortServer'></p-inputNumber>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form"
+                                        [title]="l('qltsc_diachiipcuaserverchopublicnetwork')">
+                                    </dft-label-validation>
+                                    <input type="text" class="form-control" id="TextBox1" name="TextBox1"
+                                        maxlength="255" formControlName='txtPublicServer' pInputText />
+                                    <dft-validation [control]="form.get('txtPublicServer')"></dft-validation>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form"
+                                        [title]="l('qltsc_diachiipcuaserverchoprivatenetwork')">
+                                    </dft-label-validation>
+                                    <input type="text" class="form-control" id="TextBox1" name="TextBox1"
+                                        maxlength="255" formControlName='txtPrivateServer' pInputText />
+                                    <dft-validation [control]="form.get('txtPrivateServer')"></dft-validation>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form" [title]="l('qltsc_thoigiantudongmocoi')">
+                                    </dft-label-validation>
+                                    <input type="text" decimal id="TextBox1" class="form-control" name="TextBox1"
+                                        maxlength="255" formControlName='txtWhistleTime' pInputText />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form" [title]="l('qltsc_thoigiantudongmoloa')">
+                                    </dft-label-validation>
+                                    <input type="text" decimal id="TextBox1" class="form-control" name="TextBox1"
+                                        maxlength="255" formControlName='txtSpeakerTime' pInputText />
+                                </div>
+                            </div>
+                        </div>
+
+                        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'"
+                            [collapseIcon]="'fa fa-angle-down'" #groupTab>
+                            <p-accordionTab [header]="l('qltsc_vitribandaucuabando')" [selected]="false">
+                                <div class="row ui-fluid m-t-24">
+                                    <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_kinhdo')">
+                                            </dft-label-validation>
+                                            <input decimal type="text" class="form-control" id="TextBox1"
+                                                name="TextBox1" maxlength="255" formControlName='txtLongitude'
+                                                pInputText />
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0px 31px 0px 8px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_vido')">
+                                            </dft-label-validation>
+                                            <input decimal type="text" class="form-control" id="TextBox1"
+                                                name="TextBox1" maxlength="255" formControlName='txtLatitude'
+                                                pInputText />
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </p-accordion>
+                        <div class="m-t-24"></div>
+                        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'"
+                            [collapseIcon]="'fa fa-angle-down'" #groupTab>
+                            <p-accordionTab [header]="l('qltsc_thongsoketnoicuaserver')" [selected]="false">
+                                <div class="p-grid ui-fluid m-t-24">
+                                    <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_diachiip')">
+                                            </dft-label-validation>
+                                            <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                                maxlength="255" formControlName='txtDiaChiIpServer' pInputText />
+                                            <dft-validation [control]="form.get('txtDiaChiIpServer')"></dft-validation>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0px 31px 0px 8px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_port')">
+                                            </dft-label-validation>
+                                            <p-inputNumber [min]="0" id="TextBox1" name="TextBox1" maxlength="255"
+                                                formControlName='txtPortServerCollapse'></p-inputNumber>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </p-accordion>
+                        <div class="m-t-24"></div>
+                        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'"
+                            [collapseIcon]="'fa fa-angle-down'" #groupTab>
+                            <p-accordionTab [header]="l('qltsc_thongsoketnoicuaclient')" [selected]="false">
+                                <div class="p-grid ui-fluid m-t-24">
+                                    <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_diachiip')">
+                                            </dft-label-validation>
+                                            <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                                maxlength="255" formControlName='txtDiaChiIpClient' pInputText />
+                                            <dft-validation [control]="form.get('txtDiaChiIpClient')"></dft-validation>
+                                    </div>
+                                    <div class="col-md-6"style="padding: 0px 31px 0px 8px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_port')">
+                                            </dft-label-validation>
+                                            <p-inputNumber [min]="0" id="TextBox1" name="TextBox1" maxlength="255"
+                                                formControlName='txtPortClientCollapse'></p-inputNumber>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </p-accordion>
+                        <div class="m-t-24"></div>
+                        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'"
+                            [collapseIcon]="'fa fa-angle-down'" #groupTab>
+                            <p-accordionTab [header]="l('qltsc_xacthucotp')" [selected]="false">
+                                <div class="p-grid ui-fluid m-t-24">
+                                    <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_thuattoansinhotp')">
+                                            </dft-label-validation>
+                                            <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                                maxlength="255" formControlName='txtThuatToanOTP' pInputText />
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0px 31px 0px 8px !important;">
+                                            <dft-label-validation [form]="form" [title]="l('qltsc_thoihanotp')">
+                                            </dft-label-validation>
+                                            <p-inputNumber [min]="0" id="TextBox1" name="TextBox1" maxlength="255"
+                                                formControlName='txtThoiHanOTP'></p-inputNumber>
+                                        </div>
+                                </div>
+                            </p-accordionTab>
+                            <div class="m-t-24"></div>
+                            <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'"
+                                [collapseIcon]="'fa fa-angle-down'" #groupTab>
+                                <p-accordionTab [header]="l('qltsc_thongsoapisms')" [selected]="false">
+                                    <div class="p-grid ui-fluid m-t-24">
+                                        <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                                <dft-label-validation [form]="form" [title]="l('qltsc_username')">
+                                                </dft-label-validation>
+                                                <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                                    maxlength="255" formControlName='txtUsernameSMS' pInputText />
+                                        </div>
+                                        <div class="col-md-6" style="padding: 0px 31px 0px 8px !important;">
+                                            <div class="form-group">
+                                                <dft-label-validation [form]="form" [title]="l('qltsc_password')">
+                                                </dft-label-validation>
+                                                <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                                    maxlength="255" formControlName='txtPasswordSMS' />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                            <div class="form-group">
+                                                <dft-label-validation [form]="form" [title]="l('qltsc_diachiip')">
+                                                </dft-label-validation>
+                                                <input type="text" id="TextBox1" class="form-control" name="TextBox1"
+                                                    maxlength="255" formControlName='txtDiaChiIPSMS' pInputText />
+                                                <dft-validation [control]="form.get('txtDiaChiIPSMS')"></dft-validation>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding: 0px 31px 0px 8px !important;">
+                                            <div class="form-group">
+                                                <dft-label-validation [form]="form" [title]="l('qltsc_port')">
+                                                </dft-label-validation>
+                                                <p-inputNumber [min]="0" id="TextBox1" name="TextBox1" maxlength="255"
+                                                    formControlName='txtPortSMS'></p-inputNumber>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="padding: 0px 8px 0px 31px !important;">
+                                            <div class="form-group">
+                                                <dft-label-validation [form]="form" [title]="l('qltsc_dauso')">
+                                                </dft-label-validation>
+                                                <input type="text" number id="TextBox1" class="form-control"
+                                                    name="TextBox1" maxlength="255" formControlName='txtDauSoSMS'
+                                                    pInputText />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p-accordionTab>
+                            </p-accordion>
+                        </p-accordion>
+                        <div style="margin-bottom: 24px;"></div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" (click)="save()" *ngIf="isGranted('Pages.CauHinhChung.Create')"
+                        class="btn btn-primary btn-save-background width-btn-footer text"><i class="fa fa-save"></i>
+                        <span style="margin-left: 5px;">{{l('Save')}}</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

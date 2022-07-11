@@ -1,0 +1,137 @@
+<div [@routerTransition]>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-8">
+                    <h1>{{l('qlnv_quanlynhanvienravaotram')}}</h1>
+                </div>
+                <div class="col-4 text-right btn-mobile">
+                    <button type="button" class="btn btn-primary m-l-8"
+                        *ngIf="isGranted('Pages.QuanLyNhanVienRaVaoTram.Create')" (click)="createUser()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                </div>
+
+                <div class="col-4 text-right btn-mobile1">
+                    <button type="button" class="btn btn-primary m-l-8"
+                        *ngIf="isGranted('Pages.QuanLyNhanVienRaVaoTram.Create')" (click)="createUser()">
+                        <i class="pi pi-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                        <i class="pi pi-search"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control" name="keyword"
+                                    [placeholder]="l('qlnv_placeholdersearch')" [(ngModel)]="keyword" autocomplete="off"
+                                    autocomplete="off" (keyup.enter)="getDataPage()" />
+                            </div>
+                        </div>
+
+                        <div class="justify-content-end btn-mobile col-lg-1">
+                            <button *ngIf="isGranted('Pages.QuanLyNhanVienRaVaoTram.Delete')" type="button"
+                                class="btn btn-danger" [disabled]="!nhanViensSelected.length"
+                                (click)="deleteNhanViens()"><i class="pi pi-trash"></i>
+                                <span style="margin-left: 3px;">{{l('Delete')}}</span></button>
+                        </div>
+
+                        <div class="col-md-1 justify-content-end btn-mobile1">
+                            <button *ngIf="isGranted('Pages.QuanLyNhanVienRaVaoTram.Delete')" type="button"
+                                class="btn btn-danger" [disabled]="!nhanViensSelected.length"
+                                (click)="deleteNhanViens()"><i class="pi pi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p-table #dt [value]="nhanViens" [lazy]="true" [(first)]="first" (onLazyLoad)="getDataPage($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}} "
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}" [(selection)]="nhanViensSelected">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-30">
+                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                </th>
+                                <th class="width-30"></th>
+                                <th class="width-150" pSortableColumn="maNhanVien">{{l('qlnv_manhanvien')}}
+                                    <p-sortIcon field="maNhanVien"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="ten">{{l('qlnv_hovaten')}}
+                                    <p-sortIcon field="ten"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="sdt">{{l('qlnv_sodienthoai')}}
+                                    <p-sortIcon field="sdt"></p-sortIcon>
+                                </th>
+                                <th class="width-200" pSortableColumn="email">{{l('qlnv_email')}}
+                                    <p-sortIcon field="email"></p-sortIcon>
+                                </th>
+                                <th class="width-250" pSortableColumn="diaChi">{{l('qlnv_donvi')}}
+                                    <p-sortIcon field="diaChi"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-30">
+                                    <p-tableCheckbox [value]="record">
+                                    </p-tableCheckbox>
+                                </td>
+                                <td class="width-30">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item" (click)="viewUser(record)">{{l('View')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.QuanLyNhanVienRaVaoTram.Edit')"
+                                                (click)="editUser(record)">{{l('Update')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.QuanLyNhanVienRaVaoTram.Delete')"
+                                                (click)="_delete(record)">{{l('Delete')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">
+                                    <a href="javascript:void(0);" (click)="viewUser(record)">{{ record.maNhanVien |
+                                        truncate }}</a>
+                                </td>
+                                <td class="width-150">
+                                    {{ record.ten | truncate }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.sdt | truncate }}
+                                </td>
+                                <td class="width-200">
+                                    {{ record.email | truncate }}
+                                </td>
+                                <td class="width-250">
+                                    {{ record.diaChi | truncate }}
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

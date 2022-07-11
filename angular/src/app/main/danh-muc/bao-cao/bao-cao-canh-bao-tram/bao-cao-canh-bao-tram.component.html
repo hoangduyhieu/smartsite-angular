@@ -1,0 +1,130 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="p-grid">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>{{l('bccanhbao_baocaocanhbaocuacactramtronghethong')}}</h1>
+                    </div>
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                        <button [disabled]="loaiCanhBao == ''" type="button" class="btn btn-success m-l-8"
+                            (click)="exportToExcel()" [buttonBusy]="exporting"><i class="fa fa-download"></i>
+                            <span style="margin-left: 5px;">{{l('bctttram_taibaocao')}}</span></button>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                        <button [disabled]="loaiCanhBao == ''" type="button" class="btn btn-success m-l-8"
+                            (click)="exportToExcel()" [buttonBusy]="exporting"><i class="fa fa-download"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="p-grid ui-fluid style-header-input-baocao">
+                        <div class="col-md-5">
+                            <dft-label-validation [control]="form.get('Tram')" [title]="l('bccanhbao_tram')"
+                                [titleValidate]="' *'">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listTram" [placeholder]="l(dropdownPlaceholder)"
+                                optionLabel="displayName" [showClear]="true" [filter]="true" resetFilterOnHide="true"
+                                formControlName='Tram'>
+                            </p-dropdown>
+                            <dft-validation [control]="form.get('Tram')"></dft-validation>
+                        </div>
+                        <div class="col-md-5">
+                            <dft-label-validation [form]="form" [control]="form.get('ThoiGian')"
+                                [title]="l('bccanhbao_thoigian')" [titleValidate]="' *'">
+                            </dft-label-validation>
+                            <p-calendar formControlName='ThoiGian' [placeholder]="l('bccanhbao_placeholdertimebox')"
+                                selectionMode="range" [dateFormat]="dateFormatInput" [showTime]="true" [showIcon]="true"
+                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                            </p-calendar>
+                            <dft-validation [control]="form.get('ThoiGian')"></dft-validation>
+                        </div>
+                        <div class="col-md-2 style-header-btn-baocao text-left">
+                            <button type="button" class=" m-l-8 style-btn-tim-kiem-bao-cao" [buttonBusy]="loading" (click)="timKiem()"><i
+                                    class="pi pi-search"></i></button>
+                            <button type="button" class="btn btn-cancle-background m-l-15 width-btn-footer"
+                                (click)="ngOnInit()">{{l('Btn_Huy')}}</button>
+                        </div>
+                    </div>
+
+                    <div class="p-grid ui-fluid text-center">
+                        <ul class="col-md-12 nav nav-pills text-center" style="padding: 15px 18px 0px 18px !important"
+                            role="tablist">
+                            <li class="nav-item col-md-3" *ngFor="let item of litsCanhBao;">
+                                <a class="nav-link canhbao" style="border:  1px solid rgba(0, 0, 0, 0.2) !important;"
+                                    data-toggle="pill" (click)="getBieuDo(item.loaiCanhBao)">
+                                    <span class="icon">&#9888;</span>
+                                    <h4 style="color: #0A4874;">{{l(item.loaiCanhBao)}}</h4>
+                                    <p>{{l('bccanhbao_soluong')}}: {{item.soLuong}} {{l('bccanhbao_canhbao')}}</p>
+                                    <p>{{l('bccanhbao_thoigiantrungbinhxuly')}}:
+                                        {{item.thoiGianTB}}({{l('bccanhbao_phut')}})</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div *ngIf="loaiCanhBao != ''" class="p-grid ui-fluid" style="padding-top: 20px;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 text-center">
+                            <h4>{{l('bccanhbao_mucdocanhbao')}} {{l(this.loaiCanhBao)}}</h4>
+                            <p-chart type="doughnut" [data]="data" [options]="pieOptions"></p-chart>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <br>
+                    <div *ngIf="loaiCanhBao != ''">
+                        <p-table [value]="sales" [scrollable]="scrollable" [loading]="loading" scrollHeight="500px">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-100 table-border" rowspan="2">{{l('bccanhbao_tacvu')}}
+                                    </th>
+                                    <th class="width-150 table-border" rowspan="2">{{l('bccanhbao_mucdocanhbao')}}</th>
+                                    <th class="width-480 table-border" style="text-align: center;" colspan="4">
+                                        {{l('bccanhbao_soluongcanhbao')}}</th>
+                                    <th class="width-120 table-border" rowspan="2">{{l('bccanhbao_tongcanhbao')}}</th>
+                                </tr>
+                                <tr>
+                                    <th class="width-120 table-border">{{l('Active-Unack')}}</th>
+                                    <th class="width-120 table-border">{{l('Active-Ack')}}</th>
+                                    <th class="width-120 table-border">{{l('Cleared-Unack')}}</th>
+                                    <th class="width-120 table-border">{{l('Cleared-Ack')}}</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr>
+                                    <td class="width-100 table-border">
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="">
+                                                <a class="dropdown-item"
+                                                    (click)="xemchiTiet(tuNgay, denNgay , tenTram,  loaiCanhBao, record.ten)">{{l('bccanhbao_xemchitietcanhbao')}}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="width-150 table-border">
+                                        <a href="javascript:void(0);"
+                                            (click)="xemchiTiet(tuNgay, denNgay , tenTram,  loaiCanhBao, record.ten)">{{record.ten}}</a>
+                                    </td>
+                                    <td class="width-120 table-border">{{record.data?.activeUn}}</td>
+                                    <td class="width-120 table-border">{{record.data?.activeAck}}</td>
+                                    <td class="width-120 table-border">{{record.data?.clearUn}}</td>
+                                    <td class="width-120 table-border">{{record.data?.clearAck}}</td>
+                                    <td class="width-120 table-border">{{record.data?.tong}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

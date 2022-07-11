@@ -1,0 +1,101 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>{{l('bcdanhsachtram_tenbaocao')}}</h1>
+                    </div>
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                        <button type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"
+                            (click)="exportToExcel()"><i class="fa fa-download"></i>
+                            <span style="margin-left: 5px;">{{l('bctttram_taibaocao')}}</span></button>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                        <button type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"
+                            (click)="exportToExcel()"><i class="fa fa-download"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card" style="padding-bottom: 25px !important;">
+                    <div class="p-grid ui-fluid style-header-input-baocao">
+                        <div class="col-md-5">
+                            <dft-label-validation [title]="l('bcdanhsachtram_phanvung')">
+                            </dft-label-validation>
+                            <app-dropdown-treeview-select [(value)]="filterPhanVung" [items]="listVung"
+                                (valueChange)="filterPhanVung = $event">
+                            </app-dropdown-treeview-select>
+                        </div>
+
+                        <div class="col-md-5">
+                            <dft-label-validation [form]="form" [control]="form.get('ThoiGian')"
+                                [title]="l('bccanhbao_thoigian')">
+                            </dft-label-validation>
+                            <p-calendar formControlName='ThoiGian' [placeholder]="l('bccanhbao_placeholdertimebox')"
+                                selectionMode="range" [dateFormat]="dateFormatInput"
+                                [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true"
+                                [yearRange]="yearRange">
+                            </p-calendar>
+                            <dft-validation [control]="form.get('ThoiGian')"></dft-validation>
+                        </div>
+                        <div class="col-md-2 style-header-btn-baocao text-left">
+                            <button type="button" class=" m-l-8 style-btn-tim-kiem-bao-cao" 
+                            (click)="timKiem()"><i class="pi pi-search"></i></button>
+                            <button type="button" class="btn btn-cancle-background m-l-15 width-btn-footer"
+                                        (click)="ngOnInit()">{{l('Btn_Huy')}}</button>
+                        </div>
+                </div>
+                    <!--Table-->
+                    <div class="m-t-24">
+                        <p-table #dt [value]="datas" [scrollable]="true" scrollHeight="500px"
+                            (onLazyLoad)="getDataTable($event)" [lazy]="true" [loading]="loading"
+                            [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                            currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                            [rows]="paginatorRows" [totalRecords]="totalCount"
+                            [rowsPerPageOptions]="rowsPerPageOptions">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-200 table-border">
+                                        {{l('bcdanhsachtram_matram')}}
+                                    </th>
+                                    <th class="width-200 table-border">
+                                        {{l('bcdanhsachtram_tentram')}}
+                                    </th>
+                                    <th class="width-200 table-border">
+                                        {{l('bcdanhsachtram_phanvung')}}
+                                    </th>
+                                    <th class="width-200 table-border">
+                                        {{l('bcdanhsachtram_diachi')}}
+                                    </th>
+                                    <th class="width-200 table-border">
+                                        {{l('bcdanhsachtram_ngaytao')}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr>
+                                    <td class="width-200 table-border">{{record.maTram}}</td>
+                                    <td class="width-200 table-border">{{record.tenTram}}</td>
+                                    <td class="width-200 table-border">{{record.phanVung}}</td>
+                                    <td class="width-200 table-border">{{record.diaChi}}</td>
+                                    <td class="width-200 table-border">{{record.ngayTao}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td>{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

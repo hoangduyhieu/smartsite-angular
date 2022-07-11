@@ -1,0 +1,22 @@
+@import url('https://js.arcgis.com/4.12/esri/css/main.css');
+
+.esri-view {
+  height: 800px;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  border: 1px solid #909090 !important;
+  background-color:#ffffff !important;
+  opacity: 0.5 !important;
+}
+
+.atag {
+  color: #ffffff !important;
+}
+
+.camera-boxname {
+  background-color: rgb(207, 203, 203) !important;
+  padding: 5px !important;
+  border-radius: 6px !important;
+  font-weight: bold !important;
+}

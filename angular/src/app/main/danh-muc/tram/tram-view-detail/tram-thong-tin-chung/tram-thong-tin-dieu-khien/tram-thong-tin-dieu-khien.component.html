@@ -1,0 +1,146 @@
+<div [@routerTransition]>
+    <div class="col-md-12 col-lg-6">
+        <h1 class="title-chi-tiet-tram" style="margin: 24px 0px 0px 24px !important;">
+            {{l('dktb_dieukhienthietbi')}}
+            <p-progressSpinner [style]="{width: '20px', height: '20px'}" *ngIf="loading">
+            </p-progressSpinner>
+        </h1>
+    </div>
+    <section class="content px-2" *ngIf="show">
+        <p-confirmDialog [style]="{width: '20vw'}"></p-confirmDialog>
+        <div style="margin: 0px 24px !important;" *ngFor="let tab of listThietBi">
+            <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'" [collapseIcon]="'fa fa-angle-down'"
+                #groupTab>
+                <p-accordionTab header="{{tab.tenNhom}}" [selected]="true">
+                    <section *ngIf="!tab.tenNhom.toLowerCase().includes('ats')" class="content">
+                        <!-- <p-blockUI [blocked]="blockedDocument"></p-blockUI> -->
+                        <div class="p-grid" style="padding: 16px 16px 0px 16px !important;">
+                            <div *ngFor="let item of tab.listThietBi; let i = index"
+                                style="text-align: center !important; margin-top: 10px !important ;"
+                                class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                                <div
+                                    style="background-color: #FAFAFA; border-radius: 8px; padding-top: 16px !important;">
+                                    <label
+                                        [ngStyle]="{'color': 'darkgreen','margin-top': '8px'}">{{l('dktb_trangthai')}}:
+                                        {{item.lableTrangThai}}</label>
+                                    <br>
+                                    <div class="flex">
+                                        <!-- <p-progressSpinner [style]="{width: '50px', height: '50px'}"
+                                            *ngIf="thietBiDieuKhien == item.rangeId">
+                                        </p-progressSpinner> -->
+                                        <p-inputSwitch [disabled]="item.disabled" value = "false" [ngModel]="item.status"
+                                            (onChange)="batTat(item)">
+                                        </p-inputSwitch>
+                                        <!-- <img class="icon" src="{{item.imageLink}}"> -->
+                                    </div>
+                                    <br>
+                                    <!-- icon -->
+                                    <label>{{item.ten}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section *ngIf="tab.tenNhom.toLowerCase().includes('ats')" class="content">
+
+                        <div class="p-grid" style="padding: 16px 16px 0px 16px !important;">
+                            <div *ngFor="let category of tab.listThietBi"
+                                class="p-field-checkbox col-xs-12 col-sm-12 col-md-6 col-lg-3"
+                                style="text-align: center !important; margin-top: 10px !important ;">
+                                <div style="padding-top: 10px !important; background-color: #FAFAFA; border-radius: 8px; "
+                                    class="flex3">
+                                    <!-- <p-progressSpinner [style]="{width: '20px', height: '20px'}"
+                                        *ngIf="thietBiDieuKhien == category.rangeId">
+                                    </p-progressSpinner> -->
+                                    <p-radioButton *ngIf="category.rangeId != 55 &&  category.rangeId != 56"
+                                        [disabled]="category.disabled" [inputId]="category.rangeId" name="category"
+                                        [value]="category" [(ngModel)]="selectedCategory" (onClick)="batTatATS()">
+                                    </p-radioButton>
+                                    <!-- <img class="icon" src="{{category.imageLink}}"> -->
+
+                                    <label *ngIf="category.rangeId != 55 &&  category.rangeId != 56"
+                                        style="padding-left: 10px !important;"
+                                        [for]="category.rangeId">{{category.ten}}</label>
+                                    <button [disabled]="category.disabled" style="margin-bottom: 11px  !important;"
+                                        *ngIf="category.rangeId == 55" type="button" class="btn btn-success m-l-8"
+                                        (click)="batTatATS(category)">
+                                        <i class="fas fa-ban"></i>
+                                        <span style="margin-left: 5px;">Dừng máy phát</span></button>
+
+                                    <button [disabled]="category.disabled" style="margin-bottom: 11px  !important;"
+                                        *ngIf="category.rangeId == 56" type="button" class="btn btn-success m-l-8"
+                                        (click)="batTatATS(category)">
+                                        <i class="fas fa-cogs"></i>
+                                        <span style="margin-left: 5px;">Khởi động máy phát</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+        <!-- <div class="container-fluid">
+            <p-confirmDialog [style]="{width: '20vw'}"></p-confirmDialog>
+            <div class="row">
+                <p-blockUI [blocked]="blockedDocument"></p-blockUI>
+                <div *ngFor="let thietBi of danhSachDieuKhien; let i = index" style="text-align: center;"
+                    class="col-xs-12 col-sm-12 col-md-6 col-lg-3 flex">
+                    <div class="flex">
+                        <label
+                            [ngStyle]="{'color': thietBi.trangThai == 'true' ? 'darkgreen': 'brown','margin-top': '8px'}">{{l('dktb_trangthai')}}:
+                            {{thietBi.lableTrangThai}}</label>
+                        <div style="text-align: center;">
+                            <button [disabled]="!isGranted('Pages.QuanLyTram.ControlDevice')"
+                                class="btn btn-info resize-button"
+                                [ngStyle]="{'background-color': thietBi.cheDoDieuHoa != 'CRY' ? 'turquoise' :'tomato'}"
+                                *ngIf="thietBi.loaiThietBi == 201 && thietBiDieuKhien != thietBi.tbEntityId && thietBi.cheDo=='false' && thietBi.trangThai=='true'"
+                                type="button" data-toggle="dropdown">
+                                <span>Mode : {{thietBi.cheDoDieuHoa}}</span></button>
+                            <div *ngIf="thietBi.loaiThietBi == 201 && thietBiDieuKhien != thietBi.tbEntityId && thietBi.cheDo=='false' && thietBi.trangThai=='true'"
+                                class="dropdown-menu">
+                                <li><a class="fas fa-tint-slash"
+                                        (click)="isGranted('Pages.QuanLyTram.ControlDevice') && dieuKhienCheDoDieuHoa('CRY',thietBi)">
+                                        CRY</a></li>
+                                <li><a class="fas fa-stroopwafel"
+                                        (click)="isGranted('Pages.QuanLyTram.ControlDevice') && dieuKhienCheDoDieuHoa('COOL',thietBi)">
+                                        COOL</a></li>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <p-progressSpinner *ngIf="thietBiDieuKhien == thietBi.tbEntityId">
+                            </p-progressSpinner>
+                            <img [disabled]="!isGranted('Pages.QuanLyTram.ControlDevice')"
+                                *ngIf="thietBiDieuKhien != thietBi.tbEntityId"
+                                (click)="thietBi.cheDo =='false' && isGranted('Pages.QuanLyTram.ControlDevice') === true && batTat(thietBi)"
+                                class="icon" src="{{thietBi.imageLink}}">
+                        </div>
+                        
+                        <p-spinner size="1" [disabled]="!isGranted('Pages.QuanLyTram.ControlDevice')"
+                            (onChange)="isGranted('Pages.QuanLyTram.ControlDevice') && dieuKhienQuaOrDieuHoa(thietBi)"
+                            *ngIf="thietBi.loaiThietBi == 201 && thietBiDieuKhien != thietBi.tbEntityId && thietBi.cheDo=='false' && thietBi.trangThai=='true'"
+                            [(ngModel)]="thietBi.nhietDoDieuHoa" [min]="15" [max]="40">
+                        </p-spinner>
+                        <p-selectButton [disabled]="!isGranted('Pages.QuanLyTram.ControlDevice')"
+                            class="resize-select-button"
+                            (onChange)="isGranted('Pages.QuanLyTram.ControlDevice') && dieuKhienQuaOrDieuHoa(thietBi) "
+                            *ngIf="thietBi.loaiThietBi == 202 && thietBiDieuKhien != thietBi.tbEntityId && thietBi.cheDo=='false' && thietBi.trangThai=='true'"
+                            [options]="levels" [(ngModel)]="thietBi.tocDoQuat">
+                        </p-selectButton>
+                        <div class="flex2">
+                            <p-radioButton [disabled]="!isGranted('Pages.QuanLyTram.ControlDevice')"
+                                (click)="isGranted('Pages.QuanLyTram.ControlDevice') && chonCheDo(thietBi)"
+                                *ngIf="thietBi.loaiThietBi == 201 || thietBi.loaiThietBi == 202 ||thietBi.loaiThietBi == 203"
+                                value="true" [(ngModel)]="thietBi.cheDo" label="Tự động"></p-radioButton>
+                            <p-radioButton [disabled]="!isGranted('Pages.QuanLyTram.ControlDevice')"
+                                [ngStyle]="{'margin-left': '10px'}"
+                                (click)="isGranted('Pages.QuanLyTram.ControlDevice') && chonCheDo(thietBi)"
+                                *ngIf="thietBi.loaiThietBi == 201 || thietBi.loaiThietBi == 202 ||thietBi.loaiThietBi == 203"
+                                value="false" [(ngModel)]="thietBi.cheDo" label="Thủ công"></p-radioButton>
+                        </div>
+                        <label>{{i + 1}}. {{thietBi.ten}}</label>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+</div>

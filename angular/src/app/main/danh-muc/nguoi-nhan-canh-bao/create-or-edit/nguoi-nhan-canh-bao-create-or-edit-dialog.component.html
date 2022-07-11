@@ -1,0 +1,71 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <abp-modal-header
+            [title]="id ?( isView ? l('text_xemchitiet')+ nguoiNhanCanhBaoDto.ten : l('Update')+': '+ nguoiNhanCanhBaoDto.ten ): l('qlsdtemail_themmoisdtvaemail')"
+            (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <p-accordion [multiple]="true">
+            <!-- Textbox Start -->
+                <div class="p-grid ui-fluid">
+
+                    <!-- Số điện thoại -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <dft-label-validation [form]="form" [title]="l('qlsdtemail_dienthoai')" [titleValidate] = "' *'" [control]="form.get('InputSdt')" >
+                            </dft-label-validation>
+                            <input type="text" id="InputSdt" name="InputSdt"
+                                   formControlName='InputSdt' pInputText />
+                            <dft-validation [control]="form.get('InputSdt')"></dft-validation>
+                        </div>
+                    </div>
+                    <!-- End of số điện thoại -->
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <dft-label-validation [form]="form" [control]="form.get('InputEmail')" [title]="l('qlsdtemail_email')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <input type="text" id="InputEmail" name="InputEmail"
+                                   formControlName='InputEmail' pInputText />
+                            <dft-validation [control]="form.get('InputEmail')"></dft-validation>
+                        </div>
+                    </div>
+                    <!-- End of email -->
+
+                </div>
+
+
+                <!-- Họ tên  -->
+                <div class="p-grid ui-fluid">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <dft-label-validation [form]="form" [control]="form.get('InputTen')" [title]="l('qlsdtemail_hovatennguoinhancanhbao')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <input [formControl]="form.get('InputTen')" type="text" id="InputTen"
+                                   name="InputTen" formControlName='InputTen' pInputText />
+                            <dft-validation [control]="form.get('InputTen')"></dft-validation>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of họ tên  -->
+
+
+                <div class="p-grid ui-fluid">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <dft-label-validation [form]="form" [title]="l('qlsdtemail_ghichu')">
+                            </dft-label-validation>
+                            <br>
+                            <textarea formControlName="InputGhiChu" class="form-control"
+                                      id="InputGhiChu" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <!-- Textbox End -->
+
+        </p-accordion>
+    </div>
+    <abp-modal-footer [cancelLabel]="isView?l('Close'):l('Btn_Huy')"
+                      [cancelDisabled]="saving" [saveDisabled]="isView"
+                      (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

@@ -1,0 +1,97 @@
+.ui-accordion-header {
+    margin-top: 20px !important;
+    background-color: #f4f4f4 !important;
+    border-color: #c8c8c8 !important;
+}
+
+.ui-accordion-header:hover {
+    background-color: #dbdbdb !important;
+}
+
+.ui-accordion-header a {
+    padding: 0.75em 1.25em 0.75em 1.25em !important;
+    text-decoration: none;
+}
+
+.ui-accordion-header-text {
+    color: rgb(108, 117, 125);
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+.ui-state-active:hover {
+    background-color: #005b9f !important;
+}
+
+.ui-state-active .ui-accordion-header-text {
+    color: #ffffff !important;
+}
+
+.ui-accordion-toggle-icon {
+    float: right;
+    font-size: 1.75em;
+}
+
+.ui-accordion-content,
+.ui-accordion-content .form-group,
+.ui-accordion-content .form-control {
+    font-family: Quicksand, sans-serif !important;
+}
+
+.btnCollapse {
+    min-width: 140px;
+    text-align: left;
+    padding-right: 12px;
+}
+
+.btnCollapse .fa {
+    font-size: 1.75em;
+    float: right;
+    padding-top: 8px;
+}
+
+.fixed-modal-heigh {
+    max-height: calc(100vh - 215px);
+    overflow-y: auto;
+}
+
+.ui-accordion .ui-accordion-content {
+    border-style: none !important;
+}
+
+.ui-tabview .ui-tabview-panels {
+    /* border-style: none !important; */
+    border: none !important;
+}
+
+.btn+.btn {
+    margin-left: 5px;
+}
+
+.ui-unselectable-text {
+    width: inherit;
+    /* Or auto */
+    padding: 0 10px;
+    /* To give a bit of padding on the left and right */
+    border-bottom: none;
+}
+
+span>input.ui-inputtext {
+    width: 100%;
+}
+
+body .ui-fluid .ui-autocomplete.ui-autocomplete-multiple.ui-autocomplete-dd .ui-autocomplete-multiple-container {
+    border: 1px solid #a6a6a6 !important;
+}
+
+body .ui-fluid .ui-autocomplete.ui-autocomplete-dd .ui-inputtext {
+    border: 1px solid #a6a6a6 !important;
+}
+
+.inputBG {
+    background: #cde6fb;
+}
+
+span .inputBG>input.ui-inputtext {
+    background-color: #cde6fb;
+}

@@ -1,0 +1,174 @@
+<div [@routerTransition]>
+    <!--Thông tin chung-->
+    <div class="col-md-12 col-lg-6">
+        <h1 class="title-chi-tiet-tram" style="margin: 24px 0px 0px 24px !important;">
+            {{l('QLTram_ThongTinChung')}}
+        </h1>
+    </div>
+    <section class="content">
+        <div class="container-fluid p-0">
+            <div>
+                <form [formGroup]="form" novalidate>
+                    <div class="modal-body">
+                        <div class="ui-fluid  p-grid">
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+
+                                    <dft-label-validation [title]="l('QLTram_MaTram')" [titleValidate] = "' *'">
+                                    </dft-label-validation>
+                                    <input type="text" id="MaTram" name="MaTram" formControlName='MaTram' pInputText />
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+                                    <dft-label-validation [title]="l('QLTram_TenTram')" [titleValidate] = "' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" id="TenTram" name="TenTram" formControlName='TenTram'
+                                        pInputText />
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+                                    <dft-label-validation [title]="l('QLTram_PhanVung')" [titleValidate] = "' *'">
+                                    </dft-label-validation>
+                                    <input type="text" id="PhanVung" name="PhanVung" formControlName='PhanVung'
+                                        pInputText />
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+                                    <dft-label-validation [title]="l('QLTram_DiaChi')" [titleValidate] = "' *'">
+                                    </dft-label-validation>
+                                    <input type="text" id="DiaChi" name="DiaChi" formControlName='DiaChi' pInputText />
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+                                    <dft-label-validation [title]="l('QLTram_ToaDo')" [titleValidate] = "' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" id="ToaDo" name="ToaDo" formControlName='ToaDo'
+                                        pInputText />
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form" [control]="form.get('txtLoaiNguonDien')" [title]="l('QLTram_LoaiNguonDien')">
+                                    </dft-label-validation>
+                                    <input number [formControl]="form.get('txtLoaiNguonDien')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtLoaiNguonDien' pInputText />
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-12 p-lg-12">
+                                <div class="form-group">
+
+                                    <dft-label-validation [title]="l('QLTram_GhiChu')">
+                                    </dft-label-validation>
+                                    <textarea formControlName="GhiChu" maxlength="4000" class="form-control"
+                                        id="exampleFormControlTextarea1" rows="5"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+
+                                    <dft-label-validation [title]="l('QLTram_DeviceID')">
+                                    </dft-label-validation>
+                                    <input type="text" id="DeviceId" name="DeviceId" maxlength="50"
+                                        formControlName='DeviceId' pInputText />
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+
+                                    <dft-label-validation [title]="l('QLTram_AccesssToken')">
+                                    </dft-label-validation>
+                                    <input type="text" id="AccessToken" name="AccessToken" maxlength="50"
+                                        formControlName='AccessToken' pInputText />
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+
+                                    <dft-label-validation [title]="l('QLTram_TrangThaiKetNoi')">
+                                    </dft-label-validation>
+                                    <input type="text" id="TrangThaiKetNoi" name="TrangThaiKetNoi" maxlength="50"
+                                        formControlName='TrangThaiKetNoi' pInputText />
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-lg-6">
+                                <div class="form-group">
+
+                                    <dft-label-validation [title]="l('QLTram_TrangThaiCanhBao')">
+                                    </dft-label-validation>
+                                    <input type="text" id="TrangThaiCanhBao" name="TrangThaiCanhBao" maxlength="50"
+                                        formControlName='TrangThaiCanhBao' pInputText />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!--Vị trí trên bản đồ-->
+    <section>
+        <div class="col-md-12 col-lg-6">
+            <h1 class="title-chi-tiet-tram" style="margin: 48px 0px 24px 24px !important;">
+                {{l('QLTram_ViTriTrenBanDo')}}
+            </h1>
+        </div>
+    </section>
+    <section class="content" style="margin: 0px 24px !important;">
+        <div>
+            <div #mapViewNode></div>
+        </div>
+    </section>
+    <!--Camera-->
+    <section class="content" id="tesst">
+        <div class="container-fluid">
+            <div class="p-grid" style="margin-top: 24px;">
+                <div class="col-md-12 col-lg-6">
+                    <h1 class="title-chi-tiet-tram" style="margin-left: 18px;">
+                        {{l('QLTram_Camera')}}
+                    </h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile" style="padding-right: 18px !important;">
+                    <button type="button" class="btn btn-success">
+                        <a class="atag" [href]="hostShinobi" target="_blank">
+                            <i class="fas fa-camera"></i>
+                            <span style="margin-left: 10px;">{{l('QLTram_SettingCamera')}}</span></a>
+                    </button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1" style="padding-right: 18px !important;">
+                    <button type="button" class="btn btn-success">
+                        <a class="atag" [href]="hostShinobi" target="_blank">
+                            <i class="fas fa-camera"></i></a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="m-b-30">
+                <div class="modal-body">
+                    <div class="ui-fluid p-grid">
+                        <div class="p-lg-6 p-md-12 text-center" *ngFor="let camera of urlList">
+                            <iframe width="100%" height="450px" [src]="camera.cameraLink | safe" allow="autoplay"
+                                frameborder="0" allowfullscreen></iframe>
+                            <div style="text-align: center;">
+                                <span class="camera-boxname">{{camera.tenCam}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

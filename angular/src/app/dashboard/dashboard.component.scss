@@ -1,0 +1,53 @@
+/* DASHBOARD */
+
+.content-dashboard {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    cursor: default;
+    position: relative;
+    padding-top: 15px !important;
+    overflow: hidden;
+    margin-bottom: 0px;
+    border-radius: 20px;
+}
+.content-dashboard.hover-expand-effect:after {
+    background-color: rgba(0, 0, 0, 0.05);
+    content: ".";
+    position: absolute;
+    left: 0%;
+    top: 0;
+    width: 0;
+    height: 100%;
+    color: transparent;
+    -moz-transition: all 0.95s;
+    -o-transition: all 0.95s;
+    -webkit-transition: all 0.95s;
+    transition: all 0.95s;
+}
+
+.content-dashboard.hover-expand-effect:hover:after {
+    width: 100%;
+}
+
+.chi-so-muc-tieu-cong-viec {
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 5px;
+}
+
+.textdb {
+    font-size: 32px;
+    font-weight: bolder;
+}
+.textdb-1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.p-d-total {
+    margin-top: 5px; 
+    padding: 20px !important;
+}
+// node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --prod --source-map=false --output-hashing=none
+
+/* END DASHBOARD */

@@ -1,0 +1,167 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+
+        <div class="col-12 pt-3 row">
+            <div class="col-md-12 col-lg-6">
+                <h1 class="title-chi-tiet-tram" style="margin: 24px 0px 0px 24px !important;">
+                    {{l('qldlcambien_danhsachdulieucambien')}}
+                </h1>
+            </div>
+    
+            <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                <button type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"
+                    (click)="exportToExcel()"><i class="fa fa-download"></i>
+                    <span style="margin-left: 5px;">{{l('ExportExcel')}}</span></button>
+            </div>
+    
+            <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                <button type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"
+                    (click)="exportToExcel()"><i class="fa fa-download"></i></button>
+            </div>
+        </div>
+        
+
+        <section>
+            <div>
+                <div class="card-header">
+                    <div class="p-grid ui-fluid">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                            <dft-label-validation [form]="form" [title]="l('qldlcambien_thoigian')">
+                            </dft-label-validation>
+                            <p-calendar (onSelect) ="chage()" formControlName='DateTime' [placeholder]="l('qldlcambien_placeholderTimebox')"
+                                selectionMode="range" [dateFormat]="dateFormatInput" [showTime]="true" [showIcon]="true"
+                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                            </p-calendar>
+                            <div>
+                                <span style="color: red" *ngIf="validate"
+                                    class="mess-error help-block form-control-feedback">{{l("bctttram_thoigiandenngaykhongduocdetrong")}}</span>
+                            </div>
+                            <dft-validation [control]="form.get('DateTime')"></dft-validation>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 ">
+                            <dft-label-validation [title]="l('qldlcambien_dulieu')">
+                            </dft-label-validation>
+                            <p-multiSelect formControlName='MultiSelect' [options]="listDuLieu" [filter]="true" [defaultLabel]="l(dropdownPlaceholder)" optionLabel="displayName">
+                            </p-multiSelect>
+                            <dft-validation [control]="form.get('MultiSelect')"></dft-validation>
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 col-sm-12 text-right">
+                            <button [(disabled)] ="validate" type="button" class="m-l-8 style-btn-tim-kiem-bao-cao" (click)="getDataPage()"
+                                style="margin-top: 31px; cursor: pointer;">
+                                <i class="pi pi-search"></i>
+                                <span style="margin-left: 10px;"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div *ngIf="listKey?.includes('acmTemp') && series?.length > 0">
+                        <apx-chart [series]="series" [chart]="chart" [dataLabels]="dataLabels" [markers]="markers"
+                            [title]="title" [fill]="fill" [yaxis]="yaxisNhietDo" [xaxis]="xaxis" [tooltip]="tooltip"
+                            [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('atsPac') && series1?.length > 0">
+                        <apx-chart [series]="series1" [chart]="chart1" [dataLabels]="dataLabels" [markers]="markers"
+                        [title]="title1" [fill]="fill" [yaxis]="yaxisCongSuat" [xaxis]="xaxis" [tooltip]="tooltip"
+                        [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('atsVacP') && series2?.length > 0">
+                        <apx-chart [series]="series2" [yaxis]="yaxisDienAp" [title]="title2" [chart]="chart2"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('atsVgenP') && series3?.length > 0">
+                        <apx-chart [series]="series3" [yaxis]="yaxisDienAp" [title]="title3" [chart]="chart3"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('atsVloadP') && series4?.length > 0">
+                        <apx-chart [series]="series4" [yaxis]="yaxisDienAp" [title]="title4" [chart]="chart4"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('atsIloadP') && series5?.length > 0">
+                        <apx-chart [series]="series5" [yaxis]="yaxisDongTai" [title]="title5" [chart]="chart5"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="(listKey?.includes('atsVacFreq') || listKey?.includes('atsVgenFreq') || listKey?.includes('atsVloadFreq')) && series6?.length > 0">
+                        <apx-chart [series]="series6" [yaxis]="yaxisTanSo" [title]="title6" [chart]="chart6"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('mccDcBat') && series7?.length > 0">
+                        <apx-chart [series]="series7" [yaxis]="yaxisNhietDo" [title]="title7" [chart]="chart7"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('mccDcV') && series8?.length > 0">
+                        <apx-chart [series]="series8" [yaxis]="yaxisDienAp" [title]="title8" [chart]="chart8"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('mccDcI') && series9?.length > 0">
+                        <apx-chart [series]="series9" [yaxis]="yaxisDongTai" [title]="title9" [chart]="chart9"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <div *ngIf="listKey?.includes('mccDcP') && series10?.length > 0">
+                        <apx-chart [series]="series10" [yaxis]="yaxisCongSuat" [title]="title10" [chart]="chart10"
+                            [dataLabels]="dataLabels" [markers]="markers" [fill]="fill" [xaxis]="xaxis"
+                            [tooltip]="tooltip" [autoUpdateSeries]="true"></apx-chart>
+                    </div>
+                    <p-table #dt [value]="records" [lazy]="true" [loading]="loading"
+                        [showCurrentPageReport]="showCurrentPageReport" [scrollable]="scrollable"
+                        scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-150">{{l('qldlcambien_thoigiancapnhat')}}
+                                </th>
+                                <th class="width-150">{{l('qldlcambien_dulieu')}}
+                                </th>
+                                <th class="width-150">{{l('qldlcambien_giatri')}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-150">
+                                    {{ record.thoiGianCapNhat | date:dateTimeFormatPipe }}
+                                </td>
+                                <td class="width-150">
+                                    {{ parseData(record.duLieu) }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.giaTri | truncate }}
+                                </td>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                    <div>
+                         <div class="row ui-fluid" style="margin-right: 20px !important; ">
+                            <div class="col-lg-10 col-md-10 col-sm-12"></div>
+                            <div class="col-lg-2 col-md-2 col-sm-12 text-right">
+                               Tổng: {{records.length}}
+                            </div>
+                        </div>
+                        <!-- <div class="row ui-fluid" style="margin-right: 20px !important; ">
+                            <div class="col-lg-11 col-md-11 col-sm-12"></div>
+                            <div class="col-lg-1 col-md-1 col-sm-12 text-right">
+                                <p-dropdown [options]="listLimit" optionLabel="displayName"
+                                    formControlName="filterLimit">
+                                </p-dropdown>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

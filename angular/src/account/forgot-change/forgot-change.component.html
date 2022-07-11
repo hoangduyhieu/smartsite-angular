@@ -1,0 +1,67 @@
+<div [@routerTransition]>
+  <h4 class="text-center mb-3" style="color: #237BD3; font-weight: 600;">{{ "ForgotPassword" | localize }}</h4>
+  <form novalidate [formGroup]="form" autocomplete="off" #loginForm="ngForm" >
+    <div *ngIf="checkTokenValid">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-append">
+            <div class="input-group-text"
+              style="border-left: 1px solid rgba(83, 89, 95, 0.2) !important; border-right: none !important; border-radius: 8px 0 0 8px;">
+              <span class="pi pi-lock"></span>
+            </div>
+          </div>
+          <input type="password" style="border-left: none !important;" class="form-control"
+            name="userNameOrEmailAddress" formControlName="Password"
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" class="form-control" minlength="12"
+            maxlength="256" [placeholder]="'PasswordNew' | localize" />
+        </div>
+        <dft-validation [control]="form.get('Password')"></dft-validation>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-append">
+            <div class="input-group-text"
+              style="border-left: 1px solid rgba(83, 89, 95, 0.2) !important; border-right: none !important; border-radius: 8px 0 0 8px;">
+              <span class="pi pi-lock"></span>
+            </div>
+          </div>
+          <input type="password" style="border-left: none !important;" class="form-control"
+            name="userNameOrEmailAddress" formControlName="PassWordConfirm" class="form-control" minlength="12"
+            maxlength="256" [placeholder]="'PasswordNewConfirm' | localize" />
+        </div>
+        <dft-validation [control]="form.get('PassWordConfirm')"></dft-validation>
+      </div>
+
+      <div class="form-group row p-l-3 p-r-3">
+        <!-- <div class="col-md-7">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="rememberMe"
+              name="rememberMe"
+              [(ngModel)]="authService.rememberMe"
+            />
+            <label for="rememberMe" class="custom-control-label">
+              {{ "RememberMe" | localize }}
+            </label>
+          </div>
+        </div> -->
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary btn-block" [disabled]="!form.valid || submitting" (click)="login()">
+            {{ "Send" | localize }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!checkTokenValid">
+      <h3 style="color: crimson;">Token không chính xác!</h3>
+    </div>
+  </form>
+  <!-- <p *ngIf="isSelfRegistrationAllowed" class="mb-1">
+      <a [routerLink]="['../register']">
+        <i class="pi pi-plus-circle"></i> {{ "Register" | localize }}
+      </a>
+    </p> -->
+</div>

@@ -1,0 +1,97 @@
+<abp-modal-header [title]="l('bccanhbao_chitietcanhbaocua')+ tenTram " [checkButton] = "true" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+<div class="fixed-modal-height">
+    <div class="ui-fluid">
+        <div class="row">
+            <div class="col-6" style="padding:24px 0px 0px 39px !important;">
+                <h6 class="style-text-bao-cao-chi-tiet-canh-bao">{{l('bccanhbao_loaicanhbao')}}: </h6>
+                <h6 class="style-text-bao-cao-chi-tiet-canh-bao">{{l('bccanhbao_mucdocanhbao')}}: </h6>
+                <h6 class="style-text-bao-cao-chi-tiet-canh-bao">{{l('bccanhbao_thoigian')}}: </h6>
+            </div>
+            <div class="col-6" style="padding:24px 0px 0px 0px !important;">
+                <h6 style="font-size: 14px !important; line-height: 22px !important;">{{loaiCanhBao}} </h6>
+                <h6  style="font-size: 14px !important; line-height: 22px !important;">{{ten}} </h6>
+                <h6 style="font-size: 14px !important; line-height: 22px !important;">{{tuNgay | date: 'dd/MM/yyyy : HH:mm:ss'}} {{l('bccanhbao_den')}} {{denNgay | date: 'dd/MM/yyyy :
+                    HH:mm:ss'}} </h6>
+            </div>
+            <div class="col-12 text-right btn-mobile" style="padding: 24px 39px 0px 0px;">
+                <button (click)="exportToExcel()" type="button" class="btn btn-success m-l-8"
+                    [buttonBusy]="exporting"><i class="fa fa-download"></i>
+                    <span style="margin-left: 10px;">{{l('bctttram_taibaocao')}}</span>
+                </button>
+            </div>
+            <div class="col-12 text-right btn-mobile1" style="padding: 24px 39px 0px 0px;">
+                <button (click)="exportToExcel()" type="button" class="btn btn-success m-l-8"
+                    [buttonBusy]="exporting"><i class="fa fa-download"></i>
+                    <span style="margin-left: 10px;"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div *ngIf="chiTietCanhBao == undefined || chiTietCanhBao.length == 0" style="padding: 20px;">
+            {{l(khongCoDuLieu)}}
+
+        </div>
+        <!--Table-->
+        <div style="margin-top: 16px;">
+            <p-table #dt [value]="chiTietCanhBao" [scrollable]="true" scrollHeight="200px" [lazy]="true"
+                (onLazyLoad)="getTablePage($event)" [paginator]="paginator" [loading]="loading"
+                [showCurrentPageReport]="showCurrentPageReport"
+                currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                [scrollable]="scrollable" scrollWidth="100%" frozenWidth="450px">
+                <ng-template pTemplate="frozenheader">
+
+                    <tr *ngIf="chiTietCanhBao != undefined && chiTietCanhBao.length > 0">
+                        <th class="width-200 xx">
+                            {{l('bccanhbao_thoigian')}}
+                        </th>
+                        <th class="width-250 xx">
+                            {{l('bccanhbao_tencanhbao')}}
+                        </th>
+                        <th class="width-200 xx">
+                            {{l('bccanhbao_trangthaicanhbao')}}
+                        </th>
+                        <th class="width-200 xx">
+                            {{l('bccanhbao_trangthaigui')}}
+                        </th>
+                        <th *ngFor="let tenCot of chiTietCanhBao[0].tenCot" class="width-150">
+                            {{tenCot}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="frozenbody" let-record>
+                    <tr>
+                        <td class="width-200">{{ record.thoiGian}}</td>
+                        <td pTooltip="{{record.tenCanhBao}}" class="width-250 over enable-tooltip-popup">{{record.tenCanhBao}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="header">
+
+                    <tr *ngIf="chiTietCanhBao != undefined && chiTietCanhBao.length > 0">
+                        <th class="width-200 xx">
+                            {{l('bccanhbao_trangthaicanhbao')}}
+                        </th>
+                        <th class="width-200 xx">
+                            {{l('bccanhbao_trangthaigui')}}
+                        </th>
+                        <th *ngFor="let tenCot of chiTietCanhBao[0].tenCot" class="width-150">
+                            {{tenCot}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-record>
+                    <tr>
+                        <td class="width-200"> <span
+                            [class]="'trang-thai-canh-bao status-' +(record.trangThaiCanhBao)">{{record.trangThaiCanhBao | pipeStatus}}</span>
+                        </td>
+                        <td class="width-200">{{ record.trangThaiGui}}</td>
+                        <td *ngFor="let dulieu of record.duLieu " class="width-150">{{ dulieu.giaTri}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+</div>

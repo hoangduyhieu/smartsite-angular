@@ -1,0 +1,20 @@
+{
+  "remoteServiceBaseUrl": "https://backsend-smartsite.mobifone.vn",
+  "appBaseUrl": "https://smartsite.mobifone.vn",
+  "hostShinobi": "https://cam-smartsite.mobifone.vn/",
+  "baoCaoTrend": "http://report-smartsite.mobifone.vn/app/ml/timeseriesexplorer?_g=%28ml%3A%28jobIds%3A%21%28%271%27%29%29%2CrefreshInterval%3A%28display%3AOff%2Cpause%3A%21t%2Cvalue%3A0%29%2Ctime%3A%28from%3A%272021-07-21T09%3A41%3A57.328Z%27%2Cto%3Anow%29%29&_a=%28query%3A%28query_string%3A%28analyze_wildcard%3A%21t%2Cquery%3A%27%2A%27%29%29%2Ctimeseriesexplorer%3A%28mlTimeSeriesExplorer%3A%28zoom%3A%28from%3A%272021-07-22T05%3A45%3A00.000Z%27%2Cto%3A%272021-07-27T10%3A30%3A00.000Z%27%29%29%29%29",
+  "localeMappings": [
+    {
+      "from": "pt-BR",
+      "to": "pt"
+    },
+    {
+      "from": "zh-CN",
+      "to": "zh"
+    },
+    {
+      "from": "he-IL",
+      "to": "he"
+    }
+  ]
+}

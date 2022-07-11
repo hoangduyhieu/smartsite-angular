@@ -1,0 +1,15 @@
+<li class="nav-item dropdown" dropdown>
+  <a href="javascript:;" class="nav-link" dropdownToggle>
+    <i class="d-inline-block {{ currentLanguage.icon }}"></i>
+    <span class="d-none d-md-inline-block ml-1">
+      {{ currentLanguage.displayName }}
+    </span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+    <li *ngFor="let language of languages">
+        <a class="dropdown-item" href="javascript:;" (click)="changeLanguage(language.name)">
+            <i class="d-inline-block {{ language.icon }}"></i> {{language.displayName}}
+        </a>
+    </li>
+  </ul>
+</li>

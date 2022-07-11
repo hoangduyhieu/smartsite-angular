@@ -1,0 +1,1256 @@
+<div [@routerTransition]>
+  <section class="content-header" id="tesst">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-lg-6">
+          <!-- <span>{{l('TestLocalize')}}</span> -->
+          <h1>{{ l("DashBoard") }}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content px-2">
+    <div class="container-fluid">
+      <div class="m-b-20 m-l-3 m-r-5">
+        <div class="p-grid ui-fluid">
+          <div
+            class="p-col-6 p-md-4 p-lg-2"
+            style="padding: 15px !important"
+            (click)="search(undefined)"
+          >
+            <div
+              class="p-shadow-3 text-center das"
+              style="
+                background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+              "
+            >
+              <div class="content-dashboard hover-expand-effect">
+                <div class="textdb-1" style="color: #237bd3">
+                  {{ l("BC_TOTAL") }}
+                </div>
+                <div class="chi-so-muc-tieu-cong-viec" style="color: #237bd3">
+                  {{ dataBox.total }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-col-6 p-md-4 p-lg-2"
+            style="padding: 15px !important"
+            (click)="search('Critical')"
+          >
+            <div
+              class="p-shadow-3 text-center das"
+              style="
+                background: linear-gradient(180deg, #f9d2d5 0%, #d5646b 100%);
+              "
+            >
+              <div class="content-dashboard hover-expand-effect">
+                <div class="textdb-1" style="color: #8c0505">
+                  {{ l("BC_CRITICAL") }}
+                </div>
+                <div class="chi-so-muc-tieu-cong-viec" style="color: #8c0505">
+                  {{ dataBox.critical }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-col-6 p-md-4 p-lg-2"
+            style="padding: 15px !important"
+            (click)="search('Major')"
+          >
+            <div
+              class="p-shadow-3 text-center das"
+              style="
+                background: linear-gradient(180deg, #efdbff 0%, #a952f0 100%);
+              "
+            >
+              <div class="content-dashboard hover-expand-effect">
+                <div class="textdb-1" style="color: #5123d3">
+                  {{ l("BC_MAJOR") }}
+                </div>
+                <div class="chi-so-muc-tieu-cong-viec" style="color: #5123d3">
+                  {{ dataBox.major }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-col-6 p-md-4 p-lg-2"
+            style="padding: 15px !important"
+            (click)="search('Minor')"
+          >
+            <div
+              class="p-shadow-3 text-center das"
+              style="
+                background: linear-gradient(180deg, #f9d79a 0%, #ba9b68 100%);
+              "
+            >
+              <div class="content-dashboard hover-expand-effect">
+                <div class="textdb-1" style="color: #87750e">
+                  {{ l("BC_MINOR") }}
+                </div>
+                <div class="chi-so-muc-tieu-cong-viec" style="color: #87750e">
+                  {{ dataBox.minor }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-col-6 p-md-4 p-lg-2"
+            style="padding: 15px !important"
+            (click)="search('Warning')"
+          >
+            <div
+              class="p-shadow-3 text-center das"
+              style="
+                background: linear-gradient(180deg, #eee7d5 0%, #c5c95a 100%);
+              "
+            >
+              <div class="content-dashboard hover-expand-effect">
+                <div class="textdb-1" style="color: #b18e37">
+                  {{ l("BC_WARNING") }}
+                </div>
+                <div class="chi-so-muc-tieu-cong-viec" style="color: #b18e37">
+                  {{ dataBox.warning }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-col-6 p-md-4 p-lg-2"
+            style="padding: 15px !important"
+            (click)="search('Indeterminate')"
+          >
+            <div
+              class="p-shadow-3 text-center das"
+              style="
+                background: linear-gradient(
+                  180deg,
+                  #e4e6e7 0%,
+                  #dfd6d6 100%
+                ) !important;
+              "
+            >
+              <div class="content-dashboard hover-expand-effect">
+                <div class="textdb-1" style="color: #878f96">
+                  {{ l("BC_INDETERMINATE") }}
+                </div>
+                <div class="chi-so-muc-tieu-cong-viec" style="color: #878f96">
+                  {{ dataBox.indeterminate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Widgets -->
+      <div class="card m-b-35">
+        <div class="card-header"></div>
+        <!--Line Chart-->
+        <div>
+          <p-chart
+            type="line"
+            [data]="basicData"
+            [options]="lineOptions"
+            width="auto"
+            height="320px"
+          >
+          </p-chart>
+        </div>
+      </div>
+      <!--Pie Chart-->
+      <div class="p-grid ui-fluid m-b-10">
+        <div class="p-col-12 p-md-6">
+          <div class="card">
+            <div class="m-t-10 m-b-20">
+              <p-chart
+                type="doughnut"
+                [data]="data"
+                [options]="pieOptions"
+                width="auto"
+                height="320px"
+              >
+              </p-chart>
+            </div>
+          </div>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <div class="card">
+            <div class="m-t-10 m-b-20">
+              <p-chart
+                type="doughnut"
+                [data]="dataDetail"
+                [options]="pieOptions"
+                width="auto"
+                height="320px"
+              ></p-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card m-b-30">
+        <!--Tab Table-->
+        <div>
+          <p-tabView>
+            <!-- Tất cả-->
+            <p-tabPanel header="{{ l('Dashboard_TatCa') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="canhBaoList"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Nhiệt độ -->
+            <p-tabPanel header="{{ l('Dashboard_NhietDo') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listNhietDo"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Độ ẩm -->
+            <p-tabPanel header="{{ l('Dashboard_DoAm') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listDoAm"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Điện áp -->
+            <p-tabPanel header="{{ l('Dashboard_DienAp') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listDienAp"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Dòng điện -->
+            <p-tabPanel header="{{ l('Dashboard_DongDien') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listDongDien"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Cháy -->
+            <p-tabPanel header="{{ l('Dashboard_Chay') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listChay"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Khói -->
+            <p-tabPanel header="{{ l('Dashboard_Khoi') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listKhoi"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Chuyển động -->
+            <p-tabPanel header="{{ l('Dashboard_ChuyenDong') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listChuyenDong"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Cửa -->
+            <p-tabPanel header="{{ l('Dashboard_Cua') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listCua"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Nhiên liệu -->
+            <!-- <p-tabPanel header="{{l('Dashboard_NhienLieu')}}">
+                            <div>
+                                <p-table #dt [value]="listNhienLieu" [lazy]="true" [loading]="loading"
+                                    [showCurrentPageReport]="showCurrentPageReport"
+                                    [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                                    scrollHeight="{{scrollHeight}}">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width-100">
+                                                {{l("Dashboard_ThoiGianCanhBao")}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l("Dashboard_Tram")}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l("Dashboard_LoaiCanhBao")}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l("Dashboard_MucDo")}}
+                                            </th>
+                                            <th class="width-150">{{l("Dashboard_TrangThai")}}
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-record>
+                                        <tr>
+                                            <td class="width-100">{{ record.thoiGianCanhBao}}</td>
+                                            <td class="width-150">{{ record.tenTram}}</td>
+                                             <td class="width-150"><a href="javascript:void(0);"
+                                                    (click)="viewDemo(record)">{{ record.loaiCanhBaoShow}}</a>
+                                            </td>
+                                            <td class="width-150">
+                                                <span
+                                                    [class]="'trang-thai status-' + gg(record.giaTri, record.mucDo)">{{record.mucDo | changeType}}
+                                                </span>
+                                            </td>
+                                            <td class="width-150"> <span
+                                                    [class]="'trang-thai-canh-bao status-' +(record.trangThai)">{{record.trangThai | pipeStatus}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </p-tabPanel> -->
+            <!-- Ngập nước -->
+            <p-tabPanel header="{{ l('Dashboard_NgapNuoc') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listNgapNuoc"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+            <!-- Góc nghiêng Ăngten -->
+            <!-- <p-tabPanel header="{{l('Dashboard_GocNghiengAnten')}}">
+                            <div>
+                                <p-table #dt [value]="listGocNghiengAngten" [lazy]="true" [loading]="loading"
+                                    [showCurrentPageReport]="showCurrentPageReport"
+                                    [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                                    scrollHeight="{{scrollHeight}}">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width-100">
+                                                {{l("Dashboard_ThoiGianCanhBao")}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l("Dashboard_Tram")}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l("Dashboard_LoaiCanhBao")}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l("Dashboard_MucDo")}}
+                                            </th>
+                                            <th class="width-150">{{l("Dashboard_TrangThai")}}
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-record>
+                                        <tr>
+                                            <td class="width-100">{{ record.thoiGianCanhBao}}</td>
+                                            <td class="width-150">{{ record.tenTram}}</td>
+                                             <td class="width-150"><a href="javascript:void(0);"
+                                                    (click)="viewDemo(record)">{{ record.loaiCanhBaoShow}}</a>
+                                            </td>
+                                            <td class="width-150">
+                                                <span
+                                                    [class]="'trang-thai status-' + gg(record.giaTri, record.mucDo)">{{record.mucDo | changeType}}
+                                                </span>
+                                            </td>
+                                            <td class="width-150"> <span
+                                                    [class]="'trang-thai-canh-bao status-' +(record.trangThai)">{{record.trangThai | pipeStatus}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </p-tabPanel> -->
+            <!-- Mất tín hiệu -->
+            <p-tabPanel header="{{ l('Dashboard_MatKetNoi') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listMatTinHieu"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">
+                        <a
+                          [routerLink]="[
+                            '/app/main/danh-muc/tram/tram-view-detail',
+                            record?.idTram,
+                            record?.tramTBEntity,
+                            1
+                          ]"
+                          >{{ record.tenTram }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+
+            <!-- Khác -->
+            <p-tabPanel header="{{ l('Dashboard_Khac') }}">
+              <div>
+                <p-table
+                  #dt
+                  [value]="listKhac"
+                  [lazy]="true"
+                  [loading]="loading"
+                  [showCurrentPageReport]="showCurrentPageReport"
+                  [rowsPerPageOptions]="rowsPerPageOptions"
+                  [scrollable]="scrollable"
+                  scrollHeight="{{ scrollHeight }}"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th class="width-100">
+                        {{ l("Dashboard_ThoiGianCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_Tram") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_LoaiCanhBao") }}
+                      </th>
+                      <th class="width-150">
+                        {{ l("Dashboard_MucDo") }}
+                      </th>
+                      <th class="width-150">{{ l("Dashboard_TrangThai") }}</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-record>
+                    <tr>
+                      <td class="width-100">{{ record.thoiGianCanhBao }}</td>
+                      <td class="width-150">{{ record.tenTram }}</td>
+                      <td class="width-150">
+                        <a
+                          href="javascript:void(0);"
+                          (click)="viewDemo(record)"
+                          >{{ record.loaiCanhBaoShow }}</a
+                        >
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai status-' +
+                            gg(record.giaTri, record.mucDo)
+                          "
+                          >{{ record.mucDo | changeType }}
+                        </span>
+                      </td>
+                      <td class="width-150">
+                        <span
+                          [class]="
+                            'trang-thai-canh-bao status-' + record.trangThai
+                          "
+                          >{{ record.trangThai | pipeStatus }}</span
+                        >
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td class="demo" colspan="8" style="text-align: left">
+                        {{ l(khongCoDuLieu) }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </p-tabPanel>
+          </p-tabView>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

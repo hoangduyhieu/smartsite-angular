@@ -1,0 +1,11 @@
+@import url('https://js.arcgis.com/4.12/esri/css/main.css');
+
+.esri-view {
+  height: 800px;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  border: 1px solid #909090 !important;
+  background-color:#ffffff !important;
+  opacity: 0.5 !important;
+}

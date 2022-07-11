@@ -1,0 +1,209 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('QLTram_QuanLyTram')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button type="button" *ngIf="isGranted('Pages.QuanLyTram.Create')" class="btn btn-primary m-r-8"
+                        (click)="createDemo()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                    <button type="button" class="btn btn-success" [routerLink]="['/app/Maps']">
+                        <i class="pi pi-compass"></i>
+                        <span style="margin-left: 10px;">{{l('QLTram_XemBanDo')}}</span></button>
+                    <button type="button" class="btn btn-success m-l-8" *ngIf="isGranted('Pages.QuanLyTram.Create')"
+                        (click)="importExcel()">
+                        <i class="fa fa-upload"></i>
+                        <span style="margin-left: 5px;">{{l('importexcel')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button type="button" *ngIf="isGranted('Pages.QuanLyTram.Create')" class="btn btn-primary m-r-8"
+                        (click)="createDemo()">
+                        <i class="pi pi-plus"></i></button>
+                    <button type="button" class="btn btn-success" [routerLink]="['/app/Maps']">
+                        <i class="pi pi-compass"></i></button>
+                    <button type="button" class="btn btn-success m-l-8" *ngIf="isGranted('Pages.QuanLyTram.Create')"
+                        (click)="importExcel()">
+                        <i class="fa fa-upload"></i>
+                        <span style="margin-left: 5px;"></span></button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword"
+                            [placeholder]="l('QLTram_NhapMaTramtenTramDonVi')" autocomplete="off" [(ngModel)]="keyword"
+                            (keyup.enter)="getDataPage()" />
+                    </div>
+                    <div class="p-grid ui-fluid m-t-5">
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <dft-label-validation [title]="l('QLTram_PhanVung')">
+                            </dft-label-validation>
+                            <app-dropdown-treeview-select [(value)]="filterPhanVung" [items]="listVung"
+                                (valueChange)="filterPhanVung = $event">
+                            </app-dropdown-treeview-select>
+                        </div>
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <dft-label-validation [title]="l('QLTram_TrangThaiKetNoi')">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listTrangThaiKetNoi" [placeholder]="l(dropdownPlaceholder)"
+                                optionLabel="displayName" [showClear]="true" [filter]="false"
+                                [(ngModel)]="filterTrangThaiKetNoi">
+                            </p-dropdown>
+                        </div>
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <dft-label-validation [title]="l('QLTram_TrangThaiCanhBao')">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listTrangThaiCanhBao" [placeholder]="l(dropdownPlaceholder)"
+                                optionLabel="displayName" [showClear]="true" [filter]="false"
+                                [(ngModel)]="filterTrangThaiCanhBao">
+                            </p-dropdown>
+                        </div>
+                        <div class="p-col-12 p-md-6 p-lg-3 p-t-45 btn-mobile">
+                            <div class="row">
+                                <div class="col-7">
+                                    <button style="margin-right: 8px; width: 100%;"
+                                        [disabled]="selectedList.length === 0" type="button"
+                                        *ngIf="isGranted('Pages.QuanLyTram.Config')" class="btn btn-secondary"
+                                        (click)="thietLapCauHinh()">
+                                        <i class="fa fa-cog"></i>
+                                        <span style="margin-left: 5px;">{{l('Config')}}</span>
+                                    </button>
+                                </div>
+                                <div class="col-5">
+                                    <button style="width: 100%;" [disabled]="selectedList.length === 0" type="button"
+                                        *ngIf="isGranted('Pages.QuanLyTram.Delete')" class="btn btn-danger"
+                                        (click)="deleteListTram(selectedList)">
+                                        <i class="pi pi-trash"></i>
+                                        <span style="margin-left: 3px;">{{l('Delete1')}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="p-grid ui-fluid text-right m-t-24 btn-mobile1">
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <button [disabled]="selectedList.length === 0" type="button"
+                                *ngIf="isGranted('Pages.QuanLyTram.Config')" class="btn btn-secondary m-l-8"
+                                (click)="thietLapCauHinh()">
+                                <i class="fa fa-cog"></i></button>
+                            <button [disabled]="selectedList.length === 0" type="button"
+                                *ngIf="isGranted('Pages.QuanLyTram.Delete')" class="btn btn-danger m-l-8"
+                                (click)="deleteListTram(selectedList)">
+                                <i class="pi pi-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-margin">
+                    <p-treeTable [value]="records" [scrollable]="scrollable" scrollHeight="480px"
+                        selectionMode="checkbox" [(selection)]="selectedList">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-40 table-border"
+                                    *ngIf="isGranted('Pages.QuanLyTram.Delete') || isGranted('Pages.QuanLyTram.Config')">
+                                    <p-treeTableHeaderCheckbox></p-treeTableHeaderCheckbox>
+                                </th>
+                                <th class="width-30 table-border">
+                                </th>
+                                <th class="width-150 table-border">
+                                    {{l('QLTram_MaTram')}}
+                                </th>
+                                <th class="width-200 table-border">
+                                    {{l('QLTram_TenTram')}}
+                                </th>
+                                <th class="width-270 table-border">
+                                    {{l('QLTram_DiaChi')}}
+                                </th>
+                                <th class="width-180 table-border">
+                                    {{l('QLTram_ToaDo')}}
+                                </th>
+                                <th class="width-150 table-border">
+                                    {{l('QLTram_PhanVung')}}
+                                </th>
+                                <th class="width-150 table-border text-center">
+                                    {{l('QLTram_TrangThaiKetNoi')}}
+                                </th>
+                                <th class="width-150 table-border text-center">
+                                    {{l('QLTram_TrangThaiCanhBao')}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                            <tr>
+                                <td class="width-40 table-border" style="text-align: center;"
+                                    *ngIf="isGranted('Pages.QuanLyTram.Delete') || isGranted('Pages.QuanLyTram.Config')">
+                                    <p-treeTableCheckbox [value]="rowNode" *ngIf="rowData?.level === 2">
+                                    </p-treeTableCheckbox>
+                                </td>
+                                <td class="width-30 table-border">
+                                    <div class="dropdown" *ngIf="rowData?.level === 2" style="text-align: center;">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item"
+                                                [routerLink]="['/app/main/danh-muc/tram/tram-view-detail', rowData?.tramId, rowData?.tbEntityId, 0]">{{l('View')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                                                (click)="createDemo(rowData?.tramId)">{{l('Update')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyTram.Config')"
+                                                [routerLink]="['/app/main/danh-muc/tram/tram-view-detail', rowData?.tramId, rowData?.tbEntityId, 6]">{{l('Config1')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyTram.Delete')"
+                                                (click)="_deleteDemo(rowData)">{{l('Delete')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td *ngIf="rowData?.level !== 2" class="width-150 table-border"
+                                    [ngClass]="rowData?.level !== 2 ? 'in-dam' : 'normal'">
+                                    <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                                    {{rowData?.maTram |truncate}}
+                                </td>
+                                <td *ngIf="rowData?.level === 2" class="width-150 table-border">
+                                    <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                                    <a
+                                        [routerLink]="['/app/main/danh-muc/tram/tram-view-detail', rowData?.tramId, rowData?.tbEntityId, 0]">{{rowData?.maTram
+                                        |truncate}}</a>
+                                </td>
+                                <td class="width-200 table-border">{{rowData?.tenTram}}</td>
+                                <td class="width-270 table-border">{{rowData?.diaChi}}</td>
+                                <td class="width-180 table-border">{{rowData?.toaDo}}</td>
+                                <td class="width-150 table-border">{{rowData?.phanVung}}</td>
+                                <td class="width-150 table-border text-center">
+                                    <span
+                                        class="trang-thai active-{{rowData?.level === 2 ? rowData?.trangThaiKetNoiId : 3}}">{{rowData?.level
+                                        == 2 ? l('trangthaiketnoi_' + rowData?.trangThaiKetNoiId) : ''}}
+                                    </span>
+                                </td>
+                                <td class="width-150 table-border text-center"><span
+                                        class="trang-thai warning-{{rowData?.level === 2 ? rowData?.trangThaiCanhBaoId : 3}}">{{rowData?.level
+                                        == 2 ? l('trangthaicanhbao_' + rowData?.trangThaiCanhBaoId) : ''}}
+                                    </span></td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="9" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-treeTable>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

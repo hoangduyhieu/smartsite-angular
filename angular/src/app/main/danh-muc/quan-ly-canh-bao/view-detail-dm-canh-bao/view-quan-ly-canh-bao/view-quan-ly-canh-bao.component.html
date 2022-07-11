@@ -1,0 +1,72 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <abp-modal-header
+        [title]="event ?( isView ? l('qlcanhbaotram_xemchitiet') + event.loaiCanhBao : 'Cập nhật: '+ event.loaiCanhBao ): 'Thêm mới Danh mục tên cảm biến dữ liệu'"
+        (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <div class="row ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('qlcanhbaotram_thoigiancanhbao')">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtThoiGian')" required type="text" id="TextBox1" name="TextBox1"
+                        maxlength="255" formControlName='txtThoiGian' pInputText />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('qlcanhbaotram_tencanhbao')">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTenCanhBao')" required type="text" id="TextBox1" name="TextBox1"
+                        maxlength="255" formControlName='txtTenCanhBao' pInputText />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTenTram')" [title]="l('qlcanhbao_tram')">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTenTram')" required type="text" id="TextBox1" name="TextBox1"
+                        maxlength="255" formControlName='txtTenTram' pInputText />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtMucDo')" [title]="l('qlcanhbaotram_mucdo')">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtMucDo')" required type="text" id="TextBox1" name="TextBox1"
+                        maxlength="255" formControlName='txtMucDo' pInputText />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTrangThai')" [title]="l('qlcanhbaotram_trangthai')">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTrangThai')" required type="text" id="TextBox1" name="TextBox1"
+                        maxlength="255" formControlName='txtTrangThai' pInputText />
+                </div>
+            </div>
+
+            <div class="col-md-6" *ngIf = "this.mucDo !== undefined">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTrangThai')" [title]="l('qlcanhbaotram_luatcanhbao')">
+                    </dft-label-validation>
+                    <input disabled type="text" value = "{{view}}" id="TextBox1" name="TextBox1" maxlength="255"
+                        pInputText />
+                </div>
+            </div>
+
+            <div class="col-md-6" *ngFor="let item of demoDto; let i = index">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTrangThai')"
+                        [title]="parseData(item.duLieu)">
+                    </dft-label-validation>
+                    <input disabled type="text" value = {{item.giaTri}} id="TextBox1" name="TextBox1" maxlength="255"
+                        pInputText />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <abp-modal-footer [cancelLabel]="isView?l('Close') : l('Btn_Huy')"  [cancelDisabled]="saving" [saveHidden]="isView"
+        (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

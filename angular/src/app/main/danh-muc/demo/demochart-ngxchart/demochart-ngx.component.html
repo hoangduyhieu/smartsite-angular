@@ -1,0 +1,127 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>Báo cáo thông tin trạm</h1>
+                    </div>
+                    <div class="col-md-12 col-lg-6 text-right">
+                        <button type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"><i
+                                class="fa fa-download"></i>
+                            <span style="margin-left: 5px;">Xuất Excel</span></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="content px-2">
+            <div class="container-fluid">
+                <div class="card m-b-30">
+                    <div class="p-grid ui-fluid">
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <div class="card-header">
+                                <div class="p-grid">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button type="button" class="btn bg-blue" (click)="timKiem()">
+                                                    <i class="pi pi-search"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control" name="keyword"
+                                                [placeholder]="'Nhập mã thiết bị, tên thiết bị...'"
+                                                formControlName='keyword' autocomplete="off" (keyup.enter)="timKiem()" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top: 10px;">
+                                        <div class="form-group">
+                                            <dft-label-validation [form]="form" [title]="'Thời gian'">
+                                            </dft-label-validation>
+                                            <p-calendar formControlName='ThoiGian'
+                                                placeholder="Từ ngày giờ - Đến ngày giờ" selectionMode="range"
+                                                [dateFormat]="dateFormatInput" [showTime]="true" [showIcon]="true"
+                                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                                            </p-calendar>
+                                            <dft-validation [control]="form.get('ThoiGian')"></dft-validation>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-top: 20px;">
+                        <div class="col-md-6">
+                            <label for="">Title</label>
+                            <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend"
+                                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis"
+                                [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                [timeline]="timeline" [results]="multi" (select)="onSelect($event)"
+                                (activate)="onActivate($event)" [legendTitle]="legendTitle" (deactivate)="onDeactivate($event)">
+                            </ngx-charts-line-chart>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Title</label>
+                            <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single"
+                                [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                                [xAxisLabel]="xAxisLabel" [legendTitle]="legendTitle" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+                            </ngx-charts-bar-vertical>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Title</label>
+                            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multiGroup"
+                                [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [legendTitle]="legendTitle"
+                                (select)="onSelect($event)" (activate)="onActivate($event)"
+                                (deactivate)="onDeactivate($event)">
+                            </ngx-charts-bar-vertical-2d>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Title</label>
+                            <ngx-charts-pie-grid [view]="view" [scheme]="colorSchemePipe" [results]="pipe"
+                                (select)="onSelect($event)">
+                            </ngx-charts-pie-grid>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p-table #dt [columns]="scrollableCols" [frozenColumns]="frozenCols" [value]="thietBiList"
+                            scrollHeight="200px" frozenWidth="500px" [lazy]="true" (onLazyLoad)="getDataPage($event)"
+                            [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                            currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                            [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                            [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                            <ng-template pTemplate="colgroup" let-columns>
+                                <colgroup>
+                                    <col *ngFor="let col of columns" [ngStyle]="{'width':col.style}">
+                                </colgroup>
+                            </ng-template>
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th *ngFor="let col of columns">
+                                        {{col.header}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr>
+                                    <td *ngFor="let col of columns">
+                                        {{rowData[col.field]}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td>{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

@@ -1,0 +1,269 @@
+<div [@routerTransition]>
+    <section class="content" id="tesst">
+        <div class="container-fluid">
+            <div class="p-grid" style="margin-top: 24px;">
+                <div class="col-md-12 col-lg-6">
+                    <h1 class="title-chi-tiet-tram" style="margin: 0px 0px 0px 24px !important;">
+                        {{l('cht_cauhinhtram')}}
+                    </h1>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <form [formGroup]="form" style="margin: 0px 24px !important;" class="form-horizontal" autocomplete="off"
+        #createUserModal="ngForm" (ngSubmit)="save()">
+        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'" [collapseIcon]="'fa fa-angle-down'" #groupTab>
+            <p-accordionTab [header]="l('cht_thietlapcauhinhdieukhien')" [selected]="true">
+                <section>
+                    <section class="content" id="tesst">
+                        <div class="container-fluid">
+                            <div class="p-grid ui-fluid" style="margin: 16px 0px 8px 1px !important;">
+                                <div class="col-md-6">
+                                    <dft-label-validation [title]="l('cht_maudieukhien')">
+                                    </dft-label-validation>
+                                    <p-dropdown [options]="optionMauDieuKhien" formControlName="txtMauDieuKhien"
+                                        [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName"
+                                        [showClear]="true" [filter]="true" resetFilterOnHide="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-md-6 text-right m-t-20 btn-mobile">
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')" (click)="createMDKT()"
+                                        type="button" class="btn btn-primary"><i class="pi pi-plus"></i>
+                                        <span style="margin-left: 10px;"> {{l('Create')}}</span></button>
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')"
+                                        [disabled]="selectedList.length == 0 && isGranted('Pages.QuanLyTram.Config')"
+                                        type="button" (click)="deleteListDieuKhien(selectedList)"
+                                        class="btn btn-danger m-l-8"><i class="pi pi-trash"></i>
+                                        <span style="margin-left: 10px;"> {{l('Delete1')}}</span></button>
+                                </div>
+
+                                <div class="col-md-6 text-right m-t-20 btn-mobile1">
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')" (click)="createMDKT()"
+                                        type="button" class="btn btn-primary"><i class="pi pi-plus"></i></button>
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')"
+                                        [disabled]="selectedList.length == 0 && isGranted('Pages.QuanLyTram.Config')"
+                                        type="button" (click)="deleteListDieuKhien(selectedList)"
+                                        class="btn btn-danger m-l-8"><i class="pi pi-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div>
+                        <p-table #dt [value]="valueDieuKhienFake" [lazy]="true" (onLazyLoad)="getDataPageFake($event)"
+                            [(selection)]="selectedList" [loading]="loading" [paginator]="paginator"
+                            [showCurrentPageReport]="showCurrentPageReport"
+                            currentPageReportTemplate="{{totalCount1==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                            [rows]="paginatorRows" [totalRecords]="totalCount1"
+                            [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                            scrollHeight="{{scrollHeight}}">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-40" style="text-align: center;"
+                                        *ngIf="isGranted('Pages.QuanLyTram.Config')">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th class="width-50" *ngIf="isGranted('Pages.QuanLyTram.Config')"></th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinh.tenHienThi">
+                                        {{l('cht_tenthuoctinh')}}
+                                        <p-sortIcon field="mauThuocTinh.tenHienThi"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinh.ten">
+                                        {{l('cht_tenkhoa')}}
+                                        <p-sortIcon field="mauThuocTinh.ten"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinh.kieuDuLieu">
+                                        {{l('cht_kieudulieu')}}
+                                        <p-sortIcon field="mauThuocTinh.kieuDuLieu"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinhId">{{l('cht_giatri')}}
+                                        <p-sortIcon field="mauThuocTinhId"></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record let-index="rowIndex">
+                                <tr>
+                                    <td class="width-40" style="text-align: center;"
+                                        *ngIf="isGranted('Pages.QuanLyTram.Config')">
+                                        <p-tableCheckbox [value]="record"></p-tableCheckbox>
+                                    </td>
+                                    <td class="width-50" *ngIf="isGranted('Pages.QuanLyTram.Config')">
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="">
+                                                <a class="dropdown-item"
+                                                    (click)="createMDKT(record, index)">{{l('Update')}}</a>
+                                                <a class="dropdown-item"
+                                                    (click)="deleteDemoDieuKhien(record)">{{l('Delete')}}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="width-150">{{record.mauThuocTinh.tenHienThi}}</td>
+                                    <td class="width-150">{{record.mauThuocTinh.ten}}</td>
+                                    <td class="width-150">{{arrKieuDuLieu[record.mauThuocTinh.kieuDuLieu]}}</td>
+                                    <td *ngIf="record.boolValue !== null" class="width-150">{{record.boolValue}}
+                                    </td>
+                                    <td *ngIf="record.stringValue !== null" class="width-150">{{record.stringValue}}
+                                    </td>
+                                    <td *ngIf="record.longValue !== null" class="width-150">{{record.longValue |
+                                        number}}</td>
+                                    <td *ngIf="record.doubleValue !== null" class="width-150">{{record.doubleValue |
+                                        number}}</td>
+                                    <td *ngIf="record.jsonValue !== null" class="width-150">{{record.jsonValue}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </section>
+            </p-accordionTab>
+        </p-accordion>
+
+        <p-accordion [multiple]="true " [expandIcon]=" 'fa fa-angle-right'" [collapseIcon]=" 'fa fa-angle-down'"
+            #groupTab>
+            <p-accordionTab [header]="l('cht_thietlapthuoctinhcanhbao')" [selected]="true ">
+                <section class="content">
+                    <section class="content" id="tesst">
+                        <div class="container-fluid">
+                            <div class="p-grid ui-fluid" style="margin: 16px 0px 8px 1px !important;">
+                                <div class="col-md-6">
+                                    <dft-label-validation [title]="l('cht_maucanhbao')">
+                                    </dft-label-validation>
+                                    <p-dropdown [options]="optionMauCanhBao" formControlName="txtMauCanhBao"
+                                        [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName"
+                                        [showClear]="true" [filter]="true" resetFilterOnHide="true">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-md-6 text-right m-t-20 btn-mobile">
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')" (click)="createMCBT()"
+                                        type="button" class="btn btn-primary"><i class="pi pi-plus"></i>
+                                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')"
+                                        [disabled]="selectedListCanhBao.length == 0" type="button"
+                                        (click)="deleteListCanhBao(selectedListCanhBao)" class="btn btn-danger m-l-8">
+                                        <i class="pi pi-trash"></i>
+                                        <span style="margin-left: 10px;"> {{l('Delete1')}}</span></button>
+
+                                </div>
+
+                                <div class="col-md-6 text-right m-t-20 btn-mobile1">
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')" (click)="createMCBT()"
+                                        type="button" class="btn btn-primary"><i class="pi pi-plus"></i></button>
+                                    <button *ngIf="isGranted('Pages.QuanLyTram.Config')"
+                                        [disabled]="selectedListCanhBao.length == 0" type="button"
+                                        (click)="deleteListCanhBao(selectedListCanhBao)" class="btn btn-danger m-l-8">
+                                        <i class="pi pi-trash"></i></button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div>
+                        <p-table #dt1 [value]="valueCanhBaoFake" [lazy]="true"
+                            (onLazyLoad)="getDataCanhBaoPageFake($event)" [loading]="loading2"
+                            [(selection)]="selectedListCanhBao" [paginator]="paginator"
+                            [showCurrentPageReport]="showCurrentPageReport"
+                            currentPageReportTemplate="{{totalCount2==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                            [rows]="paginatorRows" [totalRecords]="totalCount2"
+                            [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                            scrollHeight="{{scrollHeight}}">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-40" style="text-align: center;"
+                                        *ngIf="isGranted('Pages.QuanLyTram.Config')">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th class="width-50" *ngIf="isGranted('Pages.QuanLyTram.Config')"></th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinh.tenHienThi">
+                                        {{l('cht_tenthuoctinh')}}
+                                        <p-sortIcon field="mauThuocTinh.tenHienThi"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinh.ten">
+                                        {{l('cht_tenkhoa')}}
+                                        <p-sortIcon field="mauThuocTinh.ten"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinh.kieuDuLieu">
+                                        {{l('cht_kieudulieu')}}
+                                        <p-sortIcon field="mauThuocTinh.kieuDuLieu"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="mauThuocTinhId">{{l('cht_giatri')}}
+                                        <p-sortIcon field="mauThuocTinhId"></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record let-index="rowIndex">
+                                <tr>
+                                    <td class="width-40" style="text-align: center;"
+                                        *ngIf="isGranted('Pages.QuanLyTram.Config')">
+                                        <p-tableCheckbox [value]="record"></p-tableCheckbox>
+                                    </td>
+                                    <td class="width-50" *ngIf="isGranted('Pages.QuanLyTram.Config')">
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="">
+                                                <a class="dropdown-item"
+                                                    (click)="createMCBT(record, index)">{{l('Update')}}</a>
+                                                <a class="dropdown-item"
+                                                    (click)="deleteDemoCanhBao(record, index)">{{l('Delete')}}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="width-150">{{record.mauThuocTinh.tenHienThi}}</td>
+                                    <td class="width-150">{{record.mauThuocTinh.ten}}</td>
+                                    <td class="width-150">{{arrKieuDuLieu[record.mauThuocTinh.kieuDuLieu]}}</td>
+                                    <td *ngIf="record.boolValue !== null" class="width-150">{{record.boolValue}}
+                                    </td>
+                                    <td *ngIf="record.stringValue !== null" class="width-150">{{record.stringValue}}
+                                    </td>
+                                    <td *ngIf="record.longValue !== null" class="width-150">{{record.longValue |
+                                        number}}</td>
+                                    <td *ngIf="record.doubleValue !== null" class="width-150">{{record.doubleValue |
+                                        number}}</td>
+                                    <td *ngIf="record.jsonValue !== null" class="width-150">{{record.jsonValue}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </section>
+            </p-accordionTab>
+        </p-accordion>
+        <div class="col-md-12 text-right m-t-10">
+            <div class="modal-footer btn-mobile" style="border: none !important; margin-top: 20px;">
+                <button class="btn btn-success m-l-8" type="button" (click)="exportToExcel()">
+                    <i class="pi pi-download"></i>
+                    <span style="margin-left: 10px;"> {{l('cht_xuatfilecauhinh')}}</span></button>
+                <button type="submit" [disabled]="disableDK && disableCB"
+                    class="btn btn-primary btn-save-background width-btn-footer text"
+                    *ngIf="isGranted('Pages.QuanLyTram.Config')"><i class="fa fa-save"></i>
+                    <span style="margin-left: 5px;">{{l('Save')}}</span></button>
+            </div>
+    
+            <div class="modal-footer btn-mobile1" style="border: none !important; margin-top: 20px;">
+                <button class="btn btn-success m-l-8" (click)="exportToExcel()">
+                    <i class="pi pi-download"></i></button>
+                <button type="submit" class="btn btn-primary btn-save-background width-btn-footer text"
+                    *ngIf="isGranted('Pages.QuanLyTram.Config')"><i class="fa fa-save"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

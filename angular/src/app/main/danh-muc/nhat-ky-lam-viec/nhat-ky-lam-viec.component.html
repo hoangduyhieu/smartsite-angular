@@ -1,0 +1,106 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <div class="col-md-12 col-lg-6">
+            <h1 class="title-chi-tiet-tram" style="margin: 24px 0px 0px 24px !important;">
+                {{l('NhatKyLamViecTitle')}}
+            </h1>
+        </div>
+        <section>
+            <div>
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" formControlName='keyword' class="form-control" name="keyword"
+                            [placeholder]="l('nklv_placeholdersearch')" (keyup.enter)="getDataPage()" />
+                    </div>
+                    <div class="p-grid ui-fluid m-t-24">
+                        <div class="p-col-12 p-md-6 p-lg-6">
+                            <dft-label-validation [title]="l('nklv_ThoiGian')">
+                            </dft-label-validation>
+                            <p-calendar formControlName='ThoiGian' [placeholder]="l('bccanhbao_placeholdertimebox')"
+                                selectionMode="range" [dateFormat]="dateFormatInput" [showTime]="true" [showIcon]="true"
+                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                            </p-calendar>
+                        </div>
+                        <div class="p-col-12 p-md-6 p-lg-6">
+                            <dft-label-validation [title]="l('nklv_LoaiCongViec')">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listLoaiCongViec" formControlName='LoaiCongViec'
+                                [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName" [showClear]="true"
+                                [filter]="false">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p-table #dt [value]="users" [lazy]="true" [(first)]="first" (onLazyLoad)="getDataPage($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}} "
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-150" pSortableColumn="ngayGioTao">{{l('nklv_ThoiGian')}}
+                                    <p-sortIcon field="ngayGioTao"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="tenNhanVien">{{l('nklv_TenNhanVien')}}
+                                    <p-sortIcon field="tenNhanVien"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="chucVuId">
+                                    {{l('nklv_ChucVu')}}
+                                    <p-sortIcon field="chucVuId"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="phanVungId">{{l('nklv_DonVi')}}
+                                    <p-sortIcon field="phanVungId"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="loaiCongViec">{{l('nklv_LoaiCongViec')}}
+                                    <p-sortIcon field="loaiCongViec"></p-sortIcon>
+                                </th>
+                                <th class="width-200" pSortableColumn="noiDung">{{l('nklv_NoiDung')}}
+                                    <p-sortIcon field="noiDung"></p-sortIcon>
+                                </th>
+                                <th class="width-450" pSortableColumn="ghiChu">{{l('nklv_GhiChu')}}
+                                    <p-sortIcon field="ghiChu"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-150">
+                                    {{ record.ngayGioTao | date: 'dd/MM/yyyy-hh:mm' }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.tenNhanVien | truncate }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.chucVuId | truncate }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.phanVungId | truncate }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.loaiCongViec | truncate }}
+                                </td>
+                                <td class="width-200">
+                                    {{ record.noiDung | truncate }}
+                                </td>
+                                <td class="width-450">
+                                    <pre>{{record.ghiChu}}</pre>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

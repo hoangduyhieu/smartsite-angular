@@ -1,0 +1,111 @@
+<form tabindex="-1" [formGroup]="form" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <abp-modal-header
+        [title]="id ? (isView ? l('text_xemchitiet') + nhanVien.ten : l('Update')+': ' + nhanVien.ten) : l('qlnv_themmoinhanvien')"
+        (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('maNhanVien')" [title]="l('qlnv_manhanvien')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" id="maNhanVien" name="maNhanVien" formControlName='maNhanVien' maxlength="255" class="form-control"
+                        pInputText />
+                    <dft-validation [control]="form.get('maNhanVien')">
+                    </dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('hoVaTen')" [title]="l('qlnv_hovaten')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" id="hoVaTen" name="hoVaTen" formControlName='hoVaTen' maxlength="255" class="form-control"
+                        pInputText />
+                    <dft-validation [control]="form.get('hoVaTen')">
+                    </dft-validation>
+                </div>
+            </div>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('maThe')" [title]="l('qldmdlcambien_mathe')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" id="maThe" name="maThe" formControlName='maThe' maxlength="34" pInputText class="form-control" />
+                    <dft-validation [control]="form.get('maThe')">
+                    </dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('soDienThoai')" [title]="l('qlnv_sodienthoai')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" id="soDienThoai" name="soDienThoai" formControlName='soDienThoai' maxlength="25" pattern="^[+0-9]+$" class="form-control"
+                        pInputText />
+                    <dft-validation [control]="form.get('soDienThoai')">
+                    </dft-validation>
+                </div>
+            </div>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group" >
+                    <dft-label-validation [control]="form.get('email')" [title]="l('qlnv_email')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input style="height: 48px !important;" formControlName="email" class="form-control" maxlength="256" 
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" />
+                    <dft-validation [control]="form.get('email')">
+                    </dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('diaChi')" [title]="l('qlnv_donvi')">
+                    </dft-label-validation>
+                    <input type="text" id="diaChi" name="diaChi" formControlName='diaChi' maxlength="255" pInputText class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('ghiChu')" [title]="l('qldmdlcambien_ghichu')">
+                    </dft-label-validation>
+                    <textarea formControlName="ghiChu" class="form-control" id="ghiChu" rows="4"
+                        maxlength="4000"></textarea>
+                    <dft-validation [control]="form.get('ghiChu')">
+                    </dft-validation>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="title-nguoi-phu-trach" *ngIf="isView">{{l('qlnv_dstramnhanvienduocphepravao')}}</p>
+    <p-table #dt [value]="nhanViens" [lazy]="true" *ngIf="isView"
+    [loading]="loading" [rows]="paginatorRows" 
+    [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="width-150">{{l('qlnv_tram')}}
+            </th>
+            <th class="width-150">{{l('qlnv_chucvu')}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-record>
+        <tr class="ui-selectable-row">
+            <td class="width-150">
+                {{ record.tenTram | truncate }}
+            </td>
+            <td class="width-150">
+                {{ record.chucVu | truncate }}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+    <abp-modal-footer [cancelDisabled]="saving" [saveHidden]="isView" [cancelLabel]="isView?l('Close'):l('Btn_Huy')"
+        (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

@@ -1,0 +1,161 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header
+        [title]="id ?( isView ? l('qlcanhbaotram_xemchitiet')+ phanVungDto?.ten : this.l('Update')+': ' + phanVungDto?.ten ): l('qlphanvung_themmoiphanvung')"
+        (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <p-tabView>
+        <p-tabPanel [header]="l('detailtram_thongtinchung')">
+            <div class="modal-body fixed-modal-height">
+                <div class="p-grid ui-fluid">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <dft-label-validation [form]="form" [control]="form.get('MaPhanVung')"
+                                [title]="l('qlphanvung_maphanvung')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <input [formControl]="form.get('MaPhanVung')" required type="text" id="MaPhanVung"
+                                name="MaPhanVung" maxlength="50" formControlName='MaPhanVung' pInputText />
+                            <dft-validation [control]="form.get('MaPhanVung')"></dft-validation>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <dft-label-validation [form]="form" [control]="form.get('TenPhanVung')"
+                                [title]="l('qlphanvung_tenphanvung')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <input required type="text" id="TenPhanVung" name="TenPhanVung" maxlength="255"
+                                formControlName='TenPhanVung' pInputText />
+                            <dft-validation [control]="form.get('TenPhanVung')"></dft-validation>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid ui-fluid">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                {{l('qlphanvung_phanvungcha')}}
+                            </label>
+                            <app-dropdown-treeview-select [items]="phanVungItems" [(value)]="phanVungValue"
+                                [disabled]="isView" (valueChange)="setControlValue($event)">
+                            </app-dropdown-treeview-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid ui-fluid">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>{{l('qlphanvung_ghichu')}}
+                            </label>
+                            <textarea type="text" id="GhiChu" name="GhiChu" maxlength="255" rows="3"
+                                formControlName='GhiChu' pInputText>
+                    </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!isView" class="p-grid ui-fluid">
+                    <div class="col-md-12">
+                        <p-pickList [showSourceControls]="false" [source]="danhSachNguoiDung"
+                            [showTargetControls]="false" [target]="danhSachNguoiPhuTrach"
+                            [sourceHeader]="l('qlphanvung_danhsachnguoidung')" [targetHeader]="l('qlphanvung_danhsachnguoiphutrach')" dragdrop="true"
+                            [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}"
+                            filterBy="name,userName" [sourceFilterPlaceholder]="l('qlphanvung_nhaptennguoidungtendangnhap')"
+                            [targetFilterPlaceholder]="l('qlphanvung_nhaptennguoidungtendangnhap')">
+                            <ng-template let-product pTemplate="item">
+                                <div class="product-item">
+                                    <div class="product-list-detail">
+                                        <h5 class="p-mb-2">{{product.name}} ({{product.userName}}) </h5>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-pickList>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isView">
+                <h6 class="title-nguoi-phu-trach">{{l('qlphanvung_danhsachnguoiphutrach')}}</h6>
+                <p-table #dt [value]="danhSachNguoiPhuTrachView" [lazy]="true"
+                    [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                    scrollHeight="{{scrollHeight}}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="width-150">{{l('qlphanvung_hoten')}}</th>
+                            <th class="width-150">{{l('qlphanvung_tendangnhap')}}</th>
+                            <th class="width-150">{{l('qlphanvung_diachiemail')}}</th>
+                            <th class="width-150">{{l('qlphanvung_sodienthoai')}}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-record>
+                        <tr>
+                            <td class="width-150">{{ record.name}}</td>
+                            <td class="width-150">{{ record.userName }}</td>
+                            <td class="width-150">{{ record.emailAddress}}</td>
+                            <td class="width-150">{{ record.phoneNumber}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel [header]="l('qlphanvung_nguoinhancanhbao')">
+            <div class="ui-fluid">
+                <div class="col-md-12 m-t-24">
+                    <div class="form-group" formArrayName="projects">
+                        <div *ngIf="!isView" class="btn-mobile" style="text-align: right;">
+                               <button type="button" class="btn btn-primary m-r-24" 
+                               (click)="addNguoiNhanCanhBao()">
+                               <i class="pi pi-plus"></i>
+                               <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                        </div>
+
+                        <div *ngIf="!isView" class="btn-mobile1" style="text-align: right;">
+                            <button type="button" class="btn btn-primary m-r-24" 
+                            (click)="addNguoiNhanCanhBao()">
+                            <i class="pi pi-plus"></i></button>
+                     </div>
+
+                        <div class="col-md-12 m-t-24"
+                            *ngFor="let ii of nguoiNhanFormGroup.controls; let i = index">
+                            <div style="margin: 4px;" [formGroupName]="i" class="row">
+                                <div [ngClass]="{'col-md': !isView ? '11': '12'}">
+                                    <div class="p-grid">
+                                        <div class="col-md-6">
+                                            <dft-label-validation [control]="ii.get('NguoiNhan')"
+                                                [title]="l('qlphanvung_nguoinhancanhbao')" [titleValidate] = "' *'">
+                                            </dft-label-validation>
+                                            <p-dropdown [disabled]="isView" formControlName="NguoiNhan" (onChange)="resetOptions()"
+                                                [options]="optionNguoiNhan" [placeholder]="l(dropdownPlaceholder)"
+                                                [showClear]="false" [filter]="true"
+                                                resetFilterOnHide="true">
+                                            </p-dropdown>
+                                            <dft-validation [control]="ii.get('NguoiNhan')"></dft-validation>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dft-label-validation [control]="ii.get('Luat')"
+                                                [title]="l('qlphanvung_luatcanhbao')" [titleValidate] = "' *'">
+                                            </dft-label-validation>
+                                            <p-multiSelect [disabled]="isView" formControlName="Luat"
+                                                [options]="arrLuat" optionLabel="displayName">
+                                            </p-multiSelect>
+                                            <dft-validation [control]="ii.get('Luat')"></dft-validation>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="!isView" class="col-md-1 text-right">
+                                    <br>
+                                    <button [disabled]="isView" (click)="removeNguoiNhanCanhBao(i)"
+                                        class="btn btn-danger"  name="" type="button">
+                                        <i class="pi pi-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+    <abp-modal-footer [cancelLabel]="isView? l('Close') : l('Btn_Huy')" [cancelDisabled]="saving" [saveHidden]="isView"
+        (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

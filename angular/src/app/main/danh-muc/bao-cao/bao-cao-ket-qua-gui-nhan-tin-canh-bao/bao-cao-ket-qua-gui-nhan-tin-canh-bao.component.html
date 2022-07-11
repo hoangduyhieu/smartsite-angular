@@ -1,0 +1,94 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="p-grid">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>{{l('bcKetqua_baocaoketquaguivanhantincanhbao')}}</h1>
+                    </div>
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                        <button type="button" class="btn btn-success m-l-8" (click)="exportToExcel()"
+                            [buttonBusy]="exporting"><i class="fa fa-download"></i>
+                            <span style="margin-left: 5px;">{{l('bctttram_taibaocao')}}</span></button>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                        <button type="button" class="btn btn-success m-l-8" (click)="exportToExcel()"
+                            [buttonBusy]="exporting"><i class="fa fa-download"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="content px-2">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="p-grid ui-fluid style-header-input-baocao">
+                        <div class="col-md-5">
+                            <dft-label-validation [control]="form.get('Tram')" [title]="l('bcKetqua_tram')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listTram" [placeholder]="l(dropdownPlaceholder)"
+                                optionLabel="displayName" [showClear]="true" [filter]="true" resetFilterOnHide="true"
+                                formControlName='Tram'>
+                            </p-dropdown>
+                            <dft-validation [control]="form.get('Tram')"></dft-validation>
+                        </div>
+                        <div class="col-md-5">
+                            <dft-label-validation [form]="form" [control]="form.get('ThoiGian')"
+                                [title]="l('bcKetqua_thoigian')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <p-calendar formControlName='ThoiGian' [placeholder]="l('bcKetqua_placeholdertimebox')"
+                                selectionMode="range" [dateFormat]="dateFormatInput" [showIcon]="true"
+                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                            </p-calendar>
+                            <dft-validation [control]="form.get('ThoiGian')"></dft-validation>
+                        </div>
+                        <div class="col-md-2 style-header-btn-baocao text-left">
+                            <button type="button" class="style-btn-tim-kiem-bao-cao m-l-8" 
+                                (click)="timKiem()"><i class="pi pi-search"></i></button>
+                            <button type="button" class="btn btn-cancle-background m-l-15 width-btn-footer"
+                                (click)="ngOnInit()">{{l('Btn_Huy')}}</button>
+                        </div>
+                </div>
+                    <div class="p-grid" style="padding-top: 24px !important;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 text-center">
+                            <h3>{{l('bcKetqua_soluongtinnhanvaemailcanhbao')}}</h3>
+                            <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="record[0]?.bieuDo"
+                                [gradient]="gradient" [legend]="showLegend" [legendPosition]="legendPosition"
+                                [labels]="showLabels" [legendTitle]="legendTitle" [doughnut]="isDoughnut">
+                            </ngx-charts-pie-chart>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div style="padding-top: 24px !important;" *ngIf="listNgay?.length > 0">
+                        <p-table [value]="record" [scrollable]="scrollable" scrollHeight="100px" [loading]="loading">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-150 table-border" rowspan="2">{{l('bcKetqua_trangthaiguitinnhanvaemailcanhbao')}}</th>
+                                    <th class="table-border" [ngStyle]="{'width' : style + 'px'}"
+                                        style="text-align: center;"
+                                        [attr.colspan]="listNgay?.length">{{l('bcKetqua_soluongcanhbao')}}</th>
+                                </tr>
+                                <tr>
+                                    <th class="width-120 text-center table-border" *ngFor="let item of listNgay">{{item}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr>
+                                    <td class="width-150 table-border" style="text-align: center;">
+                                        {{record.ten}}</td>
+                                    <td *ngFor="let item of record.data" class="table-border"
+                                        style="text-align: center; width: 120px;">
+                                        {{item.thanhCong}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

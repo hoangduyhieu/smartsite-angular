@@ -1,0 +1,42 @@
+.icon{
+    display:block;
+    margin:auto;
+    width: 50%;
+    height: auto;
+    cursor: pointer;
+    color:mediumseagreen;
+}
+.flex{
+    display:flex;
+    flex-grow : 1;
+    flex-direction: column;
+}
+.flex2{
+    display:flex;
+    justify-content: center;
+}
+.flex3{
+    display:initial;
+    flex-grow : 1;
+    flex-direction: column;
+}
+.resize-button{
+    width: 10rem !important;
+}
+
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    10% {
+        stroke: #0057e7;
+    }
+    20% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}

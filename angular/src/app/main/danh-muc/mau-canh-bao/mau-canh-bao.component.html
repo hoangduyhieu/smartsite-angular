@@ -1,0 +1,104 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qlmaucb_quanlymaucanhbao')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button class="btn btn-primary" *ngIf="isGranted('Pages.QuanLyMauCanhBao.Create')"
+                        (click)="createDemo()"><i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                    <button type="button" class="btn btn-success m-l-8"
+                        *ngIf="isGranted('Pages.QuanLyMauCanhBao.Create')" (click)="importExcel()">
+                        <i class="fa fa-upload"></i>
+                        <span style="margin-left: 5px;">{{l('importexcel')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button class="btn btn-primary" *ngIf="isGranted('Pages.QuanLyMauCanhBao.Create')"
+                        (click)="createDemo()"><i class="pi pi-plus"></i></button>
+                    <button type="button" class="btn btn-success m-l-8"
+                    *ngIf="isGranted('Pages.QuanLyMauCanhBao.Create')" (click)="importExcel()">
+                    <i class="fa fa-upload"></i>
+                    <span style="margin-left: 5px;"></span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card" style="padding-bottom: 25px !important;">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword" autocomplete="off" [(ngModel)]="keyword"
+                            (keyup.enter)="getDataPage()" [placeholder]="l('qlmaucb_placeholdersearch')" />
+                    </div>
+                </div>
+                <div>
+                    <p-table #dt [value]="value" [lazy]="true" (onLazyLoad)="getDataPage($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-50"></th>
+                                <th class="width-150" pSortableColumn="maMau">{{l('qlmaucb_mamaucanhbao')}}
+                                    <p-sortIcon field="maMau"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="ten">{{l('qlmaucb_tenmaucanhbao')}}
+                                    <p-sortIcon field="ten"></p-sortIcon>
+                                </th>
+                                <th class="width-300" pSortableColumn="ghiChu">{{l('qlmaucb_ghichu')}}
+                                    <p-sortIcon field="ghiChu"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="creationTime">{{l('qlmaucb_ngaytao')}}
+                                    <p-sortIcon field="creationTime"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-50">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item" (click)="viewDemo(record.id)">{{l('View')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyMauCanhBao.Edit')" (click)="createDemo(record.id)">{{l('Update')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyMauCanhBao.Delete')" (click)="_deleteDemo(record)">{{l('Delete')}}</a>
+                                            <a class="dropdown-item"
+                                            (click)="taiFileMau(record.id)">{{l('tai_file_mau')}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">
+                                    <a href="javascript:void(0);" (click)="viewDemo(record.id)">{{ record.maMau
+                                        | truncate }}</a>
+                                </td>
+                                <td class="width-150">{{ record.ten | truncate }}</td>
+                                <td class="width-300">{{ record.ghiChu}}</td>
+                                <td class="width-150">{{ record.creationTime | date: 'dd/MM/yyyy'}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="4" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

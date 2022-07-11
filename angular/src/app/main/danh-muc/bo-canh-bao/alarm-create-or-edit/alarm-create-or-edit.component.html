@@ -1,0 +1,200 @@
+<form [formGroup]="formCreateRule" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <abp-modal-header [title]="id>=0 ?( isView ? l('qlcanhbaotram_xemchitiet')+ l(this.arrCreateRule[this.id].name) : this.l('Update')+': '+ l(this.arrCreateRule[this.id].name) ):
+        l('qlluatcanhbao_themmoimuccanhbao')" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <p-accordion [multiple]="true">
+            <div class="p-grid ui-fluid">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [form]="formCreateRule" [title]="l('qlcanhbaotram_muccanhbao')"
+                            [control]="formCreateRule.get('name')">
+                        </dft-label-validation>
+                        <select formControlName="name" class="col-12" style="height: 2.5em"
+                            (change)="changeName($event.target.value)">
+                            <option class="ui-inputtext" *ngFor="let operation of leverArr"
+                                [disabled]="operation.disable" [ngValue]="operation.id"> {{operation.displayName}}
+                            </option>
+                        </select>
+                        <dft-validation [control]="formCreateRule.get('name')"></dft-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="padding-top: 36px;">
+                        <p-checkbox class="mr-2" [formControl]="formCreateRule.controls['popup']" binary="true">
+                        </p-checkbox>
+                        <dft-label-validation [form]="formCreateRule" [title]="l('qlcanhbaotram_hienthipopupcanhbao')"
+                            [control]="formCreateRule.get('popup')">
+                        </dft-label-validation>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [form]="formCreateRule" [title]="l('qlcanhbaotram_colorcanhbao')"
+                            [control]="formCreateRule.get('color')">
+                        </dft-label-validation>
+                        <select formControlName="color" class="col-12" style="height: 2.5em">
+                            <option *ngFor="let value of colorArr" [ngValue]="value.id"> {{value.displayName}}</option>
+                        </select>
+                        <dft-validation [control]="formCreateRule.get('color')"></dft-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [form]="formCreateRule" [title]="l('qlcanhbaotram_amthanhcanhbao')"
+                            [control]="formCreateRule.get('sound')">
+                        </dft-label-validation>
+                        <select formControlName="sound" class="col-12" style="height: 2.5em">
+                            <option *ngFor="let value of soundArr" [ngValue]="value.id"> {{value.displayName}}</option>
+                        </select>
+                        <dft-validation [control]="formCreateRule.get('sound')"></dft-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [title]="l('qlluatcanhbao_loailuat')">
+                        </dft-label-validation>
+                        <select formControlName="specType" class="col-12" style="height: 2.5em">
+                            <option *ngFor="let value of ruleType" [ngValue]="value.id"> {{value.displayName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [title]="l('qlluatcanhbao_toantuquanhe')">
+                        </dft-label-validation>
+                        <select formControlName="operatorAndOr" (change)="changeOperatorAndOr()" class="col-12"
+                            style="height: 2.5em">
+                            <option *ngFor="let value of arrOperatorAndOr" [ngValue]="value.id"> {{value.displayName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="this.formCreateRule.get('specType').value=='DURATION'" class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [title]="l('qlluatcanhbao_giatrikhoangthoigian')" [titleValidate] = "' *'">
+                        </dft-label-validation>
+                        <input formControlName="specValue" type="number" min="0"
+                            oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                            pInputText />
+                    </div>
+                </div>
+                <div *ngIf="this.formCreateRule.get('specType').value=='DURATION'" class="col-md-6">
+                    <div class="form-group">
+                        <dft-label-validation [title]="l('qlluatcanhbao_donvithoigian')" [titleValidate] = "' *'">
+                        </dft-label-validation>
+                        <select formControlName="specUnit" class="col-12" style="height: 2.5em">
+                            <option *ngFor="let value of timeType" [ngValue]="value.id"> {{value.displayName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <p-panel class="col-12 padding-0-8 m-t-10">
+                    <p-header>
+                        <div class="ui-helper-clearfix">
+                            <span class="ui-panel-title"
+                                style="font-size:16px;display:inline-block;margin-top:2px">{{l('qlcanhbaotram_luatcanhbao')}}</span>
+                            <button [disabled]="isView" type="button" class="btn btn-primary float-right"
+                                (click)="addNewCreateRule()">
+                                <i class="pi pi-plus"></i></button>
+                        </div>
+                    </p-header>
+                    <form [formGroup]="arr">
+                        <div class="col-md-12 m-t-15" >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-4 text-left">
+                                        <dft-label-validation [title]="l('qlluatcanhbao_dulieucambien')" [titleValidate] = "' *'">
+                                        </dft-label-validation>
+                                    </div>
+                                    <div class="col-4 text-left">
+                                        <dft-label-validation [title]="l('qlluatcanhbao_toantu')" [titleValidate] = "' *'">
+                                        </dft-label-validation>
+                                    </div>
+                                    <div class="col-3 text-left">
+                                        <dft-label-validation [title]="l('qlluatcanhbao_giatri')" [titleValidate] = "' *'">
+                                        </dft-label-validation>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngFor="let value of arr.controls let i = index">
+                                <div [formGroupName]="i" class="m-t-12">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-12 text-left">
+                                                <select formControlName="key" (change)="setOperation(i)" class="col-10"
+                                                    style="height: 2.5em">
+                                                    <option class="ui-inputtext" *ngFor="let sensor of dataSensor"
+                                                        [ngValue]="sensor.ten"> {{sensor.tenHienThi}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 text-left">
+                                                <ng-container
+                                                    *ngIf="value.value.valueType == 'NUMERIC'|| value.value.valueType == 'DATE_TIME'">
+                                                    <select formControlName="operation" class="col-10"
+                                                        style="height: 2.5em">
+                                                        <option class="ui-inputtext"
+                                                            *ngFor="let operation  of numberArr"
+                                                            [ngValue]="operation.id"> {{operation.displayName}}</option>
+                                                    </select>
+                                                </ng-container>
+                                                <ng-container *ngIf="value.value.valueType == 'STRING'">
+                                                    <select formControlName="operation" class="col-10"
+                                                        style="height: 2.5em">
+                                                        <option class="ui-inputtext" *ngFor="let operation of stringArr"
+                                                            [ngValue]="operation.id"> {{operation.displayName}}</option>
+                                                    </select>
+                                                </ng-container>
+                                                <ng-container *ngIf="value.value.valueType == 'BOOLEAN'">
+                                                    <select formControlName="operation" class="col-10"
+                                                        style="height: 2.5em">
+                                                        <option class="ui-inputtext"
+                                                            *ngFor="let operation of bolleanArr"
+                                                            [ngValue]="operation.id"> {{operation.displayName}}</option>
+                                                    </select>
+                                                </ng-container>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 text-left">
+                                                <ng-container *ngIf="value.value.valueType == 'BOOLEAN'">
+                                                    <select formControlName="defaultValue" class="col-10"
+                                                        style="height: 2.5em">
+                                                        <option class="ui-inputtext" *ngFor="let value of trueFalseArr"
+                                                            [ngValue]="value.id"> {{value.displayName}}</option>
+                                                    </select>
+                                                </ng-container>
+                                                <ng-container *ngIf="value.value.valueType == 'STRING'">
+                                                    <input class="col-10 text-left" formControlName="defaultValue"
+                                                        type="text" pInputText />
+                                                </ng-container>
+                                                <ng-container *ngIf="value.value.valueType == 'NUMERIC'">
+                                                    <input *ngIf="arr.controls[i].value.key != 'Long'" number
+                                                        class="col-10 text-left" formControlName="defaultValue"
+                                                        type="number" pInputText />
+
+                                                    <input *ngIf="arr.controls[i].value.key == 'Long'"
+                                                        class="col-10 text-left" type="text" number [max]="99999999999"
+                                                        pInputText formControlName="defaultValue" />
+                                                </ng-container>
+                                            </div>
+                                            <div class="col-1 text-left">
+                                                <button [disabled]="isView" type="button" class="btn btn-danger"
+                                                    (click)="deleteClearRule(i)">
+                                                    <i class="pi pi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </p-panel>
+            </div>
+        </p-accordion>
+    </div>
+    <abp-modal-footer [cancelLabel]="isView?l('Close') : l('Btn_Huy')" [cancelDisabled]="saving" [saveDisabled]="isView"
+        (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

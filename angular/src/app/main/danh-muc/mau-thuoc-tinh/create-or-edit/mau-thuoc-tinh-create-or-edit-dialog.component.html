@@ -1,0 +1,43 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="id ?( isView ? l('text_xemchitiet')+ demoDto.tenHienThi : l('Update')+': '+ demoDto.tenHienThi ): l('qldmThuoctinh_themmoidmthuoctinh')" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTenHienThi')" [title]="l('qldmThuoctinh_tenhienthi')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTenHienThi')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtTenHienThi' pInputText />
+                    <dft-validation [control]="form.get('txtTenHienThi')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTen')" [title]="l('qldmThuoctinh_tenkhoa')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTen')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtTen' pInputText />
+                    <dft-validation [control]="form.get('txtTen')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtComBoBox')" [title]="l('qldmThuoctinh_kieudulieu')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <p-dropdown [formControl]="form.get('txtComBoBox')" formControlName="txtComBoBox" [options]="arrKieuDuLieu" [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName" [showClear]="false" [filter]="true" resetFilterOnHide="true">
+                    </p-dropdown>
+                    <dft-validation [control]="form.get('txtComBoBox')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('qldmThuoctinh_ghichu')">
+                    </dft-label-validation>
+                    <br>
+                    <textarea formControlName="txtGhiChu" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <abp-modal-footer [cancelLabel]="isView?l('Close'):l('Btn_Huy')" [cancelDisabled]="saving" [saveHidden]="isView" (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

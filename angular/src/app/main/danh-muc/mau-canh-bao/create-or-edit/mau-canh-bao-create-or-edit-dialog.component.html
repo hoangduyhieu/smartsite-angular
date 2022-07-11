@@ -1,0 +1,170 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header
+        [title]="id ?( isView ? l('text_xemchitiet')+ input.ten : l('Update')+': '+ input.ten ): l('qlmaucb_themoimaucanhbao')"
+        (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <div class="p-grid ui-fluid">
+            <div class="col-md-12 text-right m-t-8 btn-mobile">
+                <button *ngIf="!isView" class="btn btn-primary" type="button" (click)="addSkills()"><i
+                        class="pi pi-plus"></i>
+                    <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+            </div>
+
+            <div class="col-md-12 text-right m-t-8 btn-mobile1">
+                <button *ngIf="!isView" class="btn btn-primary" type="button" (click)="addSkills()"><i
+                        class="pi pi-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtMaMau')"
+                        [title]="l('qlmaucb_mamaucanhbao')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtMaMau')" required type="text" name="TextBox1"
+                        maxlength="255" formControlName='txtMaMau' pInputText />
+                    <dft-validation [control]="form.get('txtMaMau')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTenMauDieuKhien')"
+                        [title]="l('qlmaucb_tenmaucanhbao')">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTenMauDieuKhien')" required type="text"
+                        name="TextBox1" maxlength="255" formControlName='txtTenMauDieuKhien' pInputText />
+                    <dft-validation [control]="form.get('txtTenMauDieuKhien')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-12" formArrayName="skills">
+                <div *ngFor="let skill of skills.controls; let i=index">
+                    <div [formGroupName]="i">
+                        <div class="p-grid ui-fluid">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtThuocTinh')"
+                                        [title]="l('qlmaudk_thuoctinh')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <p-dropdown [disabled] = "isView" #drop (onChange)="resetOptions(drop)" formControlName="txtThuocTinh"
+                                        [options]="optionKieuDuLieu" [placeholder]="l(dropdownPlaceholder)"
+                                        [showClear]="false" [filter]="true" resetFilterOnHide="true"
+                                        (onChange)="setValid(i, skill)">
+                                    </p-dropdown>
+                                    <dft-validation [control]="skill.get('txtThuocTinh')"></dft-validation>
+                                </div>
+                            </div>
+                            <!-- Giá trị Cập nhật -->
+                            <div *ngIf="!isView && (drop.selectedOption?.title === '2' || drop.selectedOption?.title === '5')"
+                                class="col-md-5">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriString')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" name="TextBox1" maxlength="255"
+                                        formControlName='txtGiaTriString' pInputText />
+                                    <dft-validation [control]="skill.get('txtGiaTriString')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="!isView && drop.selectedOption?.title === '1'" class="col-md-5">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriBoolean')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <p-dropdown #drop (onChange)="resetOptions(drop)" formControlName="txtGiaTriBoolean"
+                                        optionLabel="label" [options]="cities" [placeholder]="l(dropdownPlaceholder)"
+                                        [showClear]="false" [filter]="true" resetFilterOnHide="true">
+                                    </p-dropdown>
+                                    <dft-validation [control]="skill.get('txtGiaTriBoolean')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="!isView && drop.selectedOption?.title === '3'" class="col-md-5">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriLong')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" number name="TextBox1" maxlength="255"
+                                        formControlName='txtGiaTriLong' pInputText />
+                                    <dft-validation [control]="skill.get('txtGiaTriLong')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="!isView && drop.selectedOption?.title === '4'" class="col-md-5">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriDouble')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" decimal name="TextBox1" maxlength="255"
+                                        formControlName='txtGiaTriDouble' pInputText />
+                                    <dft-validation [control]="skill.get('txtGiaTriDouble')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="!isView" class="col-md-1 text-right" style="line-height: 2;">
+                                <br>
+                                <button type="button" style="height:39.72px;width: 40px;"
+                                    class="btn btn-sm btn-danger mx-2" (click)="removeSkill(i)">
+                                    <i class="pi pi-trash"></i>
+                                </button>
+                            </div>
+                            <!-- Giá trị View -->
+                            <div *ngIf="isView && (drop.selectedOption?.title === '2' || drop.selectedOption?.title === '5')"
+                                class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriString')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" name="TextBox1" maxlength="255"
+                                        formControlName='txtGiaTriString' pInputText />
+                                    <dft-validation [control]="skill.get('txtGiaTriString')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="isView && drop.selectedOption?.title === '1'" class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriBoolean')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <p-dropdown #drop (onChange)="resetOptions(drop)" formControlName="txtGiaTriBoolean"
+                                        optionLabel="label" [options]="cities" [placeholder]="l(dropdownPlaceholder)"
+                                        [showClear]="false" [filter]="true" resetFilterOnHide="true">
+                                    </p-dropdown>
+                                    <dft-validation [control]="skill.get('txtGiaTriBoolean')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="isView && drop.selectedOption?.title === '3'" class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriLong')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" number name="TextBox1" maxlength="255"
+                                        formControlName='txtGiaTriLong' pInputText />
+                                    <dft-validation [control]="skill.get('txtGiaTriLong')"></dft-validation>
+                                </div>
+                            </div>
+                            <div *ngIf="isView && drop.selectedOption?.title === '4'" class="col-md-6">
+                                <div class="form-group">
+                                    <dft-label-validation [control]="skill.get('txtGiaTriDouble')"
+                                        [title]="l('qlmaudk_giatri')" [titleValidate]="' *'">
+                                    </dft-label-validation>
+                                    <input required type="text" decimal name="TextBox1" maxlength="255"
+                                        formControlName='txtGiaTriDouble' pInputText />
+                                    <dft-validation [control]="skill.get('txtGiaTriDouble')"></dft-validation>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('qlmaudk_ghichu')">
+                    </dft-label-validation>
+                    <br>
+                    <textarea formControlName="txtGhiChu" class="form-control" id="exampleFormControlTextarea1"
+                        rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer [cancelLabel]="isView?l('Close'):l('Btn_Huy')" [cancelDisabled]="saving" [saveHidden]="isView"
+        (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

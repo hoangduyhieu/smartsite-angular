@@ -1,0 +1,19 @@
+﻿﻿
+  <div>
+    <div class="text-center col-12 row" *ngFor="let language of languages">
+      <div class="col-7 text-right p-r-0">
+        <a *ngIf="language.name != currentLanguage.name" href="javascript:void(0);"
+        (click)="changeLanguage(language.name)">
+        <span title="{{ language.displayName }}" [attr.class.current-language-icon]="
+          language.name != currentLanguage.name
+        ">
+          <i class="d-inline-block mx-1 {{ language.icon }}"></i>
+        </span>
+      </a>
+      </div>
+      <div class="col-5 text-left p-l-0">
+        <p *ngIf="language.name != currentLanguage.name" style="font-size: 16px; font-family: 'Exo2-Regualar';">{{language.name | uppercase }}</p>
+      </div>
+      
+    </div>
+  </div>

@@ -1,0 +1,135 @@
+<div [@routerTransition]>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qlnguoidung_quanlynguoidung')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button *ngIf="isGranted('Pages.Users.Create')" type="button" class="btn btn-primary m-l-8"
+                        (click)="createUser()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button *ngIf="isGranted('Pages.Users.Create')" type="button" class="btn btn-primary m-l-8"
+                        (click)="createUser()">
+                        <i class="pi pi-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card" style="padding-bottom: 24px !important;">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword"
+                            [placeholder]="l('qlnguoidung_placeholdersearch')" [(ngModel)]="keyword" autocomplete="off"
+                            (keyup.enter)="getDataPage()" />
+                    </div>
+                </div>
+                <div>
+                    <p-table #dt [value]="users" [lazy]="true" [(first)]="first" (onLazyLoad)="getDataPage($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}} "
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-30"></th>
+                                <th class="width-150" pSortableColumn="userName">{{l('qlnguoidung_tendangnhap')}}
+                                    <p-sortIcon field="userName"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="name">{{l('qlnguoidung_hoten')}}
+                                    <p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th class="width-200" pSortableColumn="emailAddress">{{l('qlnguoidung_diachiemail')}}
+                                    <p-sortIcon field="emailAddress"></p-sortIcon>
+                                </th>
+                                <th class="width-100" pSortableColumn="phoneNumber">{{l('qlnguoidung_sdt')}}
+                                    <p-sortIcon field="phoneNumber"></p-sortIcon>
+                                </th>
+                                <th class="width-100" pSortableColumn="diaChi">{{l('qlnguoidung_donvi')}}
+                                    <p-sortIcon field="diaChi"></p-sortIcon>
+                                </th>
+                                <th class="width-100" pSortableColumn="chucVu">{{l('qlnguoidung_chucvu')}}
+                                    <p-sortIcon field="chucVu"></p-sortIcon>
+                                </th>
+                                <th class="width-100" pSortableColumn="isActive">{{l('qlnguoidung_kichhoat')}}
+                                    <p-sortIcon field="isActive"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-30">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item" (click)="viewUser(record,true)">{{l('View')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.Users.Edit') && listUser?.includes(record.id)"
+                                                (click)="editUser(record)">{{l('Update')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.Users.RecoverPassword') && listUser?.includes(record.id)"
+                                                (click)="resetPassword(record)">{{l('qlnguoidung_khoiphucmatkhau')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.Roles_PhanQuyen') && listUser.includes(record.id)"
+                                                (click)="updateRole(record)">{{l('qlnguoidung_phanquyen')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.Users.Delete') && listUser?.includes(record.id)"
+                                                (click)="delete(record)">{{l('Delete')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">
+                                    <a href="javascript:void(0);" (click)="viewUser(record,true)">{{ record.userName |
+                                        truncate }}</a>
+
+                                </td>
+                                <td class="width-150">
+                                    {{ record.name | truncate }}
+                                </td>
+                                <td class="width-200">
+                                    {{ record.emailAddress | truncate }}
+                                </td>
+                                <td class="width-100">
+                                    {{ record.phoneNumber | truncate }}
+                                </td>
+                                <td class="width-100">
+                                    {{ record.diaChi | truncate }}
+                                </td>
+                                <td class="width-100">
+                                    {{ record.chucVu | truncate }}
+                                </td>
+                                <td class="width-100" style="text-align: center;">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" disabled
+                                            [checked]="record.isActive" />
+                                        <label class="custom-control-label"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

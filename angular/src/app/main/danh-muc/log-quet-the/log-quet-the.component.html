@@ -1,0 +1,108 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>{{l('qlquetthe_logquetthe')}}</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content px-2">
+            <div class="container-fluid">
+                <div class="card m-b-30">
+                    <div class="p-grid ui-fluid">
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <div class="card-header">
+                                <div class="p-grid">
+                                    <div class="col-md-12" style="padding-top: 10px;">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button type="button" class="btn bg-blue" (click)="timKiem()">
+                                                    <i class="pi pi-search"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control" name="keyword"
+                                                [placeholder]="l('qlquetthe_placeholdersearch')"
+                                                formControlName='keyword' autocomplete="off"
+                                                (keyup.enter)="timKiem()" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-top: 10px;">
+                                        <div class="form-group">
+                                            <dft-label-validation [form]="form" [title]="l('qlcanhbao_thoigian')">
+                                            </dft-label-validation>
+                                            <p-calendar formControlName='ThoiGianTu'
+                                                [placeholder]="l('bcnhienlieu_placeholdertimebox')"
+                                                selectionMode="range" [dateFormat]="dateFormatInput" [showTime]="true"
+                                                [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true"
+                                                [yearRange]="yearRange">
+                                            </p-calendar>
+                                            <dft-validation [control]="form.get('ThoiGianTu')"></dft-validation>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p-table #dt [value]="thietBiList" [lazy]="true" (onLazyLoad)="getDataPageTB($event)"
+                            [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                            currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                            [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                            [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-150" pSortableColumn="the.thoiGian">
+                                        {{l('qlcanhbao_thoigian')}}
+                                        <p-sortIcon field="the.thoiGian"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="tenTram">
+                                        {{l('bctttram_tentram')}}
+                                        <p-sortIcon field="tenTram"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="tenNhanVien">
+                                        {{l('qlnvtram_tennhanvien')}}
+                                        <p-sortIcon field="tenNhanVien"></p-sortIcon>
+                                    </th>
+                                    <th class="width-300" pSortableColumn="the.rfidCard">
+                                        {{l('qlnvtram_mathe')}}
+                                        <p-sortIcon field="the.rfidCard"></p-sortIcon>
+                                    </th>
+                                    <th class="width-150" pSortableColumn="the.trangThai">
+                                        {{l('Dashboard_TrangThai')}}
+                                        <p-sortIcon field="the.trangThai"></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr>
+                                    <td class="width-150">{{ record.the.thoiGian | date: 'dd/MM/yyyy-hh:mm' }}</td>
+                                    <td class="width-150">
+                                        <a
+                                            [routerLink]="['/app/main/danh-muc/tram/tram-view-detail', record?.idTram, record?.tbEntityId, 0]">{{
+                                            record.tenTram}}</a>
+                                    </td>
+                                    <td class="width-150">
+                                        <a href="javascript:void(0);" (click)="viewUser(record.nhanVienId)">{{
+                                            record.tenNhanVien}}</a>
+                                    </td>
+                                    <td class="width-300">{{ record.the.rfidCard}}</td>
+                                    <td class="width-150">{{ record.the.trangThai == 0 ? "Không thành công" : "Thành
+                                        công"}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

@@ -1,0 +1,58 @@
+.table-border {
+    border-bottom: 1px solid #D3e5f8 !important;
+}
+
+.in-dam {
+    font-weight: bold;
+}
+
+.in-nghieng {
+    font-style: italic;
+}
+.auto-scroll {
+    overflow: auto;
+}
+.trang-thai {
+    border-radius: 8px;
+    padding: 1px 8px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 22px;
+    // Active
+    &.active-1 {
+    background: rgba(35, 123, 211, 0.05);
+    color: #237BD3;
+    }
+    // UnActive
+    &.active-2 {
+    background: rgba(83, 89, 95, 0.05);
+    color: #53595F;
+    }
+    //@at-root
+    &.active-3 {
+        background-color: unset;
+        color: unset;
+    }
+
+    // Non-Warning
+    &.warning-2 {
+        background: rgba(57, 191, 159, 0.05);
+        color: #39BF9F;
+    }
+    
+    // Warning
+    &.warning-1 {
+    background: rgba(217, 31, 44, 0.05);
+    color: #D91F2C;
+    }
+
+    //@at-root
+    &.warning-3 {
+        background-color: unset;
+        color: unset;
+    }
+}
+.table-margin{
+    padding-bottom: 25px;
+}

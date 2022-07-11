@@ -1,0 +1,121 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>{{l('bcnhienlieu_baocaonhienlieumayno')}}</h1>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                        <button (click)="exportToExcel()" type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"><i
+                                class="fa fa-download"></i>
+                            <span style="margin-left: 5px;">{{l('bctttram_taibaocao')}}</span></button>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                        <button (click)="exportToExcel()" type="button" class="btn btn-success m-l-8" [buttonBusy]="exporting"><i
+                                class="fa fa-download"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card" style="padding-bottom: 25px !important;">
+                        <div class="p-grid ui-fluid style-header-input-baocao">
+                            <div class="col-md-5">
+                                <dft-label-validation [title]="l('bcnhienlieu_tentram')">
+                                </dft-label-validation>
+                                <p-dropdown [options]="listTram" [placeholder]="l(dropdownPlaceholder)"
+                                    optionLabel="displayName" [filter]="true" resetFilterOnHide="true"
+                                    formControlName='TramCmb'>
+                                </p-dropdown>
+                            </div>
+                            <div class="col-md-5">
+                                <dft-label-validation [title]="l('bcnhienlieu_thoigian')" [titleValidate] = "' *'">
+                                </dft-label-validation>
+                                <p-calendar [(ngModel)]="rangeDates" (ngModelChange)="checkTuNgayDenNgay()" [placeholder]="l('bcnhienlieu_placeholdertimebox')"
+                                    selectionMode="range" [dateFormat]="dateFormatInput" [showTime]="false"
+                                    [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true"
+                                    [yearRange]="yearRange" formControlName='TuNgayDenNgay'>
+                                </p-calendar>
+                                <dft-validation [control]="form.get('TuNgayDenNgay')">
+                                </dft-validation>
+                            </div>
+                            <div class="col-md-2 style-header-btn-baocao text-left">
+                                <button type="button" class="style-btn-tim-kiem-bao-cao m-l-8"  
+                                    (click)="timKiem()"><i class="pi pi-search"></i></button>
+                                <button type="button" class="btn btn-cancle-background m-l-15 width-btn-footer"
+                                    (click)="ngOnInit()">{{l('Btn_Huy')}}</button>
+                            </div>
+                    </div>
+                    <!--Line Chart-->
+                    <div class="p-grid ui-fluid m-t-24">
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <p-chart type="bar" [data]="dataNhienLieu" [options]="options" width="auto" height="400px">
+                            </p-chart>
+                        </div>
+                    </div>
+                    <!--Table-->
+                    <div style="margin-top: 24px !important;">
+                        <p-table #dt [value]="datas" [scrollable]="true" scrollHeight="200px" [lazy]="true"
+                            (onLazyLoad)="getTablePage($event)" [paginator]="paginator" [loading]="loading"
+                            [showCurrentPageReport]="showCurrentPageReport"
+                            currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                            [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                            [scrollable]="scrollable" scrollWidth="100%" frozenWidth="250px">
+                            <ng-template pTemplate="frozenheader">
+                                <tr>
+                                    <th rowspan="2" class="width-250">
+                                        {{l('bcnhienlieu_tenmayno')}}
+                                    </th>
+                                    <th *ngIf="daylist.length > 0"
+                                        [attr.colspan]="daylist.length > 0 ? daylist.length : 0"
+                                        [ngStyle]="{'width': daylist.length > 0 ? daylist.length*200 + 'px' : '200px', 'text-align': 'center'}">
+                                        {{l('bcnhienlieu_khoiluongnhienlieu')}}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th *ngFor="let ngay of daylist" class="width-200">
+                                        {{l('bcnhienlieu_ngay')}} {{ngay | date: 'dd/MM/yyyy'}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="frozenbody" let-record>
+                                <tr>
+                                    <td   pTooltip="{{record.tenMayNo}}" class="width-250 over">{{record.tenMayNo}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th *ngIf="daylist.length > 0"
+                                        [attr.colspan]="daylist.length > 0 ? daylist.length : 0"
+                                        [ngStyle]="{'width': daylist.length > 0 ? daylist.length*200 + 'px' : '200px', 'text-align': 'center'}">
+                                        {{l('bcnhienlieu_khoiluongnhienlieu')}}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th *ngFor="let ngay of daylist" class="width-200">
+                                        {{l('bcnhienlieu_ngay')}} {{ngay | date: 'dd/MM/yyyy'}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr>
+                                    <td *ngFor="let nhienlieu of record.nhienLieu" class="width-200">{{nhienlieu}}</td>
+                                </tr>
+                            </ng-template>
+                            <!-- <ng-template pTemplate="">
+                                <tr>
+                                    <td colspan="8" >{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template> -->
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

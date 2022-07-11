@@ -1,0 +1,47 @@
+<div [@routerTransition]>
+  <h4 class="text-center mb-3" style="color: #237BD3; font-weight: 600;">{{ "ForgotPassword" | localize }}</h4>
+  <form novalidate [formGroup]="form" autocomplete="off" #loginForm="ngForm">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-append">
+          <div class="input-group-text"
+            style="border-left: 1px solid rgba(83, 89, 95, 0.2) !important; border-right: none !important; border-radius: 8px 0 0 8px;">
+            <span class="pi pi-envelope"></span>
+          </div>
+        </div>
+        <input type="text" style="border-left: none !important;" class="form-control" name="userNameOrEmailAddress"
+          formControlName="EmailAddress" class="form-control" maxlength="256"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" [placeholder]="'Email' | localize" />
+      </div>
+      <dft-validation [control]="form.get('EmailAddress')"></dft-validation>
+    </div>
+
+    <div class="form-group row p-l-3 p-r-3">
+      <!-- <div class="col-md-7">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="rememberMe"
+              name="rememberMe"
+              [(ngModel)]="authService.rememberMe"
+            />
+            <label for="rememberMe" class="custom-control-label">
+              {{ "RememberMe" | localize }}
+            </label>
+          </div>
+        </div> -->
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary btn-block" [disabled]="!form.valid || submitting"
+          (click)="login()">
+          {{ "Send" | localize }}
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- <p *ngIf="isSelfRegistrationAllowed" class="mb-1">
+      <a [routerLink]="['../register']">
+        <i class="pi pi-plus-circle"></i> {{ "Register" | localize }}
+      </a>
+    </p> -->
+</div>

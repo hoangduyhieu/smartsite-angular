@@ -1,0 +1,110 @@
+<div [@routerTransition]>
+    <section class="content" id="tesst">
+        <div class="container-fluid">
+            <div class="p-grid" style="margin-top: 24px;">
+                <div class="col-md-12 col-lg-6">
+                    <h1 class="title-chi-tiet-tram" style="margin: 0px 0px 0px 24px !important;">
+                        {{l('qlthietbi_quanlythietbi')}}
+                    </h1>
+                </div>
+                <div class="col-md-6 text-right btn-mobile" style="padding-right: 18px !important;">
+                    <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                    (click)="themMoi()">
+                    <i class="pi pi-plus"></i>
+                    <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                </div>
+
+                <div class="col-md-6 text-right btn-mobile1" style="padding-right: 18px !important;">
+                    <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                    (click)="themMoi()">
+                    <i class="pi pi-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div>
+            <div class="card-header">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn bg-blue" (click)="getDataPageTB()">
+                            <i class="pi pi-search"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" name="keyword"
+                        [placeholder]="l('qlthietbi_placeholdersearch')" autocomplete="off" [(ngModel)]="keyword"
+                        (keyup.enter)="getDataPageTB()" />
+                </div>
+                <div class="p-grid ui-fluid m-t-24">
+                    <div class="col-md-6">
+                        <dft-label-validation [title]="l('qlthietbi_loaithietbi')">
+                        </dft-label-validation>
+                        <p-dropdown [options]="arrLoaiThietBi" [placeholder]="l(dropdownPlaceholder)"
+                            optionLabel="displayName" [showClear]="true" [filter]="true" resetFilterOnHide="true"
+                            [(ngModel)]="filterLoaiThietBi">
+                        </p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p-table #dt [value]="thietBiList" [lazy]="true" (onLazyLoad)="getDataPageTB($event)"
+                    [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                    currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                    [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                    [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="width-50"></th>
+                            <th class="width-150" pSortableColumn="maThietBi">
+                                {{l('qlthietbi_mathietbi')}}
+                                <p-sortIcon field="maThietBi"></p-sortIcon>
+                            </th>
+                            <th class="width-150" pSortableColumn="ten">
+                                {{l('qlthietbi_tenthietbi')}}
+                                <p-sortIcon field="ten"></p-sortIcon>
+                            </th>
+                            <th class="width-150" pSortableColumn="loaiThietBi">
+                                {{l('qlthietbi_loaithietbi')}}
+                                <p-sortIcon field="loaiThietBi"></p-sortIcon>
+                            </th>
+                            <th class="width-150" pSortableColumn="ghiChu">{{l('qlthietbi_ghichu')}}
+                                <p-sortIcon field="ghiChu"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-record>
+                        <tr>
+                            <td class="width-50">
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle btn btn-sm btn-transparent btn-action" type="button"
+                                         data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="">
+                                        <a class="dropdown-item" (click)="xem(record)">{{l('View')}}</a>
+                                        <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                                            (click)="sua(record)">{{l('Update')}}</a>
+                                        <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                                            (click)="_delete(record)">{{l('Delete')}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="width-150">
+                                <a  href="javascript:void(0);" (click)="xem(record)">{{ record.maThietBi}}</a>
+                            </td>
+                            <td class="width-150">{{ record.ten}}</td>
+                            <td class="width-150">{{ record.tenLoaiThietBi}}</td>
+                            <td class="width-150">{{ record.ghiChu}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>

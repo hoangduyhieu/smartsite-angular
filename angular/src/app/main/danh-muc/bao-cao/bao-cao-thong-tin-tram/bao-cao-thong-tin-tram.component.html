@@ -1,0 +1,202 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="p-grid">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('bctttram_baocaothongtintram')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button type="button" class="btn btn-success m-l-8" (click)="exportToExcel()"
+                        [buttonBusy]="exporting"><i class="fa fa-download"></i>
+                        <span style="margin-left: 10px;">{{l('bctttram_taibaocao')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button type="button" class="btn btn-success m-l-8" (click)="exportToExcel()"
+                        [buttonBusy]="exporting"><i class="fa fa-download"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                    <div class="p-grid ui-fluid style-header-input-baocao">
+                        <div class="col-md-5" >
+                            <dft-label-validation [title]="l('bctttram_tentram')">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listTram" [placeholder]="l(dropdownPlaceholder)"
+                                optionLabel="displayName" [showClear]="false" [filter]="true" resetFilterOnHide="true"
+                                [(ngModel)]="filterTram">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-md-5">
+                            <dft-label-validation
+                                [ngStyle]="{'color': !rangeDates || (rangeDates && rangeDates[1] === null)? 'red' : 'black'}"
+                                [title]="l('bctttram_thoigian')" [titleValidate] = "' *'">
+                            </dft-label-validation>
+                            <p-calendar [maxDate]="maxDateTime" [(ngModel)]="rangeDates"
+                                [placeholder]="l('bctrangthai_placeholdertimebox')" selectionMode="range"
+                                [dateFormat]="dateFormatInput" [showTime]="false" [showIcon]="true"
+                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                            </p-calendar>
+                            <div>
+                                <span style="color: red" *ngIf="rangeDates && rangeDates[1] === null"
+                                    class="mess-error help-block form-control-feedback">{{l("bctttram_thoigiandenngaykhongduocdetrong")}}</span>
+                            </div>
+                            <div>
+                                <span style="color: red" *ngIf="!rangeDates"
+                                    class="mess-error help-block form-control-feedback">{{l("bctttram_daylatruongbatbuoc")}}</span>
+                            </div>
+                        </div>
+                            <div class="col-md-2 m-t-31 style-header-btn-baocao text-left">
+                                <button type="button" class=" m-l-8 style-btn-tim-kiem-bao-cao" [buttonBusy]="loading"
+                                    (click)="timKiem()"><i class="pi pi-search"></i></button>
+                            <button type="button" class="btn btn-cancle-background m-l-15 width-btn-footer"
+                                (click)="ngOnInit()">{{l("Btn_Huy")}}</button>
+                        </div>
+                </div>
+                <!--Line Chart-->
+                <div class="p-grid ui-fluid">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <p-chart type="line" [data]="dataNhietDo" [options]="nd" width="auto" height="400px">
+                        </p-chart>
+                    </div>
+                </div>
+                <div class="p-grid ui-fluid m-t-24">
+                    <div class="p-col-12 p-md-6 p-lg-6">
+                        <p-chart type="line" [data]="dataDoAm" [options]="da" width="auto" height="400px"></p-chart>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-6">
+                        <p-chart type="line" [data]="dataDienApLuoi" [options]="dal" width="auto" height="400px">
+                        </p-chart>
+                    </div>
+                </div>
+                <!--Table-->
+                <div class="m-t-24">
+                    <p-table [value]="datas" [scrollable]="true" scrollHeight="200px" ScrollWidth="100%"
+                        frozenWidth="200px" [lazy]="true" [scrollable]="scrollable">
+                        <ng-template pTemplate="frozenheader">
+                            <tr>
+                                <th class="width-200 text-center" style="border-right: none !important;">
+                                    {{l("bctttram_thoigian")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_doamphongthietbi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_nhietdophongthietbi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_nhietdobenngoaitram")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dongdienacluoi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dienapacluoi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dongdiendcaccu")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dienapdcaccu")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_nhietdobinhaccu")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dienapacmayphat")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_mucnuoc")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_mucdomomit")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dorungdiachan")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_trangthaicua")}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="frozenbody" let-record>
+                            <tr>
+                                <td class="width-200 text-center" style="border-right: none !important;">{{
+                                    record.date}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-200">
+                                    {{l("bctttram_doamphongthietbi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_nhietdophongthietbi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_nhietdobenngoaitram")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dongdienacluoi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dienapacluoi")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dongdiendcaccu")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dienapdcaccu")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_nhietdobinhaccu")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dienapacmayphat")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_mucnuoc")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_mucdomomit")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_dorungdiachan")}}
+                                </th>
+                                <th class="width-250">
+                                    {{l("bctttram_trangthaicua")}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr>
+                                <td class="width-200">{{record.listValue[0]}}</td>
+                                <td class="width-250">{{record.listValue[1]}}</td>
+                                <td class="width-250">{{record.listValue[2]}}</td>
+                                <td class="width-250">{{record.listValue[3]}}</td>
+                                <td class="width-250">{{record.listValue[4]}}</td>
+                                <td class="width-250">{{record.listValue[5]}}</td>
+                                <td class="width-250">{{record.listValue[6]}}</td>
+                                <td class="width-250">{{record.listValue[7]}}</td>
+                                <td class="width-250">{{record.listValue[8]}}</td>
+                                <td class="width-250">{{record.listValue[9] == 0 ? "Không" : "Có"}}</td>
+                                <td class="width-250">{{record.listValue[10] == 0 ? "Không" : "Có"}}</td>
+                                <td class="width-250">{{record.listValue[11]}}</td>
+                                <td class="width-250">{{record.listValue[12] == 0 ? "Đóng" : "Mở"}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td>{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

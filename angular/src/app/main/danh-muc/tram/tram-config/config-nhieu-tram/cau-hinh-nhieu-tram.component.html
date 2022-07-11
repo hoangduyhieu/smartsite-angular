@@ -1,0 +1,245 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <abp-modal-header [title]="l('cht_thietlapcauhinh')" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <p-accordion [multiple]="true" [expandIcon]="'fa fa-angle-right'" [collapseIcon]="'fa fa-angle-down'" #groupTab>
+            <p-accordionTab [header]="l('cht_thietlapcauhinhdieukhien')" [selected]="true">
+                <section class="content px-2">
+                    <div class="container-fluid">
+                        <div class="card m-0">
+                            <div class="p-grid ui-fluid">
+                                <div class="p-col-12 p-md-12 p-lg-12">
+                                    <div class="card-header">
+                                        <div class="p-grid">
+                                            <div class="col-md-6">
+                                                <dft-label-validation [title]="l('cht_maudieukhien')">
+                                                </dft-label-validation>
+                                                <p-dropdown [options]="arrKieuDuLieuMDK"
+                                                    formControlName="txtMauDieuKhien"
+                                                    [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName"
+                                                    [showClear]="true" [filter]="true" resetFilterOnHide="true">
+                                                </p-dropdown>
+                                            </div>
+                                            <div class="col-6 text-right m-t-30">
+                                                <div class="col-md-12 text-right btn-mobile">
+                                                    <button [disabled]="selectedListDieuKhien.length == 0" type="button"
+                                                        class="btn btn-danger" (click)="deleteGroupMDKT()"><i
+                                                            class="pi pi-trash"></i>
+                                                        {{l('Delete')}}</button> &nbsp;
+                                                    <button type="button" (click)="createMDKT()" class="btn btn-primary m-l-8"><i
+                                                            class="pi pi-plus"></i>{{l('Create')}}</button>
+                                                </div>
+            
+                                                <div class="col-md-12 text-right btn-mobile1">
+                                                    <button [disabled]="selectedListDieuKhien.length == 0" type="button"
+                                                        class="btn btn-danger" (click)="deleteGroupMDKT()"><i
+                                                            class="pi pi-trash"></i></button> &nbsp;
+                                                    <button type="button" (click)="createMDKT()" class="btn btn-primary m-l-8"><i
+                                                            class="pi pi-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p-table #dt [value]="valueDieuKhien" [(selection)]="selectedListDieuKhien"
+                                    [lazy]="true" [paginator]="paginator"
+                                    [showCurrentPageReport]="showCurrentPageReport"
+                                    currentPageReportTemplate="{{totalCount1==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                                    [rows]="paginatorRows" [totalRecords]="totalCount1"
+                                    [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                                    scrollHeight="{{scrollHeight}}">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width-40" style="text-align: center;">
+                                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                            </th>
+                                            <th class="width-50"></th>
+                                            <th class="width-150">
+                                                {{l('cht_tenthuoctinh')}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l('cht_tenkhoa')}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l('cht_kieudulieu')}}
+                                            </th>
+                                            <th class="width-150">{{l('cht_giatri')}}
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-record let-index="rowIndex">
+                                        <tr>
+                                            <td class="width-40" style="text-align: center;">
+                                                <p-tableCheckbox [value]="record"></p-tableCheckbox>
+                                            </td>
+                                            <td class="width-50">
+                                                <div class="dropdown">
+                                                    <button
+                                                        class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                                        type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="">
+                                                        <a class="dropdown-item"
+                                                            (click)="createMDKT(record, index)">{{l('Update')}}</a>
+                                                        <a class="dropdown-item"
+                                                            (click)="deleteMDKT(record)">{{l('Delete')}}</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="width-150">{{record.mauThuocTinh?.tenHienThi}}</td>
+                                            <td class="width-150">{{record.mauThuocTinh?.ten}}</td>
+                                            <td class="width-150">
+                                                {{arrKieuDuLieuString[record.mauThuocTinh?.kieuDuLieu]}}</td>
+                                            <td *ngIf="record.boolValue !== undefined" class="width-150">
+                                                {{record.boolValue}}</td>
+                                            <td *ngIf="record.stringValue !== undefined" class="width-150">
+                                                {{record.stringValue}}</td>
+                                            <td *ngIf="record.longValue !== undefined" class="width-150">
+                                                {{record.longValue | number}}</td>
+                                            <td *ngIf="record.doubleValue !== undefined" class="width-150">
+                                                {{record.doubleValue | number}}</td>
+                                            <td *ngIf="record.jsonValue !== undefined" class="width-150">
+                                                {{record.jsonValue}}</td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </p-accordionTab>
+        </p-accordion>
+        <br>
+        <p-accordion [multiple]="true " [expandIcon]=" 'fa fa-angle-right'" [collapseIcon]=" 'fa fa-angle-down'"
+            #groupTab>
+            <p-accordionTab [header]="l('cht_thietlapthuoctinhcanhbao')" [selected]="true ">
+                <section class="content px-2">
+                    <div class="container-fluid">
+                        <div class="card m-b-30 ">
+                            <div class="p-grid ui-fluid">
+                                <div class="p-col-12 p-md-12 p-lg-12">
+                                    <div class="card-header">
+                                        <div class="p-grid">
+                                            <div class="col-md-6">
+                                                <dft-label-validation [title]="l('cht_maucanhbao')">
+                                                </dft-label-validation>
+                                                <p-dropdown [options]="arrKieuDuLieuMCB" formControlName="txtMauCanhBao"
+                                                    [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName"
+                                                    [showClear]="true" [filter]="true" resetFilterOnHide="true">
+                                                </p-dropdown>
+                                            </div>
+                                            <div class="col-6 text-right m-t-30">
+                                                <div class="col-md-12 text-right btn-mobile">
+                                                    <button [disabled]="selectedListCanhBao.length == 0" type="button"
+                                                        class="btn btn-danger" (click)="deleteGroupMCBT()"><i
+                                                            class="pi pi-trash"></i>
+                                                        {{l('Delete')}}</button> &nbsp;
+                                                    <button (click)="createMCBT()" type="button" class="btn btn-primary m-l-8"><i
+                                                            class="pi pi-plus"></i>
+                                                        {{l('Create')}}</button>
+                                                </div>
+            
+                                                <div class="col-md-12 text-right btn-mobile1">
+                                                    <button [disabled]="selectedListCanhBao.length == 0" type="button"
+                                                        class="btn btn-danger" (click)="deleteGroupMCBT()"><i
+                                                            class="pi pi-trash"></i></button> &nbsp;
+                                                    <button (click)="createMCBT()" type="button" class="btn btn-primary m-l-8"><i
+                                                            class="pi pi-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p-table #dt1 [value]="valueCanhBao" [(selection)]="selectedListCanhBao" [lazy]="true"
+                                    [paginator]="paginator" [showCurrentPageReport]="showCurrentPageReport"
+                                    currentPageReportTemplate="{{totalCount2==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                                    [rows]="paginatorRows" [totalRecords]="totalCount2"
+                                    [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                                    scrollHeight="{{scrollHeight}}">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width-40" style="text-align: center;">
+                                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                            </th>
+                                            <th class="width-50"></th>
+                                            <th class="width-150">
+                                                {{l('cht_tenthuoctinh')}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l('cht_tenkhoa')}}
+                                            </th>
+                                            <th class="width-150">
+                                                {{l('cht_kieudulieu')}}
+                                            </th>
+                                            <th class="width-150">{{l('cht_giatri')}}
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-record let-index="rowIndex">
+                                        <tr>
+                                            <td class="width-40" style="text-align: center;">
+                                                <p-tableCheckbox [value]="record"></p-tableCheckbox>
+                                            </td>
+                                            <td class="width-50">
+                                                <div class="dropdown">
+                                                    <button
+                                                        class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                                        type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="">
+                                                        <a class="dropdown-item"
+                                                            (click)="createMCBT(record, index)">{{l('Update')}}</a>
+                                                        <a class="dropdown-item"
+                                                            (click)="deleteMCBT(record)">{{l('Delete')}}</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="width-150">{{record.mauThuocTinh?.tenHienThi}}</td>
+                                            <td class="width-150">{{record.mauThuocTinh?.ten}}</td>
+                                            <td class="width-150">
+                                                {{arrKieuDuLieuString[record.mauThuocTinh?.kieuDuLieu]}}</td>
+                                            <td *ngIf="record.boolValue !== undefined" class="width-150">
+                                                {{record.boolValue}}</td>
+                                            <td *ngIf="record.stringValue !== undefined" class="width-150">
+                                                {{record.stringValue}}</td>
+                                            <td *ngIf="record.longValue !== undefined" class="width-150">
+                                                {{record.longValue | number}}</td>
+                                            <td *ngIf="record.doubleValue !== undefined" class="width-150">
+                                                {{record.doubleValue | number}}</td>
+                                            <td *ngIf="record.jsonValue !== undefined" class="width-150">
+                                                {{record.jsonValue}}</td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="save()" class="btn btn-primary btn-save-background width-btn-footer text"><i
+                class="fa fa-save"></i>
+            <span style="margin-left: 5px;">{{l('Save')}}</span></button>
+    </div>
+</form>

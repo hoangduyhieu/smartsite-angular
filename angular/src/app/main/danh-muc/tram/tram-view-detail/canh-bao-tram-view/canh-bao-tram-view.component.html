@@ -1,0 +1,122 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <div class="col-md-12 col-lg-6">
+            <h1 class="title-chi-tiet-tram" style="margin: 24px 0px 0px 24px !important;">
+                {{l('qlcanhbaotram_quanlycanhbao')}}
+            </h1>
+        </div>
+        <section>
+            <div>
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="timKiem()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword"
+                            [placeholder]="l('qlcanhbaotram_placeholdersearch')" autocomplete="off" formControlName='keyword'
+                            (keyup.enter)="timKiem()" />
+                    </div>
+                    <div class="p-grid m-t-10 ui-fluid">
+                        <div class="p-col-12 p-md-6 p-lg-6">
+                            <dft-label-validation [title]="l('qlcanhbaotram_trangthai')">
+                            </dft-label-validation>
+                            <p-dropdown [options]="listTrangThaiCanhBao1" [placeholder]="l(dropdownPlaceholder)"
+                                optionLabel="displayName" [showClear]="true" [filter]="true" resetFilterOnHide="true"
+                                formControlName='TrangThai'>
+                            </p-dropdown>
+                        </div>
+                        <div class="col-md-6">
+                                <dft-label-validation [form]="form" [title]="l('qlcanhbaotram_thoigiantaocanhbao')">
+                                </dft-label-validation>
+                                <p-calendar formControlName='ThoiGianTu'
+                                    [placeholder]="l('qlcanhbaotram_placeholdertimebox')" selectionMode="range"
+                                    [dateFormat]="dateFormatInput" [showTime]="true" [showIcon]="true"
+                                    [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                                </p-calendar>
+                                <dft-validation [control]="form.get('ThoiGianTu')"></dft-validation>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <p-table #dt [value]="thietBiList" [lazy]="true" (onLazyLoad)="getDataPageTB($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-30"></th>
+                                <th class="width-170" pSortableColumn="createdTime">
+                                    {{l('qlcanhbaotram_thoigiantaocanhbao')}}
+                                    <p-sortIcon field="createdTime"></p-sortIcon>
+                                </th>
+                                <th class="width-170">
+                                    {{l('qlcanhbaotram_thoigiancanhbao')}}
+                                </th>
+                                <th class="width-170"  pSortableColumn="clearTs">
+                                    {{l('qlcanhbaotram_thoigianxacnhan')}}
+                                    <p-sortIcon field="clearTs"></p-sortIcon>
+                                </th>
+                                <th class="width-250" pSortableColumn="type">
+                                    {{l('qlcanhbaotram_loaicanhbao')}}
+                                    <p-sortIcon field="type"></p-sortIcon>
+                                </th>
+                                <th class="width-200" pSortableColumn="severity">
+                                    {{l('qlcanhbaotram_mucdo')}}
+                                    <p-sortIcon field="severity"></p-sortIcon>
+                                </th>
+                                <th class="width-200" pSortableColumn="status">{{l('qlcanhbaotram_trangthai')}}
+                                    <p-sortIcon field="status"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr>
+                                <td class="width-30">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button"  data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item" (click)="viewDemo(record)">{{l('View')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.QuanLyTram.Edit') && record.trangThai !='CLEARED_ACK' && record.trangThai !='ACTIVE_ACK'"
+                                                (click)="_xacNhan(record)">{{l('Btn_DangXuLy')}}</a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.QuanLyTram.Edit') && record.trangThai !='CLEARED_ACK' && record.trangThai !='CLEARED_UNACK'"
+                                                (click)="_huyCanhBao(record)">{{l('Btn_HoanThanh')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-170">{{ record.thoiGianCoCanhBao}}</td>
+                                <td class="width-170">{{ record.thoiGianCanhBao}}</td>
+                                <td class="width-170">{{ record.thoiGianClsStr}}</td>
+                                <td class="width-250">
+                                    <a href="javascript:void(0);" (click)="viewDemo(record)">{{ record.loaiCanhBaoShow}}</a>
+                                </td>
+                                <td class="width-200">
+                                    <span
+                                                    [class]="'trang-thai status-' + gg(record.giaTri, record.mucDo)">{{record.mucDo | changeType}}
+                                                </span>
+                                </td>
+                                <td class="width-200">
+                                    <span
+                                        [class]="'trang-thai-canh-bao status-' +(record.trangThai)">{{record.trangThai | pipeStatus}}</span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

@@ -1,0 +1,136 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header
+        [title]="id ?( isView ? l('qlthietbi_xemchitiet') + record.ten : l('qlthietbi_capnhat') + record.ten ): l('qlthietbi_themmoithietbi')"
+        (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('MaThietBi')"
+                        [title]="l('qlthietbi_mathietbi')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <input type="text" id="MaThietBi" name="MaThietBi" maxlength="20" formControlName='MaThietBi'
+                        pInputText />
+                    <dft-validation [control]="form.get('MaThietBi')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('TenThietBi')"
+                        [title]="l('qlthietbi_tenthietbi')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <input required type="text" id="TenThietBi" name="TenThietBi" maxlength="255"
+                        formControlName='TenThietBi' pInputText />
+                    <dft-validation [control]="form.get('TenThietBi')"></dft-validation>
+                </div>
+            </div>
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('LoaiThietBi')"
+                        [title]="l('qlthietbi_loaithietbi')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <p-dropdown formControlName="LoaiThietBi" [options]="arrLoaiThietBi"
+                        [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName" [showClear]="false"
+                        [filter]="true" resetFilterOnHide="true" (onChange)="checkCamera()">
+                    </p-dropdown>
+                    <dft-validation [control]="form.get('LoaiThietBi')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('qlthietbi_luatcanhbao')">
+                    </dft-label-validation>
+                    <p-dropdown formControlName="LuatCanhBao" [options]="arrLuatCanhBao"
+                        [placeholder]="l(dropdownPlaceholder)" optionLabel="displayName" [showClear]="false"
+                        [filter]="true" resetFilterOnHide="true">
+                    </p-dropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid ui-fluid" *ngIf="id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('XacThucThietBi')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <div class="row p-l-10">
+                        <div class="col-md-6">
+                            <p-radioButton name="group1" value="0" [label]="l('ChuaXacThuc')"
+                                formControlName="XacThucThietBi" inputId="opt1"></p-radioButton>
+                        </div>
+                        <div class="col-md-6">
+                            <p-radioButton name="group1" value="1" [label]="l('XacThuc')"
+                                formControlName="XacThucThietBi" inputId="opt2"></p-radioButton>
+                        </div>
+                    </div>
+                    <dft-validation [control]="form.get('XacThucThietBi')"></dft-validation>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid ui-fluid" *ngIf="isView">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('IdThietBi')"
+                        [title]="l('qlthietbi_idthietbi')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <input type="text" id="IdThietBi" name="IdThietBi" maxlength="255" formControlName='IdThietBi'
+                        pInputText />
+                    <dft-validation [control]="form.get('IdThietBi')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('AccessToken')"
+                        [title]="l('qlthietbi_accesstoken')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <input pInputText type="text" id="AccessToken" formControlName="AccessToken" name="AccessToken"
+                        maxlength="255" />
+                    <dft-validation [control]="form.get('AccessToken')"></dft-validation>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid ui-fluid"
+            *ngIf="form.controls.LoaiThietBi.value != undefined && form.controls.LoaiThietBi.value.id === isCamera">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('DiaChiIPCamera')"
+                        [title]="l('qlthietbi_diachiipcamera')" [titleValidate]="' *'">
+                    </dft-label-validation>
+                    <input type="text" id="DiaChiIPCamera" name="DiaChiIPCamera" maxlength="1000"
+                        formControlName='DiaChiIPCamera' placeholder="https://www.youtube.com/embed/rTRew7Q8sZQ"
+                        pInputText />
+                    <dft-validation [control]="form.get('DiaChiIPCamera')"></dft-validation>
+                </div>
+            </div>
+            <!-- <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('PortCamera')" [title]="'Port *'">
+                    </dft-label-validation>
+                    <input pInputText number type="text" id="PortCamera" formControlName="PortCamera" name="PortCamera"
+                        maxlength="255" />
+                    <dft-validation [control]="form.get('PortCamera')"></dft-validation>
+                </div>
+            </div> -->
+        </div>
+        <div class="p-grid ui-fluid">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="'GhiChu'" [title]="l('qlthietbi_ghichu')">
+                    </dft-label-validation>
+                    <textarea formControlName="GhiChu" maxlength="4000" class="form-control"
+                        id="exampleFormControlTextarea1" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer *ngIf="!isView" [cancelDisabled]="saving" [saveDisabled]="isView" (onCancelClick)="close()">
+    </abp-modal-footer>
+    <div class="modal-footer" *ngIf="isView">
+        <button type="button" class="btn btn-primary btn-save-background width-btn-footer" (click)="close()">
+            <span style="margin-left: 5px;">{{l('Close')}}</span></button>
+    </div>
+</form>

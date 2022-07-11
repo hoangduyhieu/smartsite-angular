@@ -1,0 +1,51 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]=" !record ? l('cht_themmoithuoctinhdieukhien') : l('cht_capnhatthuoctinhdieukhien')" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height height-500">
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('txtThuocTinh')" [title]="l('cht_thuoctinh')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <p-dropdown #drop formControlName="txtThuocTinh" [options]="optionKieuDuLieu" [placeholder]="l(dropdownPlaceholder)" [showClear]="false" [filter]="true" resetFilterOnHide="true">
+                    </p-dropdown>
+                    <dft-validation [control]="form.get('txtThuocTinh')"></dft-validation>
+                </div>
+            </div>
+            <div *ngIf="(drop.selectedOption?.title === '2' || drop.selectedOption?.title === '5')" class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('txtGiaTriString')" [title]="l('cht_giatri')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtGiaTriString' pInputText />
+                    <dft-validation [control]="form.get('txtGiaTriString')"></dft-validation>
+                </div>
+            </div>
+            <div *ngIf="(drop.selectedOption?.title === '1')" class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('txtGiaTriBoolean')" [title]="l('cht_giatri')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <p-dropdown formControlName="txtGiaTriBoolean" optionLabel="label" [options]="cities" [placeholder]="l(dropdownPlaceholder)" [showClear]="false" [filter]="true" resetFilterOnHide="true">
+                    </p-dropdown>
+                    <dft-validation [control]="form.get('txtGiaTriBoolean')"></dft-validation>
+                </div>
+            </div>
+            <div *ngIf="drop.selectedOption?.title === '3'" class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('txtGiaTriLong')" [title]="l('cht_giatri')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" number id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtGiaTriLong' pInputText />
+                    <dft-validation [control]="form.get('txtGiaTriLong')"></dft-validation>
+                </div>
+            </div>
+            <div *ngIf="drop.selectedOption?.title === '4'" class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [control]="form.get('txtGiaTriDouble')" [title]="l('cht_giatri')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input type="text" decimal id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtGiaTriDouble' pInputText />
+                    <dft-validation [control]="form.get('txtGiaTriDouble')"></dft-validation>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer [cancelLabel]="isView? l('Close'): l('Cancel')" [cancelDisabled]="saving" (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

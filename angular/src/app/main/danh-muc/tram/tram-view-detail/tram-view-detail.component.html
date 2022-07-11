@@ -1,0 +1,76 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid" >
+            <div class="row">
+                <div class="col-md-12 col-lg-6" >
+                    <h1 >{{l('detailtram_thongtinchitiettram')}} {{input?.ten}}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card m-b-30">
+                <p-tabView (onChange)="activeTab($event)" [activeIndex]="selectedTab">
+                    <!-- Thông tin chung -->
+                        <p-tabPanel [header]="l('detailtram_thongtinchung')">
+                            <ng-template pTemplate="content">
+                                <app-tram-thong-tin-chung [idTram]="tramId" [tbEntityId]="tbEntityId">
+                                </app-tram-thong-tin-chung>
+                            </ng-template>
+                        </p-tabPanel>
+
+                        <!-- Cảnh báo -->
+                        <p-tabPanel [header]="l('detailtram_canhbao')">
+                            <ng-template pTemplate="content">
+                                <app-canh-bao-tram-view [tramId]="tramId"></app-canh-bao-tram-view>
+                            </ng-template>
+                        </p-tabPanel>
+                        <!-- Giám sát điều khiển -->
+                        <p-tabPanel [header]="l('detailtram_giamsatcambien')">
+                            <ng-template pTemplate="content">
+                                <app-tram-thong-tin-cam-bien [idTram]="tramId"></app-tram-thong-tin-cam-bien>
+                            </ng-template>
+                        </p-tabPanel>
+                        <!-- Điều khiển -->
+                        <p-tabPanel [header]="l('detailtram_dieukhien')">
+                            <ng-template pTemplate="content">
+                                <app-tram-thong-tin-dieu-khien [idTram]="tramId"></app-tram-thong-tin-dieu-khien>
+                            </ng-template>
+                        </p-tabPanel>
+                        <!-- Dữ liệu cảm biến -->
+                        <p-tabPanel [header]="l('detailtram_dulieucambien')">
+                            <ng-template pTemplate="content">
+                                <app-du-lieu-cam-bien [idTram]="tramId" [tbEntityId]="tbEntityId">
+                                </app-du-lieu-cam-bien>
+                            </ng-template>
+                        </p-tabPanel>
+                        <!-- Nhân viên ra vào trạm -->
+                        <p-tabPanel [header]="l('detailtram_nhanvienravaotram')">
+                            <ng-template pTemplate="content">
+                                <app-tram-nhan-vien-ra-vao-tram [idTram]="tramId" [tbEntityId]="tbEntityId">
+                                </app-tram-nhan-vien-ra-vao-tram>
+                            </ng-template>
+                        </p-tabPanel>
+                        <!-- Cấu hình trạm -->
+                        <p-tabPanel [header]="l('detailtram_cauhinhtram')">
+                            <ng-template pTemplate="content">
+                                <app-cau-hinh-tram [tramId]="tramId"></app-cau-hinh-tram>
+                            </ng-template>
+                        </p-tabPanel>
+                        <!-- Quản lý thiết bị -->
+                        <p-tabPanel [header]="l('detailtram_quanlythietbi')">
+                            <ng-template pTemplate="content">
+                                <app-thiet-bi [tramId]="tramId" [tbEntityId]="tbEntityId"></app-thiet-bi>
+                            </ng-template>
+                        </p-tabPanel>
+                        <p-tabPanel [header]="l('NhatKyLamViec')">
+                            <ng-template pTemplate="content">
+                                <app-nhat-ky-lam-viec [tramId]="tramId"></app-nhat-ky-lam-viec>
+                            </ng-template>
+                        </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </section>
+</div>

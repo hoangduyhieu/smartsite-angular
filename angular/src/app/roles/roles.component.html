@@ -1,0 +1,86 @@
+<div [@routerTransition]>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qlpq_danhsachnhomphanquyen')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right">
+                    <!-- <button type="button" class="btn btn-primary m-l-8" (click)="createRole()">
+          <i class="pi pi-plus"></i>
+          <span style="margin-left: 5px;">Thêm mới</span></button> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card" style="padding-bottom: 24px !important;">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage(true)">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword"
+                            [placeholder]="l('qlpq_nhaptennhomquyen')" [(ngModel)]="keyword" autocomplete="off"
+                            (keyup.enter)="getDataPage(true)" />
+                    </div>
+                </div>
+                <div>
+                    <p-table #dt [value]="roles" [lazy]="true" (onLazyLoad)="getDataPage(false,$event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="true"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}} "
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-30"></th>
+                                <th class="width-150" pSortableColumn="name">{{l('qlpq_tennhomquyen')}}
+                                    <p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="displayName">{{l('qlpq_tenhienthi')}}
+                                    <p-sortIcon field="displayName"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-30" *ngIf="!listRoles?.includes(record.name)"></td>
+                                <td class="width-30"
+                                    *ngIf="isGranted('Pages.Roles.PhanQuyen') && listRoles?.includes(record.name)">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <!-- <a class="dropdown-item" *ngIf="isGranted('Pages.Roles.Edit')" (click)="editRole(record)">Cập
+                      nhật</a> -->
+                                            <a class="dropdown-item"
+                                                (click)="editRole(record,true)">{{l('qlpq_phanquyen')}}</a>
+                                            <!-- <a class="dropdown-item" *ngIf="isGranted('Pages.Roles.Delete')" (click)="delete(record)">Xóa</a> -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">
+                                    {{ record.name | truncate }}
+                                </td>
+                                <td class="width-150">
+                                    {{ record.displayName | truncate }}
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,64 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="id ?( isView ? l('QLTram_XemChiTiet') + ': ' + input?.ten : l('Update') +': '+ input?.ten ): l('QLTram_ThemMoiTram')" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body fixed-modal-height">
+        <div class="p-grid ui-fluid">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtMaTram')" [title]="l('QLTram_MaTram')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtMaTram')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtMaTram' pInputText />
+                    <dft-validation [control]="form.get('txtMaTram')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtTenTram')" [title]="l('QLTram_TenTram')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtTenTram')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtTenTram' pInputText />
+                    <dft-validation [control]="form.get('txtTenTram')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtPhanVungs')" [title]="l('QLTram_PhanVung')" [titleValidate] = "' *'" disabled="true">
+                    </dft-label-validation>
+                    <app-multi-select-checkbox-tree [dataEdit]="toChucItems" (onSelect)="setControlValue($event)">
+                    </app-multi-select-checkbox-tree>
+                    <dft-validation [control]="form.get('txtPhanVungs')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtDiaChi')" [title]="l('QLTram_DiaChi')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtDiaChi')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtDiaChi' pInputText />
+                    <dft-validation [control]="form.get('txtDiaChi')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtToaDo')" [title]="l('QLTram_ToaDo')" [titleValidate] = "' *'">
+                    </dft-label-validation>
+                    <input [formControl]="form.get('txtToaDo')" required type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtToaDo' pInputText [placeholder]="l('txt_example')+': 105.65044, 21.18090'" />
+                    <dft-validation [control]="form.get('txtToaDo')"></dft-validation>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [control]="form.get('txtLoaiNguonDien')" [title]="l('QLTram_LoaiNguonDien')">
+                    </dft-label-validation>
+                    <input number [formControl]="form.get('txtLoaiNguonDien')" type="text" id="TextBox1" name="TextBox1" maxlength="255" formControlName='txtLoaiNguonDien' pInputText />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <dft-label-validation [form]="form" [title]="l('QLTram_GhiNho')">
+                    </dft-label-validation>
+                    <textarea formControlName="txtGhiChu" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <abp-modal-footer [cancelLabel]="isView? l('Close') : l('Btn_Huy')" [cancelDisabled]="saving" [saveHidden]="isView" (onCancelClick)="close()">
+    </abp-modal-footer>
+</form>

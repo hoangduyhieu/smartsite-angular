@@ -1,0 +1,99 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qlphanvung_quanlyphanvung')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.QuanLyPhanVung.Create')"
+                        (click)="createOredit()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.QuanLyPhanVung.Create')"
+                        (click)="createOredit()">
+                        <i class="pi pi-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage(true)">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword"
+                            [placeholder]="l('qlphanvung_placeholdersearch')" [(ngModel)]="keyword" autocomplete="off"
+                            (keyup.enter)="getDataPage(true)" />
+                    </div>
+                </div>
+                <div class="table-margin">
+                    <p-treeTable [value]="records" [loading]="loading" [scrollable]="scrollable"
+                        scrollHeight="550px">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-71 table-border"></th>
+                                <th class="width-497 table-border" ttSortableColumn="phanVungCha.maPhanVung">
+                                    {{l('qlphanvung_maphanvung')}}
+                                    <p-treeTableSortIcon field="phanVungCha.maPhanVung"></p-treeTableSortIcon>
+                                </th>
+                                <th class="width-497 table-border" ttSortableColumn="phanVungCha.ten">
+                                    {{l('qlphanvung_tenphanvung')}}
+                                    <p-treeTableSortIcon field="phanVungCha.ten"></p-treeTableSortIcon>
+                                </th>
+                                <th class="width-497 table-border" ttSortableColumn="phanVungCha.ghiChu">
+                                    {{l('qlphanvung_ghichu')}}
+                                    <p-treeTableSortIcon field="phanVungCha.ghiChu"></p-treeTableSortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                            <tr [ttRow]="rowNode">
+                                <td class="width-71 table-border">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button"  data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item"
+                                                (click)="viewDetail(rowData.phanVungCha.id)">{{l('View')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyPhanVung.Edit')"
+                                                (click)="createOredit(rowData.phanVungCha.id)">{{l('Update')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyPhanVung.Delete')"
+                                                (click)="delete(rowData,rowNode.node)">{{l('Delete')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td [ngStyle]="{'font-weight':rowData.phanVungCha.phanVungChaId === null ? 'bold': 'normal'}"
+                                    class="width-497 table-border">
+                                    <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                                    <a href="javascript:void(0);" (click)="viewDetail(rowData.phanVungCha.id)">
+                                        {{rowData.phanVungCha.maPhanVung |truncate }}
+                                    </a>
+                                </td>
+                                <td [ngStyle]="{'font-weight':rowData.phanVungCha.phanVungChaId === null ? 'bold': 'normal'}"
+                                    class="width-497 table-border">{{rowData.phanVungCha.ten }}</td>
+                                <td class="width-497 table-border">{{rowData.phanVungCha.ghiChu}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="2" class="text-left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-treeTable>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,86 @@
+<div [@routerTransition]>
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qldmThuoctinh_quanlydanhmuctenthuoctinh')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button class="btn btn-primary" *ngIf="isGranted('Pages.QuanLyDanhMucThuocTinh.Create')" (click)="createDemo()"><i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button class="btn btn-primary" *ngIf="isGranted('Pages.QuanLyDanhMucThuocTinh.Create')" (click)="createDemo()"><i class="pi pi-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card" style="padding-bottom: 25px !important;">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword" autocomplete="off" [(ngModel)]="keyword" (keyup.enter)="getDataPage()" [placeholder]="l('qldmThuoctinh_placeholdersearch')" />
+                    </div>
+                </div>
+                
+                <div>
+                    <p-table #dt [value]="value" [lazy]="true" (onLazyLoad)="getDataPage($event)" [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport" currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-50"></th>
+                                <th class="width-150" pSortableColumn="tenHienThi">{{l('qldmThuoctinh_tenhienthi')}}
+                                    <p-sortIcon field="tenHienThi"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="ten">{{l('qldmThuoctinh_tenkhoa')}}
+                                    <p-sortIcon field="ten"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="kieuDuLieu">{{l('qldmThuoctinh_kieudulieu')}}
+                                    <p-sortIcon field="kieuDuLieu"></p-sortIcon>
+                                </th>
+                                <th class="width-300" pSortableColumn="ghiChu">{{l('qldmThuoctinh_ghichu')}}
+                                    <p-sortIcon field="ghiChu"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-50">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item" (click)="viewDemo(record.id)">{{l('View')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyDanhMucThuocTinh.Edit')" (click)="createDemo(record.id)">{{l('Update')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.QuanLyDanhMucThuocTinh.Delete')" (click)="_deleteDemo(record)">{{l('Delete')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">
+                                    <a href="javascript:void(0);" (click)="viewDemo(record.id)">{{
+                                        record.tenHienThi}}</a>
+                                </td>
+                                <td class="width-150">{{ record.ten }}</td>
+                                <td class="width-150">{{ record.kieuDuLieuString}}</td>
+                                <td class="width-300">{{ record.ghiChu }}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="4" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

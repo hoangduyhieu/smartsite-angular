@@ -1,0 +1,148 @@
+<form [formGroup]="form" class="form-horizontal" autocomplete="off" #createUserModal="ngForm">
+    <div [@routerTransition]>
+        <section class="content-header" id="tesst">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <h1>{{l('qlcanhbao_quanlycanhbao')}}</h1>
+                    </div>
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                        <button class="btn btn-success m-l-8" type="button" (click)="exportToExcel()"><i
+                                class="pi pi-download"></i>
+                            {{l('ExportExcel')}}</button>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                        <button class="btn btn-success m-l-8" type="button" (click)="exportToExcel()"><i
+                                class="pi pi-download"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn bg-blue" (click)="timKiem()">
+                                    <i class="pi pi-search"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control" name="keyword"
+                                [placeholder]="l('qlcanhbao_placeholdersearch')" autocomplete="off"
+                                formControlName='keyword' (keyup.enter)="timKiem()" />
+                        </div>
+                        <div class="p-grid ui-fluid m-t-10">
+                            <div class="col-md-6 col-lg-4">
+                                <dft-label-validation [title]="l('qlcanhbao_tram')">
+                                </dft-label-validation>
+                                <p-dropdown [options]="listTram" [placeholder]="l(dropdownPlaceholder)"
+                                    optionLabel="displayName" [showClear]="true" [filter]="true"
+                                    resetFilterOnHide="true" formControlName='Tram'>
+                                </p-dropdown>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <dft-label-validation [title]="l('qlcanhbao_trangthai')">
+                                </dft-label-validation>
+                                <p-dropdown [options]="listTrangThaiCanhBao1" [placeholder]="l(dropdownPlaceholder)"
+                                    optionLabel="displayName" [showClear]="true" [filter]="true"
+                                    resetFilterOnHide="true" formControlName='TrangThai'>
+                                </p-dropdown>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <dft-label-validation [form]="form" [title]="l('qlcanhbaotram_thoigiantaocanhbao')">
+                                    </dft-label-validation>
+                                    <p-calendar formControlName='ThoiGianTu'
+                                        [placeholder]="l('bcnhienlieu_placeholdertimebox')" selectionMode="range"
+                                        [dateFormat]="dateFormatInput" [showTime]="true" [showIcon]="true"
+                                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                                    </p-calendar>
+                                    <dft-validation [control]="form.get('ThoiGianTu')"></dft-validation>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p-table #dt [value]="thietBiList" [lazy]="true" (onLazyLoad)="getDataPageTB($event)"
+                            [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                            [rowsPerPageOptions]="rowsPerPageOptions" [scrollable]="scrollable"
+                            scrollHeight="{{scrollHeight}}">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="width-30"></th>
+                                    <th class="width-170">
+                                        {{l('qlcanhbaotram_thoigiantaocanhbao')}}
+                                    </th>
+                                    <th class="width-170">
+                                        {{l('qlcanhbaotram_thoigiancanhbao')}}
+                                    </th>
+                                    <th class="width-170">
+                                        {{l('qlcanhbaotram_thoigianxacnhan')}}
+                                    </th>
+                                    <th class="width-150">
+                                        {{l('qlcanhbao_tram')}}
+                                    </th>
+                                    <th class="width-250">
+                                        {{l('qlcanhbao_loaicanhbao')}}
+                                    </th>
+                                    <th class="width-180">
+                                        {{l('qlcanhbao_mucdo')}}
+                                    </th>
+                                    <th class="width-200">{{l('qlcanhbao_trangthai')}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-record>
+                                <tr>
+                                    <td class="width-30">
+                                        <div class="dropdown">
+                                            <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="">
+                                                <a class="dropdown-item" (click)="viewDemo(record)">{{l('View')}}</a>
+                                                <a class="dropdown-item"
+                                                    *ngIf="isGranted('Pages.QuanLyCanhBao.XacNhan') && record.trangThai !='CLEARED_ACK' && record.trangThai !='ACTIVE_ACK'"
+                                                    (click)="_xacNhan(record)">{{l('Btn_DangXuLy')}}</a>
+                                                <a class="dropdown-item"
+                                                    *ngIf="isGranted('Pages.QuanLyCanhBao.Huy') && record.trangThai !='CLEARED_ACK' && record.trangThai !='CLEARED_UNACK'"
+                                                    (click)="_huyCanhBao(record)">{{l('Btn_HoanThanh')}}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="width-170">{{ record.thoiGianCoCanhBao}}</td>
+                                    <td class="width-170">{{ record.thoiGianCanhBao}}</td>
+                                    <td class="width-170">{{ record.thoiGianCls}}</td>
+                                    <td class="width-150"><a [routerLink]="['/app/main/danh-muc/tram/tram-view-detail', record?.idTram, record?.tbEntityId, 1]">{{ record.tenTram}}</a></td>
+                                    <td class="width-250">
+                                        <a href="javascript:void(0);" (click)="viewDemo(record)">{{ record.loaiCanhBaoShow}}</a>
+                                    </td>
+                                    <td class="width-180">
+                                        <span
+                                            [class]="'trang-thai status-' + gg(record.giaTri, record.mucDo)">{{record.mucDo
+                                            | changeType}}
+                                        </span>
+                                    </td>
+                                    <td class="width-200 ">
+                                        <span
+                                            [class]="'trang-thai-canh-bao status-' +(record.trangThai)">{{record.trangThai
+                                            | pipeStatus}}</span>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>

@@ -1,0 +1,109 @@
+<div [@routerTransition]>
+    <!--  Header -->
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qlluatcanhbao_quanlyluatcanhbao')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.BoCanhBao.Create')"
+                        (click)="createDeviceProfile()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span></button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.BoCanhBao.Create')"
+                        (click)="createDeviceProfile()">
+                        <i class="pi pi-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  End of header -->
+
+    <!--   Content  -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card " style="padding-bottom: 25px;">
+                <!-- search bar  -->
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword" autocomplete="off"
+                            [placeholder]="l('qlluatcanhbao_placeholdersearch')" [(ngModel)]="keyword"
+                            (keyup.enter)="getDataPage()" />
+                    </div>
+                </div>
+                <!--  End of search bar -->
+
+                <!-- table -->
+                <div>
+                    <p-table #dt [value]="boCanhBao" [lazy]="true" (onLazyLoad)="getDataPage($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+
+                        <!-- Table header -->
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-50"></th>
+                                <th class="width-150">{{l('qlluatcanhbao_tenluatcanhbao')}}</th>
+                                <th class="width-150">{{l('qlluatcanhbao_mota')}}</th>
+                                <th class="width-150">{{l('qlluatcanhbao_sotruonghopcanhbao')}}</th>
+                            </tr>
+                        </ng-template>
+                        <!-- End of table header -->
+
+                        <!-- table content -->
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-50">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item"
+                                                (click)="viewDeviceProfile(record.id)">{{l('View')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.BoCanhBao.Edit')"
+                                                (click)="createDeviceProfile(record.id)">{{l('Update')}}</a>
+                                            <a class="dropdown-item" *ngIf="isGranted('Pages.BoCanhBao.Delete')"
+                                                (click)="_deleteDeviceProfile(record)">{{l('Delete')}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">
+                                    <a href="javascript:void(0);" (click)="viewDeviceProfile(record.id)">{{ record.ten |
+                                        truncate }}</a>
+                                </td>
+                                <td class="width-150">{{ record.ghiChu | truncate }}</td>
+                                <td class="width-150">{{ record.canhBao.length | truncate }}</td>
+                            </tr>
+                        </ng-template>
+                        <!-- End of table content -->
+
+                        <!-- Empty message -->
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                        <!-- End of empty message -->
+
+                    </p-table>
+                </div>
+                <!-- End of table -->
+
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,123 @@
+<div [@routerTransition]>
+    <!--  Header -->
+    <section class="content-header" id="tesst">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h1>{{l('qlsdtemail_quanlysodienthoaivaemailnhancanhbao')}}</h1>
+                </div>
+                <div class="col-md-12 col-lg-6 text-right btn-mobile">
+                    <button type="button" class="btn btn-primary m-l-8"
+                        *ngIf="isGranted('Pages.QuanLyNguoiNhanCanhBao.Create')" (click)="createDemo()">
+                        <i class="pi pi-plus"></i>
+                        <span style="margin-left: 10px;">{{l('Create')}}</span>
+                    </button>
+                </div>
+
+                <div class="col-md-12 col-lg-6 text-right btn-mobile1">
+                    <button type="button" class="btn btn-primary m-l-8"
+                        *ngIf="isGranted('Pages.QuanLyNguoiNhanCanhBao.Create')" (click)="createDemo()">
+                        <i class="pi pi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  End of header -->
+
+    <!--   Content  -->
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card" style="padding-bottom: 24px !important;">
+                <!-- search bar  -->
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                <i class="pi pi-search"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" name="keyword"
+                            [placeholder]="l('qlsdtemail_placeholdersearch')" autocomplete="off" [(ngModel)]="keyword"
+                            (keyup.enter)="getDataPage()" />
+                    </div>
+                </div>
+                <!--  End of search bar -->
+
+                <!-- table -->
+                <div>
+                    <p-table #dt [value]="nguoiNhanCanhBaos" [lazy]="true" (onLazyLoad)="getDataPage($event)"
+                        [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                        currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}}"
+                        [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [scrollable]="scrollable" scrollHeight="{{scrollHeight}}">
+
+                        <!-- Table header -->
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="width-50"></th>
+                                <th class="width-150" pSortableColumn="sdt">{{l('qlsdtemail_dienthoai')}}
+                                    <p-sortIcon field="sdt"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="email">{{l('qlsdtemail_email')}}
+                                    <p-sortIcon field="email"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="ten">{{l('qlsdtemail_nguoinhancanhbao')}}
+                                    <p-sortIcon field="ten"></p-sortIcon>
+                                </th>
+                                <th class="width-150" pSortableColumn="ghiChu">{{l('qlsdtemail_ghichu')}}
+                                    <p-sortIcon field="ghiChu"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <!-- End of table header -->
+
+                        <!-- table content -->
+                        <ng-template pTemplate="body" let-record>
+                            <tr class="ui-selectable-row">
+                                <td class="width-50">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle btn btn-sm btn-transparent btn-action"
+                                            type="button"  data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false"
+                                            [hidden]="!isGrantedAny('Pages.QuanLyNguoiNhanCanhBao.Edit', 'Pages.QuanLyNguoiNhanCanhBao.Delete')">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="">
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.QuanLyNguoiNhanCanhBao.Edit')"
+                                                (click)="createDemo(record.id)">
+                                                {{l('Update')}}
+                                            </a>
+                                            <a class="dropdown-item"
+                                                *ngIf="isGranted('Pages.QuanLyNguoiNhanCanhBao.Delete')"
+                                                (click)="_deleteDemo(record)">
+                                                {{l('Delete')}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="width-150">{{ record.sdt | truncate }}</td>
+                                <td class="width-150">{{ record.email | truncate }}</td>
+                                <td class="width-150">{{ record.ten | truncate }}</td>
+                                <td class="width-150">{{ record.ghiChu | truncate }}</td>
+                            </tr>
+                        </ng-template>
+                        <!-- End of table content -->
+
+                        <!-- Empty message -->
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="demo" colspan="8" style="text-align:left">{{l(khongCoDuLieu)}}</td>
+                            </tr>
+                        </ng-template>
+                        <!-- End of empty message -->
+
+                    </p-table>
+                </div>
+                <!-- End of table -->
+
+            </div>
+        </div>
+    </section>
+</div>

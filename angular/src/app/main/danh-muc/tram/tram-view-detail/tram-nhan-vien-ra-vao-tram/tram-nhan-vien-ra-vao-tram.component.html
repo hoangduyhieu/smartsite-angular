@@ -1,0 +1,134 @@
+<div [@routerTransition]>
+    <section class="content" id="tesst">
+        <div class="container-fluid">
+            <div class="p-grid" style="margin-top: 24px;">
+                <div class="col-md-6 col-lg-6">
+                    <h1 class="title-chi-tiet-tram" style="margin: 0px 0px 0px 24px !important;">
+                        {{l('qlnvtram_quanlynhanvienravaotram')}}
+                    </h1>
+                </div>
+                <div class="col-lg-6 col-md-6 btn-mobile text-right">
+                        <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                            (click)="ganNhanVienVaoTram()"><i class="pi pi-plus "></i>
+                            <span style="margin-left: 10px;">{{l('Create')}}</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-ql-tram" [disabled]="!checkVisibleQlt()"
+                            *ngIf="isGranted('Pages.QuanLyTram.Edit')" (click)="ganQuanLyTram()"><i
+                                class="pi pi-users"></i>
+                            <span style="margin-left: 10px;">{{l('qlnvtram_quanlytram')}}</span>
+                        </button>
+                        <button type="button" class="btn btn-danger"
+                            [disabled]="!nhanViensSelected.length" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                            (click)="deleteNhanViens()"><i class="pi pi-trash"></i>
+                            <span style="margin-left: 10px;">{{l('Delete1')}}</span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div>
+            <div class="card-header" style="padding-top: 10px !important;">
+                <div class="p-grid ui-fluid">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="input-group p-t-30">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn bg-blue" (click)="getDataPage()">
+                                    <i class="pi pi-search"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control" name="keyword"
+                                [placeholder]="l('qlnvtram_placeholdersearch')" autocomplete="off" [(ngModel)]="keyword"
+                                (keyup.enter)="getDataPage()" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        <dft-label-validation [title]="l('qlnvtram_chucvu')">
+                        </dft-label-validation>
+                        <p-dropdown [options]="listChucVu" [placeholder]="l(dropdownPlaceholder)"
+                            optionLabel="displayName" [showClear]="true" [filter]="true" resetFilterOnHide="true"
+                            [(ngModel)]="filterChucVu">
+                        </p-dropdown>
+                    </div>
+
+                    <div class="col-md-12 btn-mobile1 text-right m-t-20">
+                        <button type="button" class="btn btn-primary m-l-8" *ngIf="isGranted('Pages.QuanLyTram.Edit')"
+                            (click)="ganNhanVienVaoTram()"><i class="pi pi-plus "></i></button>
+                        <button type="button" class="btn btn-primary btn-ql-tram" [disabled]="!checkVisibleQlt()"
+                            *ngIf="isGranted('Pages.QuanLyTram.Edit')" (click)="ganQuanLyTram()"><i
+                                class="pi pi-users"></i></button>
+                        <button type="button" class="btn btn-danger" [disabled]="!nhanViensSelected.length"
+                            *ngIf="isGranted('Pages.QuanLyTram.Edit')" (click)="deleteNhanViens()"><i
+                                class="pi pi-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p-table #dt [value]="nhanViens" [lazy]="true" [(first)]="first" (onLazyLoad)="getDataPage($event)"
+                    [paginator]="paginator" [loading]="loading" [showCurrentPageReport]="showCurrentPageReport"
+                    currentPageReportTemplate="{{totalCount==0?'':this.l('txt_show')+ ': {first}-{last}/{totalRecords}'}} "
+                    [rows]="paginatorRows" [totalRecords]="totalCount" [rowsPerPageOptions]="rowsPerPageOptions"
+                    [scrollable]="scrollable" scrollHeight="{{scrollHeight}}" [(selection)]="nhanViensSelected">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="width-30" *ngIf="isGranted('Pages.QuanLyTram.Edit')">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <!-- <th class="width-30"></th> -->
+                            <th class="width-150" pSortableColumn="MaNhanVien">{{l('qlnvtram_manhanvien')}}
+                                <p-sortIcon field="MaNhanVien"></p-sortIcon>
+                            </th>
+                            <th class="width-150" pSortableColumn="ten">{{l('qlnvtram_tennhanvien')}}
+                                <p-sortIcon field="ten"></p-sortIcon>
+                            </th>
+                            <th class="width-150" pSortableColumn="sdt">{{l('qlnvtram_sodienthoai')}}
+                                <p-sortIcon field="sdt"></p-sortIcon>
+                            </th>
+                            <th class="width-200" pSortableColumn="email">{{l('qlnvtram_email')}}
+                                <p-sortIcon field="email"></p-sortIcon>
+                            </th>
+                            <th class="width-250" pSortableColumn="maThe">{{l('qlnvtram_mathe')}}
+                                <p-sortIcon field="maThe"></p-sortIcon>
+                            </th>
+                            <th class="width-250" pSortableColumn="chucVuNumber">{{l('qlnvtram_chucvu')}}
+                                <p-sortIcon field="chucVuNumber"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-record>
+                        <tr class="ui-selectable-row">
+                            <td class="width-30" *ngIf="isGranted('Pages.QuanLyTram.Edit')">
+                                <p-tableCheckbox [value]="record">
+                                </p-tableCheckbox>
+                            </td>
+                            <td class="width-150">
+                                {{ record.maNhanVien | truncate }}
+                            </td>
+                            <td class="width-150">
+                                {{ record.ten | truncate }}
+                            </td>
+                            <td class="width-150">
+                                {{ record.sdt | truncate }}
+                            </td>
+                            <td class="width-200">
+                                {{ record.email | truncate }}
+                            </td>
+                            <td class="width-250">
+                                {{ record.maThe | truncate }}
+                            </td>
+                            <td class="width-250">
+                                {{ record.chucVu | truncate }}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="demo" colspan="8" class="text-left">{{l(khongCoDuLieu)}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+</div>
